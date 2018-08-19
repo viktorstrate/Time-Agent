@@ -7,12 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3476B0FC2129FB4300835532 /* ProjectsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B0FB2129FB4300835532 /* ProjectsTableViewController.swift */; };
+		3476B100212A003C00835532 /* ProjectsItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B0FF212A003C00835532 /* ProjectsItemCellView.swift */; };
+		3476B104212A067600835532 /* ProjectsEditItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B103212A067600835532 /* ProjectsEditItemCellView.swift */; };
 		349E89E72127186100CA088C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E89E62127186100CA088C /* AppDelegate.swift */; };
-		349E89E92127186100CA088C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E89E82127186100CA088C /* ViewController.swift */; };
+		349E89E92127186100CA088C /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E89E82127186100CA088C /* MenuViewController.swift */; };
 		349E89EC2127186100CA088C /* Time_Agent.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 349E89EA2127186100CA088C /* Time_Agent.xcdatamodeld */; };
 		349E89EE2127186300CA088C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 349E89ED2127186300CA088C /* Assets.xcassets */; };
 		349E89F12127186300CA088C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 349E89EF2127186300CA088C /* Main.storyboard */; };
 		349E89FD2127186300CA088C /* Time_AgentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E89FC2127186300CA088C /* Time_AgentUITests.swift */; };
+		349E8A082129AA2D00CA088C /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E8A072129AA2D00CA088C /* EventMonitor.swift */; };
+		349E8A0A2129B2CC00CA088C /* TransparentTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E8A092129B2CC00CA088C /* TransparentTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,9 +31,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3476B0FB2129FB4300835532 /* ProjectsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsTableViewController.swift; sourceTree = "<group>"; };
+		3476B0FF212A003C00835532 /* ProjectsItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsItemCellView.swift; sourceTree = "<group>"; };
+		3476B103212A067600835532 /* ProjectsEditItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsEditItemCellView.swift; sourceTree = "<group>"; };
 		349E89E32127186100CA088C /* Time Agent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Time Agent.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		349E89E62127186100CA088C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		349E89E82127186100CA088C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		349E89E82127186100CA088C /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		349E89EB2127186100CA088C /* Time_Agent.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Time_Agent.xcdatamodel; sourceTree = "<group>"; };
 		349E89ED2127186300CA088C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		349E89F02127186300CA088C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -37,6 +45,8 @@
 		349E89F82127186300CA088C /* Time AgentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Time AgentUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		349E89FC2127186300CA088C /* Time_AgentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time_AgentUITests.swift; sourceTree = "<group>"; };
 		349E89FE2127186300CA088C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		349E8A072129AA2D00CA088C /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
+		349E8A092129B2CC00CA088C /* TransparentTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,12 +89,17 @@
 			isa = PBXGroup;
 			children = (
 				349E89E62127186100CA088C /* AppDelegate.swift */,
-				349E89E82127186100CA088C /* ViewController.swift */,
+				349E8A072129AA2D00CA088C /* EventMonitor.swift */,
+				349E89E82127186100CA088C /* MenuViewController.swift */,
 				349E89ED2127186300CA088C /* Assets.xcassets */,
 				349E89EF2127186300CA088C /* Main.storyboard */,
 				349E89F22127186300CA088C /* Info.plist */,
 				349E89F32127186300CA088C /* Time_Agent.entitlements */,
 				349E89EA2127186100CA088C /* Time_Agent.xcdatamodeld */,
+				349E8A092129B2CC00CA088C /* TransparentTextField.swift */,
+				3476B0FB2129FB4300835532 /* ProjectsTableViewController.swift */,
+				3476B0FF212A003C00835532 /* ProjectsItemCellView.swift */,
+				3476B103212A067600835532 /* ProjectsEditItemCellView.swift */,
 			);
 			path = "Time Agent";
 			sourceTree = "<group>";
@@ -199,8 +214,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				349E89EC2127186100CA088C /* Time_Agent.xcdatamodeld in Sources */,
-				349E89E92127186100CA088C /* ViewController.swift in Sources */,
+				349E89E92127186100CA088C /* MenuViewController.swift in Sources */,
+				3476B100212A003C00835532 /* ProjectsItemCellView.swift in Sources */,
+				3476B104212A067600835532 /* ProjectsEditItemCellView.swift in Sources */,
+				349E8A0A2129B2CC00CA088C /* TransparentTextField.swift in Sources */,
 				349E89E72127186100CA088C /* AppDelegate.swift in Sources */,
+				349E8A082129AA2D00CA088C /* EventMonitor.swift in Sources */,
+				3476B0FC2129FB4300835532 /* ProjectsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
