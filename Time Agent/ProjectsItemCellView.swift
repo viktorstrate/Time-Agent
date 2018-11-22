@@ -10,6 +10,12 @@ import Cocoa
 
 class ProjectsItemCellView: NSTableCellView {
 
+    var project: NSManagedObject! {
+        didSet {
+            title.stringValue = project.value(forKey: "name") as! String
+        }
+    }
+    
     @IBOutlet weak var title: NSTextField!
     @IBOutlet weak var totalTime: NSTextField!
     

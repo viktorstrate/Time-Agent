@@ -849,11 +849,25 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="projectContextMenu" destination="dJC-gx-t5l" id="5kf-9L-bEz"/>
                         <outlet property="tableView" destination="b2s-Zg-2fZ" id="pO1-uk-SeH"/>
                     </connections>
                 </viewController>
+                <menu title="Project Context Menu" identifier="Test" id="dJC-gx-t5l" userLabel="Project Context Menu">
+                    <items>
+                        <menuItem title="Rename" id="P9k-W8-GQZ">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                        <menuItem title="Delete" id="vfb-98-IFZ">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="projectMenuDeleteAction:" target="aBe-uS-rz0" id="cyn-zn-srE"/>
+                            </connections>
+                        </menuItem>
+                    </items>
+                </menu>
             </objects>
-            <point key="canvasLocation" x="-120" y="1170"/>
+            <point key="canvasLocation" x="-213" y="1183"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="zcN-dp-TX5">
