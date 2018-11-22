@@ -18,7 +18,7 @@ class ProjectsEditItemCellView: NSTableCellView, NSTextFieldDelegate {
         editTextField.delegate = self
     }
     
-    override func controlTextDidEndEditing(_ obj: Notification) {
+    func controlTextDidEndEditing(_ obj: Notification) {
         delegate?.endEditing(text: editTextField.stringValue)
     }
     

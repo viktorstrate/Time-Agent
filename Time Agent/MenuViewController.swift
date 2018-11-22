@@ -23,8 +23,8 @@ class MenuViewController: NSSplitViewController {
     }
 
     static func makeController() -> MenuViewController {
-        let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
-        let identifier = NSStoryboard.SceneIdentifier("MenuViewController")
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        let identifier = "MenuViewController"
         
         guard let viewController = storyboard.instantiateController(withIdentifier: identifier) as? MenuViewController else {
             fatalError("Could not instantiate MenuViewController")
