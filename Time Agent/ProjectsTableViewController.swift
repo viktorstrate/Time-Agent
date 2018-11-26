@@ -10,22 +10,9 @@ import Cocoa
 
 class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, ProjectsEditItemCellDelegate, NSMenuDelegate {
     
-//    var projects: [NSManagedObject] {
-//        get {
-//            guard let rawProjects = fetchAllProjects() else {
-//                return []
-//            }
-////            var projectNames: [String] = []
-////
-////            for proj in rawProjects {
-////                projectNames.append(proj.value(forKey: "name") as! String)
-////            }
-//
-//            return rawProjects
-//        }
-//    }
-    
-    var editingProject = false
+    var newProject = false
+    var renameRow = -1
+    var renameRowProject: NSManagedObject? = nil
     var editTextField: NSTextField?
     
     lazy var coreDataContext: NSManagedObjectContext = {
@@ -50,24 +37,44 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
     }
     
     @IBAction func addProjectAction(_ sender: NSButton) {
-        editingProject = true
+        newProject = true
         tableView.reloadData()
+        tableView.scrollRowToVisible(tableView.numberOfRows-1)
     }
     
     func endEditing(text: String) {
-        editingProject = false
-        if !text.isEmpty {
-//            projects.append(text)
-            addProject(name: text)
+        if (newProject == true) {
+            newProject = false
+            if !text.isEmpty {
+                addProject(name: text)
+            }
+        } else {
+            // Rename project
+            let renamedRow = renameRow
+            renameRow = -1
+            tableView.reloadData()
+            
+            if !text.isEmpty {
+                guard let row = tableView(tableView, viewFor: nil, row: renamedRow) as? ProjectsItemCellView else {
+                    print("EndEditing: Error row not found")
+                    return
+                }
+                
+                row.project = renameRowProject
+                renameRowProject = nil
+                
+                renameProject(project: row.project, name: text)
+            } else {
+                renameRowProject = nil
+            }
         }
-        tableView.reloadData()
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         guard let projects = fetchAllProjects() else {
             return 0
         }
-        if editingProject {
+        if newProject {
             return projects.count + 1
         }
         
@@ -80,13 +87,13 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
             return nil
         }
         
-        if editingProject && row == projects.count {
+        if newProject && row == projects.count || renameRow == row {
             let editItem = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectEditCell"), owner: nil) as! ProjectsEditItemCellView
             
             editItem.delegate = self
+            editItem.editingProject = renameRowProject
 
             editTextField = editItem.editTextField
-            editTextField?.stringValue = ""
             
             return editItem
         }
@@ -108,6 +115,7 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
         
         do {
             try coreDataContext.save()
+            tableView.reloadData()
         } catch {
             print("Error saving data, after attempting to add a new project")
         }
@@ -136,10 +144,19 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
         }
     }
     
+    func renameProject(project: NSManagedObject, name: String) {
+        do {
+            project.setValue(name, forKey: "name")
+            try coreDataContext.save()
+            tableView.reloadData()
+        } catch {
+            print("Error could not rename project")
+        }
+    }
+    
     // MARK: Right click menu
     
     @IBAction func projectMenuDeleteAction(_ sender: Any) {
-        
         if (tableView.clickedRow < 0) {
             return
         }
@@ -151,6 +168,21 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
         
         print("Deleting project: " + (row.project.value(forKey: "name") as! String))
         deleteProject(project: row.project)
+    }
+    
+    @IBAction func projectMenuRenameAction(_ sender: Any) {
+        if (tableView.clickedRow < 0) {
+            return
+        }
+        
+        guard let row = tableView(tableView, viewFor: nil, row: tableView.clickedRow) as? ProjectsItemCellView else {
+            print("Error row not found")
+            return
+        }
+        
+        renameRow = tableView.clickedRow
+        renameRowProject = row.project
+        tableView.reloadData()
     }
     
     func menuWillOpen(_ menu: NSMenu) {
@@ -169,5 +201,4 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
             menu.cancelTracking()
         }
     }
-    
 }

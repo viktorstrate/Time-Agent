@@ -857,11 +857,14 @@
                     <items>
                         <menuItem title="Rename" id="P9k-W8-GQZ">
                             <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="projectMenuRenameAction:" target="aBe-uS-rz0" id="OCE-Zz-3BI"/>
+                            </connections>
                         </menuItem>
                         <menuItem title="Delete" id="vfb-98-IFZ">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <action selector="projectMenuDeleteAction:" target="aBe-uS-rz0" id="cyn-zn-srE"/>
+                                <action selector="projectMenuDeleteAction:" target="aBe-uS-rz0" id="Bbg-Vo-7a8"/>
                             </connections>
                         </menuItem>
                     </items>
