@@ -23,6 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         popover.contentViewController = MenuViewController.makeController()
+        popover.contentSize = NSSize(width: 660, height: 480)
         
         closeEventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
             if let strongSelf = self, strongSelf.popover.isShown {

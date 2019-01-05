@@ -11,9 +11,9 @@ import Cocoa
 class ProjectsEditItemCellView: NSTableCellView, NSTextFieldDelegate {
 
     var delegate: ProjectsEditItemCellDelegate?
-    var editingProject: NSManagedObject? {
+    var editingProject: ProjectModel? {
         didSet {
-            editTextField.stringValue = (editingProject?.value(forKey: "name") as? String) ?? ""
+            editTextField.stringValue = editingProject?.name ?? ""
         }
     }
     

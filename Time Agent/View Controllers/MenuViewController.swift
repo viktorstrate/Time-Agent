@@ -32,6 +32,10 @@ class MenuViewController: NSSplitViewController {
         
         return viewController
     }
+    
+    func changeActiveProject() {
+        
+    }
 
 }
 

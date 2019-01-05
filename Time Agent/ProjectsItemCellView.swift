@@ -10,9 +10,9 @@ import Cocoa
 
 class ProjectsItemCellView: NSTableCellView {
 
-    var project: NSManagedObject! {
+    var project: ProjectModel! {
         didSet {
-            title.stringValue = project.value(forKey: "name") as! String
+            title.stringValue = project.name ?? ""
         }
     }
     
