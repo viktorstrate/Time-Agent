@@ -902,6 +902,9 @@
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
+                                        <connections>
+                                            <action selector="toggleTimer:" target="b2Y-kt-o7L" id="Wc8-Sj-mYS"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <visibilityPriorities>
@@ -947,6 +950,11 @@
                             <constraint firstItem="caB-Kz-GWf" firstAttribute="leading" secondItem="pGf-dL-PQQ" secondAttribute="leading" constant="10" id="sUU-YO-QkV"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="projectNameField" destination="qNs-qF-Jj5" id="WHb-mW-3bO"/>
+                        <outlet property="taskNameInput" destination="spS-FZ-QIO" id="MzH-bK-SOy"/>
+                        <outlet property="timerButton" destination="G8W-rn-wfJ" id="5ZE-AM-KOS"/>
+                    </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="155.5" y="1170"/>

@@ -10,6 +10,10 @@ import Cocoa
 
 class ProjectViewController: NSViewController {
 
+    @IBOutlet weak var projectNameField: NSTextField!
+    @IBOutlet weak var taskNameInput: NSTextField!
+    @IBOutlet weak var timerButton: NSButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -22,5 +26,8 @@ class ProjectViewController: NSViewController {
         }
         
         menuViewController.toggleSidebar(sender)
+    }
+    
+    @IBAction func toggleTimer(_ sender: NSButton) {
     }
 }

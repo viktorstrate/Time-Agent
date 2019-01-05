@@ -8,8 +8,8 @@
 
 import Cocoa
 
-class MenuViewController: NSSplitViewController {
-
+class MenuViewController: NSSplitViewController, MenuViewProjectsDelegate {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,9 +33,12 @@ class MenuViewController: NSSplitViewController {
         return viewController
     }
     
-    func changeActiveProject() {
-        
+    func changeActiveProject(_ project: ProjectModel) {
+        print("Changed active project...")
     }
+}
 
+protocol MenuViewProjectsDelegate {
+    func changeActiveProject(_ project: ProjectModel)
 }
 

@@ -14,6 +14,7 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
     var renameRow = -1
     var renameRowProject: ProjectModel? = nil
     var editTextField: NSTextField?
+    var projectsDelegate: MenuViewProjectsDelegate?
     
     lazy var coreDataContext: NSManagedObjectContext = {
         let appDelegate = NSApplication.shared.delegate as! AppDelegate
@@ -49,7 +50,6 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
             if !text.isEmpty {
                 let _ = ProjectModel.addProject(name: text)
                 updateData()
-//                addProject(name: text)
             }
         } else {
             // Rename project
@@ -76,10 +76,6 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         let projects = ProjectModel.fetchAll()
-//        guard let projects = ProjectModel.fetchAll() else {
-//            print("Tried to get projects, but could not fetch projects")
-//            return 0
-//        }
         
         if newProject {
             print("Got projects \(projects.count) plus new one")
@@ -93,9 +89,6 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 
         let projects = ProjectModel.fetchAll()
-//        guard let projects = ProjectModel.fetchAll() else {
-//            return nil
-//        }
         
         if newProject && row == projects.count || renameRow == row {
             let editItem = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectEditCell"), owner: nil) as! ProjectsEditItemCellView
@@ -109,10 +102,17 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
         }
         
         let projectItem = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectCell"), owner: nil) as! ProjectsItemCellView
-//        projectItem.title.stringValue = projects[row]
+
         projectItem.project = projects[row]
 
         return projectItem
+    }
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        let projects = ProjectModel.fetchAll()
+        let project = projects[tableView.selectedRow]
+        
+        projectsDelegate?.changeActiveProject(project)
     }
     
     // MARK: Core Data related functions
@@ -125,53 +125,6 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
             print("Error saving data, after attempting to add a new project")
         }
     }
-    
-//    func addProject(name: String) {
-//
-//        let entity = NSEntityDescription.entity(forEntityName: "Project", in: coreDataContext)
-//        let newProject = NSManagedObject(entity: entity!, insertInto: coreDataContext)
-//        newProject.setValue(name, forKey: "name")
-//
-//        do {
-//            try coreDataContext.save()
-//            tableView.reloadData()
-//        } catch {
-//            print("Error saving data, after attempting to add a new project")
-//        }
-//    }
-//
-//    func fetchAllProjects() -> [NSManagedObject]? {
-//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Project")
-//        request.returnsObjectsAsFaults = false
-//
-//        do {
-//            let result = try coreDataContext.fetch(request)
-//            return result as? [NSManagedObject]
-//        } catch {
-//            print("Error fetching projects")
-//            return nil
-//        }
-//    }
-//
-//    func deleteProject(project: NSManagedObject) {
-//        do {
-//            coreDataContext.delete(project)
-//            try coreDataContext.save()
-//            tableView.reloadData()
-//        } catch {
-//            print("Error could not delete project")
-//        }
-//    }
-//
-//    func renameProject(project: NSManagedObject, name: String) {
-//        do {
-//            project.setValue(name, forKey: "name")
-//            try coreDataContext.save()
-//            tableView.reloadData()
-//        } catch {
-//            print("Error could not rename project")
-//        }
-//    }
     
     // MARK: Right click menu
     
@@ -186,7 +139,6 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
         }
         
         print("Deleting project: " + (row.project.managedObject.value(forKey: "name") as! String))
-//        deleteProject(project: row.project)
         row.project.delete()
         updateData()
     }
