@@ -8,42 +8,46 @@
 
 import Cocoa
 
-class Model: NSManagedObject {
+class Model {
     
-    var test = 123
+    var managedObject: NSManagedObject
     
-//    static var coreDataContext: NSManagedObjectContext = {
-//        let appDelegate = NSApplication.shared.delegate as! AppDelegate
-//        let context = appDelegate.persistentContainer.viewContext
-//        return context
-//    }()
+    init(_ managedObject: NSManagedObject) {
+        self.managedObject = managedObject
+    }
     
-    func delete() {
+    static var coreDataContext: NSManagedObjectContext = {
         let appDelegate = NSApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
-        context.delete(self)
+        return context
+    }()
+    
+    func delete() {
+        Model.coreDataContext.delete(self.managedObject)
     }
     
     func save() {
-        let appDelegate = NSApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
         do {
-            try context.save()
+            try Model.coreDataContext.save()
         } catch {
             print("Error could not save project")
         }
     }
     
     static func fetchAllModels(name: String) -> [Model]? {
-        let appDelegate = NSApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: name)
         request.returnsObjectsAsFaults = false
         
         do {
-            let result = try context.fetch(request)
-            return result as? [Model]
+            let result = try Model.coreDataContext.fetch(request)
+            var models: [Model] = []
+            
+            for obj in result {
+                let model = Model(obj as! NSManagedObject)
+                models.append(model)
+            }
+            
+            return models
         } catch {
             print("Error fetching projects")
             return nil

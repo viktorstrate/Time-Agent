@@ -75,24 +75,27 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        print("Got projects")
-        
-        guard let projects = ProjectModel.fetchAll() else {
-            return 0
-        }
+        let projects = ProjectModel.fetchAll()
+//        guard let projects = ProjectModel.fetchAll() else {
+//            print("Tried to get projects, but could not fetch projects")
+//            return 0
+//        }
         
         if newProject {
+            print("Got projects \(projects.count) plus new one")
             return projects.count + 1
         }
         
+        print("Got projects \(projects.count)")
         return projects.count
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        
-        guard let projects = ProjectModel.fetchAll() else {
-            return nil
-        }
+
+        let projects = ProjectModel.fetchAll()
+//        guard let projects = ProjectModel.fetchAll() else {
+//            return nil
+//        }
         
         if newProject && row == projects.count || renameRow == row {
             let editItem = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectEditCell"), owner: nil) as! ProjectsEditItemCellView
@@ -182,7 +185,7 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
             return
         }
         
-        print("Deleting project: " + (row.project.value(forKey: "name") as! String))
+        print("Deleting project: " + (row.project.managedObject.value(forKey: "name") as! String))
 //        deleteProject(project: row.project)
         row.project.delete()
         updateData()

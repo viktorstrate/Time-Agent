@@ -955,6 +955,6 @@
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSColumnViewTemplate" width="16" height="10"/>
-        <image name="Play button" width="85.5" height="85.5"/>
+        <image name="Play button" width="86" height="86"/>
     </resources>
 </document>

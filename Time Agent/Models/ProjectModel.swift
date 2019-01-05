@@ -12,29 +12,27 @@ class ProjectModel: Model {
     
     var name: String? {
         get {
-            return value(forKey: "name") as? String
+            return managedObject.value(forKey: "name") as? String
         }
 
         set {
-            super.setValue(newValue, forKey: "name")
+            managedObject.setValue(newValue, forKey: "name")
         }
     }
     
     static func addProject(name projectName: String) -> ProjectModel {
-        let appDelegate = NSApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        
-        let entity = NSEntityDescription.entity(forEntityName: "Project", in: context)
-        let newModel = ProjectModel(entity: entity!, insertInto: context)
+        let entity = NSEntityDescription.entity(forEntityName: "Project", in: Model.coreDataContext)
+        let managedObject = NSManagedObject(entity: entity!, insertInto: Model.coreDataContext)
+        let newModel = ProjectModel(managedObject)
         
         newModel.name = projectName
-//        newModel.setValue(projectName, forKey: "name")
-//        newModel.setName(projectName)
         
         return newModel
     }
     
-    static func fetchAll() -> [ProjectModel]? {
-        return Model.fetchAllModels(name: "Project") as? [ProjectModel]
+    static func fetchAll() -> [ProjectModel] {
+        return Model.fetchAllModels(name: "Project")!.map({ (model) -> ProjectModel in
+            return ProjectModel(model.managedObject)
+        })
     }
 }
