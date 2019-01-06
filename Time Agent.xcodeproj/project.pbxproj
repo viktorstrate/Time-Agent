@@ -110,8 +110,8 @@
 				349E89EF2127186300CA088C /* Main.storyboard */,
 				349E89F22127186300CA088C /* Info.plist */,
 				349333A121AC7EAB00A45A4B /* Assets.xcassets */,
-				349E89F32127186300CA088C /* Time_Agent.entitlements */,
 				349E89EA2127186100CA088C /* Time_Agent.xcdatamodeld */,
+				349E89F32127186300CA088C /* Time_Agent.entitlements */,
 			);
 			path = "Time Agent";
 			sourceTree = "<group>";

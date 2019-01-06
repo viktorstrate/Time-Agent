@@ -15,12 +15,6 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
     var renameRowProject: Project? = nil
     var editTextField: NSTextField?
     var projectsDelegate: MenuViewProjectsDelegate?
-    
-    lazy var coreDataContext: NSManagedObjectContext = {
-        let appDelegate = NSApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
-        return context
-    }()
 
     @IBOutlet weak var tableView: NSTableView!
     @IBOutlet var projectContextMenu: NSMenu!
@@ -49,8 +43,9 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
             newProject = false
             if !text.isEmpty {
 //                let _ = ProjectModel.addProject(name: text)
-                let project = Project(context: Model.coreDataContext)
+                let project = Project(context: Model.context)
                 project.name = text
+                project.creationDate = Date()
                 updateData()
             }
         } else {
@@ -92,7 +87,7 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
 
         let projects = Model.fetchAll(request: Project.fetchRequest())
         
-        if newProject && row == projects.count || renameRow == row {
+        if newProject && row == 0 || renameRow == row {
             let editItem = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectEditCell"), owner: nil) as! ProjectsEditItemCellView
             
             editItem.delegate = self
@@ -104,10 +99,17 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
         }
         
         let projectItem = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectCell"), owner: nil) as! ProjectsItemCellView
-
-        projectItem.project = projects[row]
+        projectItem.project = projects[projectIndex(forRow: row)]
 
         return projectItem
+    }
+    
+    func projectIndex(forRow row: Int) -> Int {
+        var projectIndex = row
+        if newProject {
+            projectIndex -= 1
+        }
+        return projectIndex
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
@@ -115,10 +117,10 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
             projectsDelegate?.changeActiveProject(nil)
             return
         }
-        
 
         let projects = Model.fetchAll(request: Project.fetchRequest())
-        let project = projects[tableView.selectedRow]
+        let projectIndex = self.projectIndex(forRow: tableView.selectedRow)
+        let project = projects[projectIndex]
         
         projectsDelegate?.changeActiveProject(project)
     }
@@ -127,7 +129,7 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
     
     func updateData() {
         do {
-            try coreDataContext.save()
+            try Model.context.save()
             tableView.reloadData()
         } catch {
             print("Error saving data, after attempting to add a new project")

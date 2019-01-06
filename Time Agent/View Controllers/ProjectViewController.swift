@@ -22,23 +22,44 @@ class ProjectViewController: NSViewController {
             projectNameField.stringValue = project.name ?? "No name"
             taskNameInput.isEnabled = true
             timerButton.isEnabled = true
+            
+            tasksTableView.reloadData()
         }
     }
+    
+    lazy var durationFormatter: DateComponentsFormatter = {
+        let format = DateComponentsFormatter()
+        format.allowedUnits = [.hour, .minute, .second]
+        format.unitsStyle = .abbreviated
+        
+        return format
+    }()
+    
+    lazy var dateFormatter: DateFormatter = {
+        let format = DateFormatter()
+        format.dateStyle = .medium
+        format.timeStyle = .none
+        
+        return format
+    }()
+    
     
     @IBOutlet weak var projectNameField: NSTextField!
     @IBOutlet weak var taskNameInput: NSTextField!
     @IBOutlet weak var timerButton: NSButton!
     @IBOutlet weak var timerLabel: NSTextField!
+    @IBOutlet weak var tasksTableView: NSTableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+        
+        
         
         // Run didSet function
         if project == nil {
             let projects = Model.fetchAll(request: Project.fetchRequest())
             if !projects.isEmpty {
-                project = (projects[0] as! Project)
+                project = projects[0]
             } else {
                 project = nil
             }
@@ -65,6 +86,7 @@ class ProjectViewController: NSViewController {
             let start = startTime!
             startTime = nil
             callTimer?.invalidate()
+            updateTimerLabel()
             
             taskNameInput.isEditable = true
             
@@ -74,8 +96,13 @@ class ProjectViewController: NSViewController {
             let name = taskNameInput.stringValue
             taskNameInput.stringValue = ""
             
-            taskFinished(name: name, duration: duration)
+            taskFinished(name: name, start: start, duration: duration)
             
+            return
+        }
+        
+        if taskNameInput.stringValue.isEmpty {
+            print("Taks should have a name")
             return
         }
         
@@ -95,15 +122,61 @@ class ProjectViewController: NSViewController {
         
         let duration = Date().timeIntervalSince(startTime)
 
-        let format = DateComponentsFormatter()
-        format.allowedUnits = [.hour, .minute, .second]
-        format.unitsStyle = .abbreviated
         
-        timerLabel.stringValue = format.string(from: duration) ?? "ERROR"
+        
+        timerLabel.stringValue = durationFormatter.string(from: duration) ?? "ERROR"
     }
     
-    func taskFinished(name: String, duration: TimeInterval) {
-        
+    func taskFinished(name: String, start: Date, duration: TimeInterval) {
         print("Task finished: \(name) - \(duration)")
+        
+        let task = Task(context: Model.context)
+        task.duration = duration
+        task.name = name
+        task.start = start
+        task.project = project
+        
+        Model.save()
+        
+        tasksTableView.reloadData()
+    }
+}
+
+extension ProjectViewController: NSTableViewDelegate, NSTableViewDataSource {
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        let tasks = project?.tasks?.count ?? 0
+        
+        print("Showing \(tasks) tasks")
+        return tasks
+    }
+    
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        let identifier = tableColumn!.identifier
+        
+        let cell = tableView.makeView(withIdentifier: identifier, owner: self) as! NSTableCellView
+        
+        var cellValue: String!
+        let tasks = project!.tasks!.sortedArray(using: [NSSortDescriptor(key: "date", ascending: false)]) as! [Task]
+        let task = tasks[row]
+        
+        print("Date \(task.start) - \(dateFormatter.string(from: task.start!))")
+        
+        switch identifier.rawValue {
+        case "date":
+            cellValue = dateFormatter.string(from: task.start!)
+            break
+        case "task":
+            cellValue = task.name
+            break
+        case "duration":
+            cellValue = durationFormatter.string(from: task.duration)
+            break
+        default:
+            cellValue = "Not defined"
+        }
+        
+        cell.textField?.stringValue = cellValue
+        
+        return cell
     }
 }

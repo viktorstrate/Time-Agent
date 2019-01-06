@@ -10,19 +10,19 @@ import Cocoa
 
 class Model {
     
-    static var coreDataContext: NSManagedObjectContext = {
+    static var context: NSManagedObjectContext = {
         let appDelegate = NSApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         return context
     }()
     
     static func delete(managedObject: NSManagedObject) {
-        Model.coreDataContext.delete(managedObject)
+        Model.context.delete(managedObject)
     }
     
     static func save() {
         do {
-            try Model.coreDataContext.save()
+            try Model.context.save()
         } catch {
             print("Error could not save project")
         }
@@ -31,9 +31,10 @@ class Model {
     static func fetchAll<T>(request: NSFetchRequest<T>) -> [T] {
         
         request.returnsObjectsAsFaults = false
+        request.sortDescriptors = [NSSortDescriptor.init(key: "creationDate", ascending: false)]
         
         do {
-            let result = try Model.coreDataContext.fetch(request)
+            let result = try Model.context.fetch(request)
             
             return result
         } catch {

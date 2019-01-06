@@ -968,7 +968,7 @@
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="107" minWidth="40" maxWidth="1000" id="EMb-Sy-pE2">
+                                                <tableColumn identifier="date" width="107" minWidth="40" maxWidth="1000" id="EMb-Sy-pE2">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Date">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1000,7 +1000,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn width="252" minWidth="40" maxWidth="1000" id="fam-KH-Wbx">
+                                                <tableColumn identifier="task" width="252" minWidth="40" maxWidth="1000" id="fam-KH-Wbx">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Task">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1033,7 +1033,7 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn width="133" minWidth="40" maxWidth="1000" id="6al-nY-9TZ">
+                                                <tableColumn identifier="duration" width="133" minWidth="40" maxWidth="1000" id="6al-nY-9TZ">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Duration">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1066,6 +1066,10 @@
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
+                                            <connections>
+                                                <outlet property="dataSource" destination="b2Y-kt-o7L" id="vgJ-XL-1Sn"/>
+                                                <outlet property="delegate" destination="b2Y-kt-o7L" id="xPD-Px-v4f"/>
+                                            </connections>
                                         </tableView>
                                     </subviews>
                                 </clipView>
@@ -1101,6 +1105,7 @@
                     <connections>
                         <outlet property="projectNameField" destination="qNs-qF-Jj5" id="WHb-mW-3bO"/>
                         <outlet property="taskNameInput" destination="spS-FZ-QIO" id="MzH-bK-SOy"/>
+                        <outlet property="tasksTableView" destination="Che-aM-82q" id="6VL-l3-z31"/>
                         <outlet property="timerButton" destination="G8W-rn-wfJ" id="5ZE-AM-KOS"/>
                         <outlet property="timerLabel" destination="2Ih-i0-bLX" id="L4j-1Y-4wy"/>
                     </connections>
