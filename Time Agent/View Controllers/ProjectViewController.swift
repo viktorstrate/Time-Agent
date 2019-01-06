@@ -12,6 +12,9 @@ class ProjectViewController: NSViewController {
 
     var project: Project? {
         didSet {
+            updateTimerLabel()
+            tasksTableView.reloadData()
+            
             guard let project = project else {
                 projectNameField.stringValue = "No project selected"
                 taskNameInput.isEnabled = false
@@ -22,12 +25,10 @@ class ProjectViewController: NSViewController {
             projectNameField.stringValue = project.name ?? "No name"
             taskNameInput.isEnabled = true
             timerButton.isEnabled = true
-            
-            tasksTableView.reloadData()
         }
     }
     
-    lazy var durationFormatter: DateComponentsFormatter = {
+    static var durationFormatter: DateComponentsFormatter = {
         let format = DateComponentsFormatter()
         format.allowedUnits = [.hour, .minute, .second]
         format.unitsStyle = .abbreviated
@@ -35,10 +36,10 @@ class ProjectViewController: NSViewController {
         return format
     }()
     
-    lazy var dateFormatter: DateFormatter = {
+    static var dateFormatter: DateFormatter = {
         let format = DateFormatter()
-        format.dateStyle = .medium
-        format.timeStyle = .none
+        format.dateStyle = .short
+        format.timeStyle = .medium
         
         return format
     }()
@@ -49,11 +50,10 @@ class ProjectViewController: NSViewController {
     @IBOutlet weak var timerButton: NSButton!
     @IBOutlet weak var timerLabel: NSTextField!
     @IBOutlet weak var tasksTableView: NSTableView!
+    @IBOutlet weak var totalTimeLabel: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         // Run didSet function
         if project == nil {
@@ -102,7 +102,7 @@ class ProjectViewController: NSViewController {
         }
         
         if taskNameInput.stringValue.isEmpty {
-            print("Taks should have a name")
+            print("Task should have a name")
             return
         }
         
@@ -115,16 +115,24 @@ class ProjectViewController: NSViewController {
     }
     
     @objc func updateTimerLabel() {
-        guard let startTime = startTime else {
-            timerLabel.stringValue = ""
+        
+        guard let project = project else {
             return
         }
         
-        let duration = Date().timeIntervalSince(startTime)
-
+        var duration: TimeInterval
         
+        if startTime == nil {
+            duration = 0
+        } else {
+            duration = Date().timeIntervalSince(startTime!)
+        }
         
-        timerLabel.stringValue = durationFormatter.string(from: duration) ?? "ERROR"
+        timerLabel.stringValue = ProjectViewController.durationFormatter.string(from: duration) ?? "ERROR"
+        
+        let taskTime = project.calculateTotalTime()
+        
+        totalTimeLabel.stringValue = "Total time: " + (ProjectViewController.durationFormatter.string(from: duration + taskTime) ?? "ERROR")
     }
     
     func taskFinished(name: String, start: Date, duration: TimeInterval) {
@@ -140,36 +148,54 @@ class ProjectViewController: NSViewController {
         
         tasksTableView.reloadData()
     }
+    
+    var tableViewTasks: [Task] = []
 }
 
 extension ProjectViewController: NSTableViewDelegate, NSTableViewDataSource {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        let tasks = project?.tasks?.count ?? 0
         
-        print("Showing \(tasks) tasks")
-        return tasks
+        guard let project = project else {
+            return 0
+        }
+        
+        guard let tasks = project.tasks else {
+            print("ERROR: ProjectViewController -> viewFor tableColumn: Could not get project.tasks")
+            return 0
+        }
+        
+        print("Updating tableview tasks")
+        tableViewTasks = tasks.sortedArray(using: [NSSortDescriptor(key: "start", ascending: false)]) as! [Task]
+
+        
+        print("Showing \(tasks.count) tasks")
+        return tasks.count
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        
         let identifier = tableColumn!.identifier
         
         let cell = tableView.makeView(withIdentifier: identifier, owner: self) as! NSTableCellView
         
         var cellValue: String!
-        let tasks = project!.tasks!.sortedArray(using: [NSSortDescriptor(key: "date", ascending: false)]) as! [Task]
-        let task = tasks[row]
         
-        print("Date \(task.start) - \(dateFormatter.string(from: task.start!))")
+        let task = tableViewTasks[row]
+        
+        guard let start = task.start else {
+            print("ERROR: ProjectViewController -> viewFor tableColumn: task.start is nil")
+            return nil
+        }
         
         switch identifier.rawValue {
         case "date":
-            cellValue = dateFormatter.string(from: task.start!)
+            cellValue = ProjectViewController.dateFormatter.string(from: start)
             break
         case "task":
             cellValue = task.name
             break
         case "duration":
-            cellValue = durationFormatter.string(from: task.duration)
+            cellValue = ProjectViewController.durationFormatter.string(from: task.duration)
             break
         default:
             cellValue = "Not defined"

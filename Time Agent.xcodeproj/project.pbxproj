@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		342FFAF321E26C3000EDFA1C /* Project-extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342FFAF221E26C3000EDFA1C /* Project-extensions.swift */; };
 		3476B0FC2129FB4300835532 /* ProjectsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B0FB2129FB4300835532 /* ProjectsTableViewController.swift */; };
 		3476B100212A003C00835532 /* ProjectsItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B0FF212A003C00835532 /* ProjectsItemCellView.swift */; };
 		3476B104212A067600835532 /* ProjectsEditItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B103212A067600835532 /* ProjectsEditItemCellView.swift */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		342FFAF221E26C3000EDFA1C /* Project-extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Project-extensions.swift"; path = "Time Agent/Models/Project-extensions.swift"; sourceTree = SOURCE_ROOT; };
 		3476B0FB2129FB4300835532 /* ProjectsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsTableViewController.swift; sourceTree = "<group>"; };
 		3476B0FF212A003C00835532 /* ProjectsItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsItemCellView.swift; sourceTree = "<group>"; };
 		3476B103212A067600835532 /* ProjectsEditItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsEditItemCellView.swift; sourceTree = "<group>"; };
@@ -71,6 +73,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		342FFAF121E26C0A00EDFA1C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				342FFAF221E26C3000EDFA1C /* Project-extensions.swift */,
+			);
+			name = Models;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		3493339E21AC7B7D00A45A4B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +113,7 @@
 		349E89E52127186100CA088C /* Time Agent */ = {
 			isa = PBXGroup;
 			children = (
+				342FFAF121E26C0A00EDFA1C /* Models */,
 				34A6EF2D21E2264E00807D24 /* Views */,
 				3493339E21AC7B7D00A45A4B /* View Controllers */,
 				349333A621AC837300A45A4B /* Model.swift */,
@@ -245,6 +257,7 @@
 				349E8A0A2129B2CC00CA088C /* TransparentTextField.swift in Sources */,
 				349E89E72127186100CA088C /* AppDelegate.swift in Sources */,
 				349333A721AC837300A45A4B /* Model.swift in Sources */,
+				342FFAF321E26C3000EDFA1C /* Project-extensions.swift in Sources */,
 				349E8A082129AA2D00CA088C /* EventMonitor.swift in Sources */,
 				3476B0FC2129FB4300835532 /* ProjectsTableViewController.swift in Sources */,
 			);

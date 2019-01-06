@@ -13,6 +13,8 @@ class ProjectsItemCellView: NSTableCellView {
     var project: Project! {
         didSet {
             title.stringValue = project.name ?? ""
+            
+            totalTime.stringValue = ProjectViewController.durationFormatter.string(from: project.calculateTotalTime()) ?? "ERROR"
         }
     }
     
