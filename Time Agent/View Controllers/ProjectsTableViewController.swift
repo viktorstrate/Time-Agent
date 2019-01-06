@@ -109,6 +109,12 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
+        if (tableView.selectedRow < 0) {
+            projectsDelegate?.changeActiveProject(nil)
+            return
+        }
+        
+
         let projects = ProjectModel.fetchAll()
         let project = projects[tableView.selectedRow]
         

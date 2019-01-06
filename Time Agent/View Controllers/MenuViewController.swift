@@ -12,8 +12,10 @@ class MenuViewController: NSSplitViewController, MenuViewProjectsDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        
+        let projectsTableView = splitViewItems[0].viewController as! ProjectsTableViewController
+        projectsTableView.projectsDelegate = self
     }
 
     override var representedObject: Any? {
@@ -33,12 +35,15 @@ class MenuViewController: NSSplitViewController, MenuViewProjectsDelegate {
         return viewController
     }
     
-    func changeActiveProject(_ project: ProjectModel) {
+    func changeActiveProject(_ project: ProjectModel?) {
         print("Changed active project...")
+        let projectViewController = splitViewItems[1].viewController as! ProjectViewController
+        
+        projectViewController.project = project
     }
 }
 
 protocol MenuViewProjectsDelegate {
-    func changeActiveProject(_ project: ProjectModel)
+    func changeActiveProject(_ project: ProjectModel?)
 }
 
