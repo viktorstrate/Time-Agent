@@ -78,6 +78,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         })
         return container
     }()
+    
+    static var coreDataContext: NSManagedObjectContext = {
+        let appDelegate = NSApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        return context
+    }()
 
     // MARK: - Core Data Saving and Undo support
 

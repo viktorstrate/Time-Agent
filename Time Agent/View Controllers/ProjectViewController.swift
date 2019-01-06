@@ -10,7 +10,7 @@ import Cocoa
 
 class ProjectViewController: NSViewController {
 
-    var project: ProjectModel? {
+    var project: Project? {
         didSet {
             guard let project = project else {
                 projectNameField.stringValue = "No project selected"
@@ -36,7 +36,12 @@ class ProjectViewController: NSViewController {
         
         // Run didSet function
         if project == nil {
-            project = nil
+            let projects = Model.fetchAll(request: Project.fetchRequest())
+            if !projects.isEmpty {
+                project = (projects[0] as! Project)
+            } else {
+                project = nil
+            }
         }
     }
     

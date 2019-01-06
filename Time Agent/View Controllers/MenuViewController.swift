@@ -35,7 +35,7 @@ class MenuViewController: NSSplitViewController, MenuViewProjectsDelegate {
         return viewController
     }
     
-    func changeActiveProject(_ project: ProjectModel?) {
+    func changeActiveProject(_ project: Project?) {
         print("Changed active project...")
         let projectViewController = splitViewItems[1].viewController as! ProjectViewController
         
@@ -44,6 +44,6 @@ class MenuViewController: NSSplitViewController, MenuViewProjectsDelegate {
 }
 
 protocol MenuViewProjectsDelegate {
-    func changeActiveProject(_ project: ProjectModel?)
+    func changeActiveProject(_ project: Project?)
 }
 

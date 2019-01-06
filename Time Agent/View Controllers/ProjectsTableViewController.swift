@@ -12,7 +12,7 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
     
     var newProject = false
     var renameRow = -1
-    var renameRowProject: ProjectModel? = nil
+    var renameRowProject: Project? = nil
     var editTextField: NSTextField?
     var projectsDelegate: MenuViewProjectsDelegate?
     
@@ -48,7 +48,9 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
         if (newProject == true) {
             newProject = false
             if !text.isEmpty {
-                let _ = ProjectModel.addProject(name: text)
+//                let _ = ProjectModel.addProject(name: text)
+                let project = Project(context: Model.coreDataContext)
+                project.name = text
                 updateData()
             }
         } else {
@@ -75,7 +77,7 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        let projects = ProjectModel.fetchAll()
+        let projects = Model.fetchAll(request: Project.fetchRequest())
         
         if newProject {
             print("Got projects \(projects.count) plus new one")
@@ -88,7 +90,7 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 
-        let projects = ProjectModel.fetchAll()
+        let projects = Model.fetchAll(request: Project.fetchRequest())
         
         if newProject && row == projects.count || renameRow == row {
             let editItem = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectEditCell"), owner: nil) as! ProjectsEditItemCellView
@@ -115,7 +117,7 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
         }
         
 
-        let projects = ProjectModel.fetchAll()
+        let projects = Model.fetchAll(request: Project.fetchRequest())
         let project = projects[tableView.selectedRow]
         
         projectsDelegate?.changeActiveProject(project)
@@ -144,8 +146,8 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
             return
         }
         
-        print("Deleting project: " + (row.project.managedObject.value(forKey: "name") as! String))
-        row.project.delete()
+        print("Deleting project: " + (row.project.name ?? "Name not set"))
+        Model.delete(managedObject: row.project)
         updateData()
     }
     

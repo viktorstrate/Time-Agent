@@ -10,7 +10,7 @@ import Cocoa
 
 class ProjectsItemCellView: NSTableCellView {
 
-    var project: ProjectModel! {
+    var project: Project! {
         didSet {
             title.stringValue = project.name ?? ""
         }

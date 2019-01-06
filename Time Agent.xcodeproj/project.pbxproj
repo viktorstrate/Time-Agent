@@ -12,7 +12,6 @@
 		3476B104212A067600835532 /* ProjectsEditItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B103212A067600835532 /* ProjectsEditItemCellView.swift */; };
 		349333A021AC7BB200A45A4B /* ProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3493339F21AC7BB200A45A4B /* ProjectViewController.swift */; };
 		349333A221AC7EAB00A45A4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 349333A121AC7EAB00A45A4B /* Assets.xcassets */; };
-		349333A521AC81D800A45A4B /* ProjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349333A421AC81D800A45A4B /* ProjectModel.swift */; };
 		349333A721AC837300A45A4B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349333A621AC837300A45A4B /* Model.swift */; };
 		349E89E72127186100CA088C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E89E62127186100CA088C /* AppDelegate.swift */; };
 		349E89E92127186100CA088C /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E89E82127186100CA088C /* MenuViewController.swift */; };
@@ -39,7 +38,6 @@
 		3476B103212A067600835532 /* ProjectsEditItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsEditItemCellView.swift; sourceTree = "<group>"; };
 		3493339F21AC7BB200A45A4B /* ProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewController.swift; sourceTree = "<group>"; };
 		349333A121AC7EAB00A45A4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		349333A421AC81D800A45A4B /* ProjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectModel.swift; sourceTree = "<group>"; };
 		349333A621AC837300A45A4B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		349E89E32127186100CA088C /* Time Agent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Time Agent.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		349E89E62127186100CA088C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,15 +81,6 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
-		349333A321AC81B300A45A4B /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				349333A421AC81D800A45A4B /* ProjectModel.swift */,
-				349333A621AC837300A45A4B /* Model.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		349E89DA2127186100CA088C = {
 			isa = PBXGroup;
 			children = (
@@ -113,8 +102,9 @@
 		349E89E52127186100CA088C /* Time Agent */ = {
 			isa = PBXGroup;
 			children = (
-				349333A321AC81B300A45A4B /* Models */,
+				34A6EF2D21E2264E00807D24 /* Views */,
 				3493339E21AC7B7D00A45A4B /* View Controllers */,
+				349333A621AC837300A45A4B /* Model.swift */,
 				349E89E62127186100CA088C /* AppDelegate.swift */,
 				349E8A072129AA2D00CA088C /* EventMonitor.swift */,
 				349E89EF2127186300CA088C /* Main.storyboard */,
@@ -122,9 +112,6 @@
 				349333A121AC7EAB00A45A4B /* Assets.xcassets */,
 				349E89F32127186300CA088C /* Time_Agent.entitlements */,
 				349E89EA2127186100CA088C /* Time_Agent.xcdatamodeld */,
-				349E8A092129B2CC00CA088C /* TransparentTextField.swift */,
-				3476B0FF212A003C00835532 /* ProjectsItemCellView.swift */,
-				3476B103212A067600835532 /* ProjectsEditItemCellView.swift */,
 			);
 			path = "Time Agent";
 			sourceTree = "<group>";
@@ -136,6 +123,16 @@
 				349E89FE2127186300CA088C /* Info.plist */,
 			);
 			path = "Time AgentUITests";
+			sourceTree = "<group>";
+		};
+		34A6EF2D21E2264E00807D24 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				349E8A092129B2CC00CA088C /* TransparentTextField.swift */,
+				3476B0FF212A003C00835532 /* ProjectsItemCellView.swift */,
+				3476B103212A067600835532 /* ProjectsEditItemCellView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,7 +240,6 @@
 				349E89EC2127186100CA088C /* Time_Agent.xcdatamodeld in Sources */,
 				349E89E92127186100CA088C /* MenuViewController.swift in Sources */,
 				349333A021AC7BB200A45A4B /* ProjectViewController.swift in Sources */,
-				349333A521AC81D800A45A4B /* ProjectModel.swift in Sources */,
 				3476B100212A003C00835532 /* ProjectsItemCellView.swift in Sources */,
 				3476B104212A067600835532 /* ProjectsEditItemCellView.swift in Sources */,
 				349E8A0A2129B2CC00CA088C /* TransparentTextField.swift in Sources */,
