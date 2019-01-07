@@ -12,14 +12,14 @@ class ProjectsItemCellView: NSTableCellView {
 
     var project: Project! {
         didSet {
+            print("Setting project to view \(project.name ?? "undef")")
             title.stringValue = project.name ?? ""
-            
-            totalTime.stringValue = ProjectViewController.durationFormatter.string(from: project.calculateTotalTime()) ?? "ERROR"
+            totalTime.title = ProjectViewController.durationFormatter.string(from: project.calculateTotalTime()) ?? "ERROR"
         }
     }
     
     @IBOutlet weak var title: NSTextField!
-    @IBOutlet weak var totalTime: NSTextField!
+    @IBOutlet weak var totalTime: NSButton!
     
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)

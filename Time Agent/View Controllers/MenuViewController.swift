@@ -14,7 +14,7 @@ class MenuViewController: NSSplitViewController, MenuViewProjectsDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let projectsTableView = splitViewItems[0].viewController as! ProjectsTableViewController
+        let projectsTableView = splitViewItems[0].viewController as! SidebarViewController
         let projectView = splitViewItems[1].viewController as! ProjectViewController
         
         projectsTableView.projectsDelegate = self

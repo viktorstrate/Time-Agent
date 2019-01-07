@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		342FFAF321E26C3000EDFA1C /* Project-extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342FFAF221E26C3000EDFA1C /* Project-extensions.swift */; };
-		3476B0FC2129FB4300835532 /* ProjectsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B0FB2129FB4300835532 /* ProjectsTableViewController.swift */; };
+		3476B0FC2129FB4300835532 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B0FB2129FB4300835532 /* SidebarViewController.swift */; };
 		3476B100212A003C00835532 /* ProjectsItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B0FF212A003C00835532 /* ProjectsItemCellView.swift */; };
 		3476B104212A067600835532 /* ProjectsEditItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B103212A067600835532 /* ProjectsEditItemCellView.swift */; };
 		349333A021AC7BB200A45A4B /* ProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3493339F21AC7BB200A45A4B /* ProjectViewController.swift */; };
@@ -20,7 +20,6 @@
 		349E89F12127186300CA088C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 349E89EF2127186300CA088C /* Main.storyboard */; };
 		349E89FD2127186300CA088C /* Time_AgentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E89FC2127186300CA088C /* Time_AgentUITests.swift */; };
 		349E8A082129AA2D00CA088C /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E8A072129AA2D00CA088C /* EventMonitor.swift */; };
-		349E8A0A2129B2CC00CA088C /* TransparentTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E8A092129B2CC00CA088C /* TransparentTextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +34,7 @@
 
 /* Begin PBXFileReference section */
 		342FFAF221E26C3000EDFA1C /* Project-extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Project-extensions.swift"; path = "Time Agent/Models/Project-extensions.swift"; sourceTree = SOURCE_ROOT; };
-		3476B0FB2129FB4300835532 /* ProjectsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsTableViewController.swift; sourceTree = "<group>"; };
+		3476B0FB2129FB4300835532 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		3476B0FF212A003C00835532 /* ProjectsItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsItemCellView.swift; sourceTree = "<group>"; };
 		3476B103212A067600835532 /* ProjectsEditItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsEditItemCellView.swift; sourceTree = "<group>"; };
 		3493339F21AC7BB200A45A4B /* ProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewController.swift; sourceTree = "<group>"; };
@@ -52,7 +51,6 @@
 		349E89FC2127186300CA088C /* Time_AgentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time_AgentUITests.swift; sourceTree = "<group>"; };
 		349E89FE2127186300CA088C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		349E8A072129AA2D00CA088C /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
-		349E8A092129B2CC00CA088C /* TransparentTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				349E89E82127186100CA088C /* MenuViewController.swift */,
-				3476B0FB2129FB4300835532 /* ProjectsTableViewController.swift */,
+				3476B0FB2129FB4300835532 /* SidebarViewController.swift */,
 				3493339F21AC7BB200A45A4B /* ProjectViewController.swift */,
 			);
 			path = "View Controllers";
@@ -139,7 +137,6 @@
 		34A6EF2D21E2264E00807D24 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				349E8A092129B2CC00CA088C /* TransparentTextField.swift */,
 				3476B0FF212A003C00835532 /* ProjectsItemCellView.swift */,
 				3476B103212A067600835532 /* ProjectsEditItemCellView.swift */,
 			);
@@ -253,12 +250,11 @@
 				349333A021AC7BB200A45A4B /* ProjectViewController.swift in Sources */,
 				3476B100212A003C00835532 /* ProjectsItemCellView.swift in Sources */,
 				3476B104212A067600835532 /* ProjectsEditItemCellView.swift in Sources */,
-				349E8A0A2129B2CC00CA088C /* TransparentTextField.swift in Sources */,
 				349E89E72127186100CA088C /* AppDelegate.swift in Sources */,
 				349333A721AC837300A45A4B /* Model.swift in Sources */,
 				342FFAF321E26C3000EDFA1C /* Project-extensions.swift in Sources */,
 				349E8A082129AA2D00CA088C /* EventMonitor.swift in Sources */,
-				3476B0FC2129FB4300835532 /* ProjectsTableViewController.swift in Sources */,
+				3476B0FC2129FB4300835532 /* SidebarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

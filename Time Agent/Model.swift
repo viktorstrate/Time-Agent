@@ -31,7 +31,6 @@ class Model {
     static func fetchAll<T>(request: NSFetchRequest<T>) -> [T] {
         
         request.returnsObjectsAsFaults = false
-        request.sortDescriptors = [NSSortDescriptor.init(key: "creationDate", ascending: false)]
         
         do {
             let result = try Model.context.fetch(request)
