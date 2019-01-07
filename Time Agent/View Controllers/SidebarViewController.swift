@@ -99,6 +99,8 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
             
             let projects = Project.fetchRoots()
             
+            print("\(projectIndex(index)): \(projects[projectIndex(index)].name!)")
+            
             return projects[projectIndex(index)]
         }
         
@@ -160,7 +162,8 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
             return
         }
 
-        let projects = Model.fetchAll(request: Project.fetchRequest())
+//        let projects = Model.fetchAll(request: Project.fetchRequest())
+        let projects = Project.fetchRoots()
         let projectIndex = self.projectIndex(outlineView.selectedRow)
         let project = projects[projectIndex]
         

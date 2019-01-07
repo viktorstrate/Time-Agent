@@ -26,19 +26,17 @@ extension Project {
         }
         
         let taskSorter: (Any, Any) -> Bool = { (a, b) -> Bool in
-            // Rigtig
             return compareDates((a as! Task).start!, (b as! Task).start!)
         }
         
-        var sortedProjects = projects.sorted(by: { (a, b) -> Bool in
+        let sortedProjects = projects.sorted(by: { (a, b) -> Bool in
             let sortedA = a.tasks?.allObjects.sorted(by: taskSorter) as! [Task]
             let sortedB = b.tasks?.allObjects.sorted(by: taskSorter) as! [Task]
             
             let newestA = sortedA[0]
             let newestB = sortedB[0]
             
-            // Er rigtig nok
-            return compareDates(newestB.start!, newestA.start!)
+            return compareDates(newestA.start!, newestB.start!)
         })
         
         return sortedProjects
