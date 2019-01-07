@@ -15,7 +15,10 @@ class MenuViewController: NSSplitViewController, MenuViewProjectsDelegate {
         // Do any additional setup after loading the view.
         
         let projectsTableView = splitViewItems[0].viewController as! ProjectsTableViewController
+        let projectView = splitViewItems[1].viewController as! ProjectViewController
+        
         projectsTableView.projectsDelegate = self
+        projectView.projectsSidebarDelegate = projectsTableView
     }
 
     override var representedObject: Any? {

@@ -78,8 +78,7 @@
 			children = (
 				342FFAF221E26C3000EDFA1C /* Project-extensions.swift */,
 			);
-			name = Models;
-			path = "New Group";
+			path = Models;
 			sourceTree = "<group>";
 		};
 		3493339E21AC7B7D00A45A4B /* View Controllers */ = {

@@ -898,7 +898,7 @@
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wbm-qH-fSb">
                                                 <rect key="frame" x="284" y="1" width="264" height="17"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="260" id="VB5-UA-73I"/>
+                                                    <constraint firstAttribute="width" priority="250" constant="260" id="VB5-UA-73I"/>
                                                 </constraints>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Total time: 0s" id="fAa-fn-xt6">
                                                     <font key="font" metaFont="system"/>
@@ -1025,9 +1025,8 @@
                                                             <rect key="frame" x="1" y="1" width="144" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IDJ-sQ-Xrm">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="IDJ-sQ-Xrm">
                                                                     <rect key="frame" x="0.0" y="0.0" width="144" height="17"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="FY5-1I-Ou3">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1035,6 +1034,11 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="IDJ-sQ-Xrm" firstAttribute="leading" secondItem="JCt-fM-DVI" secondAttribute="leading" constant="2" id="JmD-94-CY9"/>
+                                                                <constraint firstAttribute="trailing" secondItem="IDJ-sQ-Xrm" secondAttribute="trailing" constant="2" id="lDN-u1-dGI"/>
+                                                                <constraint firstItem="IDJ-sQ-Xrm" firstAttribute="top" secondItem="JCt-fM-DVI" secondAttribute="top" id="qDJ-dz-yCM"/>
+                                                            </constraints>
                                                             <connections>
                                                                 <outlet property="textField" destination="IDJ-sQ-Xrm" id="LD7-XO-AVE"/>
                                                             </connections>
@@ -1058,9 +1062,8 @@
                                                             <rect key="frame" x="148" y="1" width="297" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JMR-fT-TPd">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="JMR-fT-TPd">
                                                                     <rect key="frame" x="0.0" y="0.0" width="297" height="17"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="juY-gd-bKH">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1068,6 +1071,11 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="JMR-fT-TPd" firstAttribute="leading" secondItem="PEJ-qt-To8" secondAttribute="leading" constant="2" id="Q7r-Ti-DHd"/>
+                                                                <constraint firstItem="JMR-fT-TPd" firstAttribute="top" secondItem="PEJ-qt-To8" secondAttribute="top" id="SX8-dh-dPW"/>
+                                                                <constraint firstAttribute="trailing" secondItem="JMR-fT-TPd" secondAttribute="trailing" constant="2" id="gsd-VR-kW6"/>
+                                                            </constraints>
                                                             <connections>
                                                                 <outlet property="textField" destination="JMR-fT-TPd" id="rC6-UL-W2v"/>
                                                             </connections>
@@ -1091,9 +1099,8 @@
                                                             <rect key="frame" x="448" y="1" width="103" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6lH-Rs-kpx">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="6lH-Rs-kpx">
                                                                     <rect key="frame" x="0.0" y="0.0" width="103" height="17"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="M33-zQ-0Wf">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1101,6 +1108,11 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="6lH-Rs-kpx" secondAttribute="trailing" constant="2" id="cjE-y2-pEU"/>
+                                                                <constraint firstItem="6lH-Rs-kpx" firstAttribute="top" secondItem="hmg-Gs-ANo" secondAttribute="top" id="n5l-rh-gYq"/>
+                                                                <constraint firstItem="6lH-Rs-kpx" firstAttribute="leading" secondItem="hmg-Gs-ANo" secondAttribute="leading" constant="2" id="ss7-rN-qMh"/>
+                                                            </constraints>
                                                             <connections>
                                                                 <outlet property="textField" destination="6lH-Rs-kpx" id="HFW-LL-1Dh"/>
                                                             </connections>

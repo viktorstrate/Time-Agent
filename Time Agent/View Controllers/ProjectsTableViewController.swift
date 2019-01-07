@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, ProjectsEditItemCellDelegate, NSMenuDelegate {
+class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource, ProjectsEditItemCellDelegate, NSMenuDelegate, ProjectsSidebarDelegate {
     
     var newProject = false
     var renameRow = -1
@@ -184,4 +184,13 @@ class ProjectsTableViewController: NSViewController, NSTableViewDelegate, NSTabl
             menu.cancelTracking()
         }
     }
+    
+    func projectsUpdated() {
+        print("Projects updated...")
+        updateData()
+    }
+}
+
+protocol ProjectsSidebarDelegate {
+    func projectsUpdated()
 }

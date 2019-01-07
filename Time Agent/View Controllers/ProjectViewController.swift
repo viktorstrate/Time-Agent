@@ -52,6 +52,8 @@ class ProjectViewController: NSViewController {
     @IBOutlet weak var tasksTableView: NSTableView!
     @IBOutlet weak var totalTimeLabel: NSTextField!
     
+    var projectsSidebarDelegate: ProjectsSidebarDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -133,6 +135,8 @@ class ProjectViewController: NSViewController {
         let taskTime = project.calculateTotalTime()
         
         totalTimeLabel.stringValue = "Total time: " + (ProjectViewController.durationFormatter.string(from: duration + taskTime) ?? "ERROR")
+        
+        projectsSidebarDelegate?.projectsUpdated()
     }
     
     func taskFinished(name: String, start: Date, duration: TimeInterval) {
