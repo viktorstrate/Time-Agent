@@ -779,7 +779,7 @@
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
                                                                         </textField>
-                                                                        <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ofy-Vi-mhV">
+                                                                        <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ofy-Vi-mhV" customClass="TimerBadge" customModule="Time_Agent" customModuleProvider="target">
                                                                             <rect key="frame" x="112" y="3" width="47" height="17"/>
                                                                             <buttonCell key="cell" type="inline" title="0m 0s" bezelStyle="inline" alignment="center" continuous="YES" refusesFirstResponder="YES" borderStyle="border" inset="2" id="W0s-W3-Luu">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1192,6 +1192,6 @@
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSColumnViewTemplate" width="16" height="10"/>
-        <image name="Start button" width="85.5" height="85.5"/>
+        <image name="Start button" width="86" height="86"/>
     </resources>
 </document>

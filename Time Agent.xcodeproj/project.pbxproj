@@ -20,6 +20,7 @@
 		349E89F12127186300CA088C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 349E89EF2127186300CA088C /* Main.storyboard */; };
 		349E89FD2127186300CA088C /* Time_AgentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E89FC2127186300CA088C /* Time_AgentUITests.swift */; };
 		349E8A082129AA2D00CA088C /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E8A072129AA2D00CA088C /* EventMonitor.swift */; };
+		34B05FCE21E4D65B00BA7E29 /* TimerBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B05FCD21E4D65B00BA7E29 /* TimerBadge.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		349E89FC2127186300CA088C /* Time_AgentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time_AgentUITests.swift; sourceTree = "<group>"; };
 		349E89FE2127186300CA088C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		349E8A072129AA2D00CA088C /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
+		34B05FCD21E4D65B00BA7E29 /* TimerBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerBadge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 			children = (
 				3476B0FF212A003C00835532 /* ProjectsItemCellView.swift */,
 				3476B103212A067600835532 /* ProjectsEditItemCellView.swift */,
+				34B05FCD21E4D65B00BA7E29 /* TimerBadge.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 			files = (
 				349E89EC2127186100CA088C /* Time_Agent.xcdatamodeld in Sources */,
 				349E89E92127186100CA088C /* MenuViewController.swift in Sources */,
+				34B05FCE21E4D65B00BA7E29 /* TimerBadge.swift in Sources */,
 				349333A021AC7BB200A45A4B /* ProjectViewController.swift in Sources */,
 				3476B100212A003C00835532 /* ProjectsItemCellView.swift in Sources */,
 				3476B104212A067600835532 /* ProjectsEditItemCellView.swift in Sources */,

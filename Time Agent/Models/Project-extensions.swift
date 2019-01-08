@@ -33,10 +33,21 @@ extension Project {
             let sortedA = a.tasks?.allObjects.sorted(by: taskSorter) as! [Task]
             let sortedB = b.tasks?.allObjects.sorted(by: taskSorter) as! [Task]
             
-            let newestA = sortedA[0]
-            let newestB = sortedB[0]
+            var newestA: Date, newestB: Date
             
-            return compareDates(newestA.start!, newestB.start!)
+            if sortedA.isEmpty {
+                newestA = a.creationDate!
+            } else {
+                newestA = sortedA[0].start!
+            }
+            
+            if sortedB.isEmpty {
+                newestB = b.creationDate!
+            } else {
+                newestB = sortedB[0].start!
+            }
+            
+            return compareDates(newestA, newestB)
         })
         
         return sortedProjects
