@@ -11,8 +11,9 @@ import Cocoa
 class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineViewDataSource, ProjectsEditItemCellDelegate, NSMenuDelegate, ProjectsSidebarDelegate {
     
     var newProject = false
-    var renameRow = -1
-    var renameRowProject: Project? = nil
+    
+    // Project currently being renamed
+    var renameProject: Project? = nil
     var editTextField: NSTextField?
     var projectsDelegate: MenuViewProjectsDelegate?
 
@@ -42,7 +43,6 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         if (newProject == true) {
             newProject = false
             if !text.isEmpty {
-//                let _ = ProjectModel.addProject(name: text)
                 let project = Project(context: Model.context)
                 project.name = text
                 project.creationDate = Date()
@@ -50,26 +50,16 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
             }
         } else {
             // Rename project
-            fatalError("Not reimplemented yet")
-//            let renamedRow = renameRow
-//            renameRow = -1
-//            outlineView.reloadData()
-//
-//            if !text.isEmpty {
+            let renamedProject = renameProject!
+            renameProject = nil
             
-//                guard let row = tableView(tableView, viewFor: nil, row: renamedRow) as? ProjectsItemCellView else {
-//                    print("EndEditing: Error row not found")
-//                    return
-//                }
-//
-//                row.project = renameRowProject
-//                renameRowProject = nil
-//
-//                row.project.name = text
-                
-//            } else {
-//                renameRowProject = nil
-//            }
+            
+            if !text.isEmpty {
+                renamedProject.name = text
+            }
+            
+            updateData()
+            
         }
     }
     
@@ -99,8 +89,6 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
             
             let projects = Project.fetchRoots()
             
-            print("\(projectIndex(index)): \(projects[projectIndex(index)].name!)")
-            
             return projects[projectIndex(index)]
         }
         
@@ -113,6 +101,17 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
     
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
         if let project = item as? Project {
+            
+            if project == renameProject {
+                print("Found rename project")
+                
+                let renameItem = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectEditCell"), owner: nil) as! ProjectsEditItemCellView
+                
+                renameItem.delegate = self
+                renameItem.editingProject = project
+                
+                return renameItem
+            }
             
             let projectItem = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectCell"), owner: nil) as! ProjectsItemCellView
             projectItem.project = project
@@ -179,55 +178,44 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
             outlineView.reloadData()
             outlineView.selectRowIndexes(IndexSet(arrayLiteral: selected), byExtendingSelection: false)
         } catch {
-            print("Error saving data, after attempting to add a new project")
+            print("Error saving data")
         }
     }
     
     // MARK: Right click menu
     
     @IBAction func projectMenuDeleteAction(_ sender: Any) {
-        fatalError("Not reimplemented yet")
-//        if (outlineView.clickedRow < 0) {
-//            return
-//        }
-//
-//        guard let row = tableView(tableView, viewFor: nil, row: tableView.clickedRow) as? ProjectsItemCellView else {
-//            print("Error row not found")
-//            return
-//        }
-//
-//        print("Deleting project: " + (row.project.name ?? "Name not set"))
-//        Model.delete(managedObject: row.project)
-//        updateData()
+        
+        if outlineView.clickedRow == -1 {
+            return
+        }
+        
+        guard let project = outlineView.item(atRow: outlineView.clickedRow) as? Project else {
+            print("Selected row is not a project, not deleting")
+            return
+        }
+        
+        Model.delete(managedObject: project)
+        updateData()
     }
     
     @IBAction func projectMenuRenameAction(_ sender: Any) {
-        fatalError("Not reimplemented yet")
-//        if (outlineView.clickedRow < 0) {
-//            return
-//        }
-//
-//        guard let row = tableView(tableView, viewFor: nil, row: tableView.clickedRow) as? ProjectsItemCellView else {
-//            print("Error row not found")
-//            return
-//        }
-//
-//        renameRow = outlineView.clickedRow
-//        renameRowProject = row.project
-//        outlineView.reloadData()
+        
+        guard let project = outlineView.item(atRow: outlineView.clickedRow) as? Project else {
+            print("Clicked row was not a project")
+            return
+        }
+        
+        renameProject = project
+        
+        outlineView.reloadData()
     }
     
     func menuWillOpen(_ menu: NSMenu) {
         var shouldCancel = false
         
-        if (outlineView.clickedRow < 0) {
+        if (outlineView.clickedRow == -1) {
             shouldCancel = true
-        } else {
-            fatalError("Not reimplemented yet")
-//            let view = tableView(tableView, viewFor: nil, row: tableView.clickedRow) as? ProjectsItemCellView
-//            if (view == nil) {
-//                shouldCancel = true
-//            }
         }
         
         if (shouldCancel) {
