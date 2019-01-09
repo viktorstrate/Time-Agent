@@ -744,7 +744,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="170" height="391"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="40" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="5" outlineTableColumn="KNd-xF-Ftt" id="7Uz-N6-ZUA">
+                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" autosaveColumns="NO" rowHeight="40" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="5" outlineTableColumn="KNd-xF-Ftt" id="7Uz-N6-ZUA">
                                             <rect key="frame" x="0.0" y="0.0" width="170" height="391"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -1192,6 +1192,6 @@
     <resources>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSColumnViewTemplate" width="16" height="10"/>
-        <image name="Start button" width="86" height="86"/>
+        <image name="Start button" width="85.5" height="85.5"/>
     </resources>
 </document>

@@ -28,6 +28,8 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         outlineView.menu = projectContextMenu
         outlineView.rowHeight = 24;
         
+        outlineView.action = #selector(outlineViewClicked)
+        
         projectContextMenu.delegate = self
         
     }
@@ -143,30 +145,20 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
     
     var previousSelection: IndexSet?
     
-    func outlineViewSelectionDidChange(_ notification: Notification) {
-        if previousSelection == nil {
-            previousSelection = outlineView.selectedRowIndexes
-        }
-        
-        // Only update if selection has changed
-        if outlineView.selectedRowIndexes.elementsEqual(previousSelection!) {
-            print("Selection equal")
-            return
-        } else {
-            previousSelection = outlineView.selectedRowIndexes
-        }
-        
-        if (outlineView.selectedRow < 0) {
+    @objc func outlineViewClicked() {
+        // Deselect active project
+        if outlineView.clickedRow == -1 {
             projectsDelegate?.changeActiveProject(nil)
             return
         }
-
-//        let projects = Model.fetchAll(request: Project.fetchRequest())
-        let projects = Project.fetchRoots()
-        let projectIndex = self.projectIndex(outlineView.selectedRow)
-        let project = projects[projectIndex]
         
-        projectsDelegate?.changeActiveProject(project)
+        if outlineView.selectedRowIndexes.contains(outlineView.clickedRow) {
+            let projects = Project.fetchRoots()
+            let projectIndex = self.projectIndex(outlineView.clickedRow)
+            let project = projects[projectIndex]
+            
+            projectsDelegate?.changeActiveProject(project)
+        }
     }
     
     // MARK: Core Data related functions
@@ -174,9 +166,9 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
     func updateData() {
         do {
             try Model.context.save()
-            let selected = outlineView.selectedRow
+            let selected = outlineView.selectedRowIndexes
             outlineView.reloadData()
-            outlineView.selectRowIndexes(IndexSet(arrayLiteral: selected), byExtendingSelection: false)
+            outlineView.selectRowIndexes(selected, byExtendingSelection: false)
         } catch {
             print("Error saving data")
         }
