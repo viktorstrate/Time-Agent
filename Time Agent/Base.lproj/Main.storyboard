@@ -738,13 +738,13 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="42" horizontalPageScroll="10" verticalLineScroll="42" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAE-gi-pmj">
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="26" horizontalPageScroll="10" verticalLineScroll="26" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VAE-gi-pmj">
                                 <rect key="frame" x="0.0" y="0.0" width="170" height="391"/>
                                 <clipView key="contentView" drawsBackground="NO" id="QGF-51-kus">
                                     <rect key="frame" x="0.0" y="0.0" width="170" height="391"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" autosaveColumns="NO" rowHeight="40" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="5" outlineTableColumn="KNd-xF-Ftt" id="7Uz-N6-ZUA">
+                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="5" outlineTableColumn="KNd-xF-Ftt" id="7Uz-N6-ZUA">
                                             <rect key="frame" x="0.0" y="0.0" width="170" height="391"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -842,9 +842,46 @@
                                                                 <outlet property="editTextField" destination="qap-SQ-gQD" id="bAY-rz-BZJ"/>
                                                             </connections>
                                                         </tableCellView>
+                                                        <tableCellView identifier="groupCell" id="nux-cz-Tr1" customClass="ProjectGroupCellView" customModule="Time_Agent" customModuleProvider="target">
+                                                            <rect key="frame" x="1" y="69" width="167" height="24"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                                            <subviews>
+                                                                <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Rv-25-KBT">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="159" height="24"/>
+                                                                    <subviews>
+                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="YBl-vM-jw2">
+                                                                            <rect key="frame" x="-2" y="4" width="163" height="17"/>
+                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Group" id="4zS-bz-rnh">
+                                                                                <font key="font" metaFont="systemMedium" size="13"/>
+                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                            </textFieldCell>
+                                                                        </textField>
+                                                                    </subviews>
+                                                                    <visibilityPriorities>
+                                                                        <integer value="1000"/>
+                                                                    </visibilityPriorities>
+                                                                    <customSpacing>
+                                                                        <real value="3.4028234663852886e+38"/>
+                                                                    </customSpacing>
+                                                                </stackView>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailing" secondItem="4Rv-25-KBT" secondAttribute="trailing" constant="8" id="QEL-uQ-UFe"/>
+                                                                <constraint firstItem="4Rv-25-KBT" firstAttribute="leading" secondItem="nux-cz-Tr1" secondAttribute="leading" id="n7z-mR-gIQ"/>
+                                                                <constraint firstItem="4Rv-25-KBT" firstAttribute="top" secondItem="nux-cz-Tr1" secondAttribute="top" id="oup-Pe-x6H"/>
+                                                                <constraint firstAttribute="bottom" secondItem="4Rv-25-KBT" secondAttribute="bottom" id="snd-iY-aoA"/>
+                                                            </constraints>
+                                                            <connections>
+                                                                <outlet property="title" destination="YBl-vM-jw2" id="BP2-qj-tpw"/>
+                                                            </connections>
+                                                        </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
+                                            <connections>
+                                                <outlet property="menu" destination="dJC-gx-t5l" id="fdp-bY-DnR"/>
+                                            </connections>
                                         </outlineView>
                                     </subviews>
                                     <nil key="backgroundColor"/>
@@ -873,7 +910,7 @@
                     </view>
                     <connections>
                         <outlet property="outlineView" destination="7Uz-N6-ZUA" id="vxG-YG-URh"/>
-                        <outlet property="projectContextMenu" destination="dJC-gx-t5l" id="5kf-9L-bEz"/>
+                        <outlet property="projectContextMenu" destination="dJC-gx-t5l" id="4ZX-JP-FMh"/>
                     </connections>
                 </viewController>
                 <menu title="Project Context Menu" identifier="Test" id="dJC-gx-t5l" userLabel="Project Context Menu">
@@ -884,10 +921,16 @@
                                 <action selector="projectMenuRenameAction:" target="aBe-uS-rz0" id="OCE-Zz-3BI"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Delete" id="vfb-98-IFZ">
+                        <menuItem title="Delete" tag="1" id="vfb-98-IFZ">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="projectMenuDeleteAction:" target="aBe-uS-rz0" id="Bbg-Vo-7a8"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Make Group" tag="2" id="MvM-Dy-BUz">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="projectMenuGroupAction:" target="aBe-uS-rz0" id="1NY-Xn-Dzm"/>
                             </connections>
                         </menuItem>
                     </items>
@@ -1183,10 +1226,127 @@
                         <outlet property="timerButton" destination="G8W-rn-wfJ" id="5ZE-AM-KOS"/>
                         <outlet property="timerLabel" destination="2Ih-i0-bLX" id="L4j-1Y-4wy"/>
                         <outlet property="totalTimeLabel" destination="Wbm-qH-fSb" id="0qP-sO-19L"/>
+                        <segue destination="QTT-FW-OHh" kind="modal" identifier="projectDelete" id="n1j-EK-tU7"/>
                     </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="250" y="1240.5"/>
+        </scene>
+        <!--Sidebar Delete Group Modal View Controller-->
+        <scene sceneID="QxA-oH-FQP">
+            <objects>
+                <viewController storyboardIdentifier="sidebarDeleteGroupModal" id="QTT-FW-OHh" customClass="SidebarDeleteGroupModalViewController" customModule="Time_Agent" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="vJX-fk-Vex">
+                        <rect key="frame" x="0.0" y="0.0" width="376" height="116"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yaf-ei-S6T">
+                                <rect key="frame" x="8" y="8" width="360" height="100"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GQ9-hs-8mj">
+                                        <rect key="frame" x="-2" y="80" width="364" height="20"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Delete Group?" id="bEn-1d-u9X">
+                                            <font key="font" size="13" name="HelveticaNeue-Medium"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="f7H-Qy-6ep">
+                                        <rect key="frame" x="-2" y="38" width="364" height="34"/>
+                                        <textFieldCell key="cell" selectable="YES" title="You are about to delete a group, how should the children of the group be handled?" id="TVw-TG-KGO">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <stackView distribution="fillEqually" orientation="horizontal" alignment="bottom" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QAw-91-X1S">
+                                        <rect key="frame" x="0.0" y="0.0" width="360" height="30"/>
+                                        <subviews>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F3B-b6-ks2">
+                                                <rect key="frame" x="-6" y="-7" width="121" height="32"/>
+                                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KlL-0C-rSy">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="cancelAction:" target="QTT-FW-OHh" id="kwG-86-bLh"/>
+                                                </connections>
+                                            </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1Of-cb-zGH">
+                                                <rect key="frame" x="111" y="-7" width="125" height="32"/>
+                                                <buttonCell key="cell" type="push" title="Keep Children" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5y8-qz-bnL">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="keepChildrenAction:" target="QTT-FW-OHh" id="gAI-QV-IdP"/>
+                                                </connections>
+                                            </button>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JfZ-qe-99C">
+                                                <rect key="frame" x="232" y="-7" width="134" height="32"/>
+                                                <buttonCell key="cell" type="push" title="Delete Children" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Tsy-Ui-koC">
+                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="deleteChildrenAction:" target="QTT-FW-OHh" id="f1G-JF-fgL"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="dWJ-DG-LfF"/>
+                                        </constraints>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <real value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="360" id="9V8-De-CZM"/>
+                                    <constraint firstAttribute="trailing" secondItem="GQ9-hs-8mj" secondAttribute="trailing" id="Zau-ku-7z7"/>
+                                    <constraint firstItem="GQ9-hs-8mj" firstAttribute="leading" secondItem="yaf-ei-S6T" secondAttribute="leading" id="fbx-cK-A9Y"/>
+                                    <constraint firstItem="QAw-91-X1S" firstAttribute="leading" secondItem="yaf-ei-S6T" secondAttribute="leading" id="mKJ-YP-8wY"/>
+                                    <constraint firstAttribute="trailing" secondItem="QAw-91-X1S" secondAttribute="trailing" id="oWN-w3-4z2"/>
+                                </constraints>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="yaf-ei-S6T" firstAttribute="leading" secondItem="vJX-fk-Vex" secondAttribute="leading" constant="8" id="DhW-oT-opS"/>
+                            <constraint firstAttribute="trailing" secondItem="yaf-ei-S6T" secondAttribute="trailing" constant="8" id="Sew-fd-1rD"/>
+                            <constraint firstAttribute="bottom" secondItem="yaf-ei-S6T" secondAttribute="bottom" constant="8" id="mvy-5W-Nyf"/>
+                            <constraint firstItem="yaf-ei-S6T" firstAttribute="top" secondItem="vJX-fk-Vex" secondAttribute="top" constant="8" id="oue-HL-9lJ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="WUK-sV-EQ8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="806.5" y="1170"/>
         </scene>
     </scenes>
     <resources>

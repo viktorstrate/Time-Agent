@@ -31,6 +31,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         outlineView.action = #selector(outlineViewClicked)
         
         projectContextMenu.delegate = self
+        projectContextMenu.autoenablesItems = false
         
     }
     
@@ -61,7 +62,9 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
             }
             
             updateData()
-            
+            let row = outlineView.row(forItem: renamedProject)
+            outlineView.selectRowIndexes(IndexSet(arrayLiteral: row), byExtendingSelection: false)
+            projectsDelegate?.changeActiveProject(renamedProject)
         }
     }
     
@@ -69,17 +72,26 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         // Root
         if item == nil {
             let projects = Project.fetchRoots()
+            let groups = ProjectGroup.fetchRoots()
+            
+            var count = projects.count + groups.count
             
             if newProject {
                 print("Got projects \(projects.count) plus new one")
-                return projects.count + 1
+                count = count + 1
             }
             
-            print("Got projects \(projects.count)")
-            return projects.count
+            print("Got projects \(projects.count), groups \(groups.count)")
+            return count
         }
         
-        return 1 // for testing
+        if let group = item as? ProjectGroup {
+            let children = group.projects!.count
+            
+            return children
+        }
+        
+        return 0
     }
     
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
@@ -89,15 +101,36 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
                 return "NewProject"
             }
             
-            let projects = Project.fetchRoots()
+            var i: Int = index
             
-            return projects[projectIndex(index)]
+            if newProject {
+                i = i - 1
+            }
+            
+            let projects = Project.fetchRoots()
+            let groups = ProjectGroup.fetchRoots()
+            
+            var combined: [NSManagedObject] = []
+            combined.append(contentsOf: projects)
+            combined.append(contentsOf: groups)
+            
+            return combined[i]
         }
         
-        return "It is a child"
+        if let group = item as? ProjectGroup {
+            let projects = group.projects!.allObjects as! [Project]
+            
+            return projects[index]
+        }
+        
+        return "Did not know how to implement item"
     }
     
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
+        if item is ProjectGroup {
+            return true
+        }
+        
         return false
     }
     
@@ -107,7 +140,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
             if project == renameProject {
                 print("Found rename project")
                 
-                let renameItem = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectEditCell"), owner: nil) as! ProjectsEditItemCellView
+                let renameItem = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectEditCell"), owner: self) as! ProjectsEditItemCellView
                 
                 renameItem.delegate = self
                 renameItem.editingProject = project
@@ -115,10 +148,18 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
                 return renameItem
             }
             
-            let projectItem = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectCell"), owner: nil) as! ProjectsItemCellView
+            let projectItem = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectCell"), owner: self) as! ProjectsItemCellView
             projectItem.project = project
             
             return projectItem
+        }
+        
+        if let group = item as? ProjectGroup {
+            
+            let groupItem = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("groupCell"), owner: self) as! ProjectGroupCellView
+            groupItem.group = group
+            
+            return groupItem
         }
         
         if let key = item as? String {
@@ -135,13 +176,13 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         return nil
     }
     
-    func projectIndex(_ index: Int) -> Int {
-        var projectIndex = index
-        if newProject {
-            projectIndex -= 1
-        }
-        return projectIndex
-    }
+//    func projectIndex(_ index: Int) -> Int {
+//        var projectIndex = index
+//        if newProject {
+//            projectIndex -= 1
+//        }
+//        return projectIndex
+//    }
     
     var previousSelection: IndexSet?
     
@@ -153,9 +194,10 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         }
         
         if outlineView.selectedRowIndexes.contains(outlineView.clickedRow) {
-            let projects = Project.fetchRoots()
-            let projectIndex = self.projectIndex(outlineView.clickedRow)
-            let project = projects[projectIndex]
+            guard let project = outlineView.item(atRow: outlineView.clickedRow) as? Project else {
+                print("Clicked item is not a project")
+                return
+            }
             
             projectsDelegate?.changeActiveProject(project)
         }
@@ -182,13 +224,39 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
             return
         }
         
-        guard let project = outlineView.item(atRow: outlineView.clickedRow) as? Project else {
-            print("Selected row is not a project, not deleting")
+        if let project = outlineView.item(atRow: outlineView.clickedRow) as? Project {
+            print("Deleting project: \(project.name!)")
+            Model.delete(managedObject: project)
+            updateData()
             return
         }
         
-        Model.delete(managedObject: project)
-        updateData()
+        if let group = outlineView.item(atRow: outlineView.clickedRow) as? ProjectGroup {
+            print("Deleting group: \(group.name!)")
+            
+            let sheet = NSStoryboard.main!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("sidebarDeleteGroupModal")) as! SidebarDeleteGroupModalViewController
+            
+            sheet.keepCallback = {
+                Model.delete(managedObject: group)
+                self.updateData()
+            }
+            
+            sheet.deleteCallback = {
+                let projects = group.projects!.allObjects as! [Project]
+                
+                for project in projects {
+                    Model.delete(managedObject: project)
+                }
+                
+                Model.delete(managedObject: group)
+                
+                self.updateData()
+            }
+            
+            presentAsSheet(sheet)
+            
+            return
+        }
     }
     
     @IBAction func projectMenuRenameAction(_ sender: Any) {
@@ -203,12 +271,30 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         outlineView.reloadData()
     }
     
+    @IBAction func projectMenuGroupAction(_ sender: Any) {
+        let projects = outlineView.selectedRowIndexes.filter({ (row) -> Bool in
+            return outlineView.item(atRow: row) is Project
+        }).map { (row) -> Project in
+            return outlineView.item(atRow: row) as! Project
+        }
+        
+        let group = ProjectGroup(context: Model.context)
+        group.projects = NSSet(array: projects)
+        group.name = "New group"
+        group.creationDate = Date()
+        
+        updateData()
+    }
+    
     func menuWillOpen(_ menu: NSMenu) {
         var shouldCancel = false
         
         if (outlineView.clickedRow == -1) {
             shouldCancel = true
         }
+        
+        // Only enable groups if multiple projects are selected
+        menu.item(withTag: 2)!.isEnabled = outlineView.selectedRowIndexes.count > 1
         
         if (shouldCancel) {
             menu.cancelTracking()

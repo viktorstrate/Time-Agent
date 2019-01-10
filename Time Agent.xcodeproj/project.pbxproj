@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		342FFAF321E26C3000EDFA1C /* Project-extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342FFAF221E26C3000EDFA1C /* Project-extensions.swift */; };
+		342FFAF321E26C3000EDFA1C /* Project+helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342FFAF221E26C3000EDFA1C /* Project+helpers.swift */; };
+		344BDB7421E756430035B9A4 /* ProjectGroup+helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344BDB7321E756430035B9A4 /* ProjectGroup+helpers.swift */; };
+		344BDB7621E7597B0035B9A4 /* ProjectGroupCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344BDB7521E7597B0035B9A4 /* ProjectGroupCellView.swift */; };
+		344BDB7821E75FE40035B9A4 /* SidebarDeleteGroupModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344BDB7721E75FE40035B9A4 /* SidebarDeleteGroupModalViewController.swift */; };
 		3476B0FC2129FB4300835532 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B0FB2129FB4300835532 /* SidebarViewController.swift */; };
 		3476B100212A003C00835532 /* ProjectsItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B0FF212A003C00835532 /* ProjectsItemCellView.swift */; };
 		3476B104212A067600835532 /* ProjectsEditItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B103212A067600835532 /* ProjectsEditItemCellView.swift */; };
@@ -34,7 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		342FFAF221E26C3000EDFA1C /* Project-extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Project-extensions.swift"; path = "Time Agent/Models/Project-extensions.swift"; sourceTree = SOURCE_ROOT; };
+		342FFAF221E26C3000EDFA1C /* Project+helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Project+helpers.swift"; path = "Time Agent/Models/Project+helpers.swift"; sourceTree = SOURCE_ROOT; };
+		344BDB7321E756430035B9A4 /* ProjectGroup+helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectGroup+helpers.swift"; sourceTree = "<group>"; };
+		344BDB7521E7597B0035B9A4 /* ProjectGroupCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectGroupCellView.swift; sourceTree = "<group>"; };
+		344BDB7721E75FE40035B9A4 /* SidebarDeleteGroupModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarDeleteGroupModalViewController.swift; sourceTree = "<group>"; };
 		3476B0FB2129FB4300835532 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		3476B0FF212A003C00835532 /* ProjectsItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsItemCellView.swift; sourceTree = "<group>"; };
 		3476B103212A067600835532 /* ProjectsEditItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsEditItemCellView.swift; sourceTree = "<group>"; };
@@ -76,7 +82,8 @@
 		342FFAF121E26C0A00EDFA1C /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				342FFAF221E26C3000EDFA1C /* Project-extensions.swift */,
+				342FFAF221E26C3000EDFA1C /* Project+helpers.swift */,
+				344BDB7321E756430035B9A4 /* ProjectGroup+helpers.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -86,6 +93,7 @@
 			children = (
 				349E89E82127186100CA088C /* MenuViewController.swift */,
 				3476B0FB2129FB4300835532 /* SidebarViewController.swift */,
+				344BDB7721E75FE40035B9A4 /* SidebarDeleteGroupModalViewController.swift */,
 				3493339F21AC7BB200A45A4B /* ProjectViewController.swift */,
 			);
 			path = "View Controllers";
@@ -142,6 +150,7 @@
 				3476B0FF212A003C00835532 /* ProjectsItemCellView.swift */,
 				3476B103212A067600835532 /* ProjectsEditItemCellView.swift */,
 				34B05FCD21E4D65B00BA7E29 /* TimerBadge.swift */,
+				344BDB7521E7597B0035B9A4 /* ProjectGroupCellView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -249,15 +258,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				349E89EC2127186100CA088C /* Time_Agent.xcdatamodeld in Sources */,
+				344BDB7621E7597B0035B9A4 /* ProjectGroupCellView.swift in Sources */,
 				349E89E92127186100CA088C /* MenuViewController.swift in Sources */,
 				34B05FCE21E4D65B00BA7E29 /* TimerBadge.swift in Sources */,
+				344BDB7421E756430035B9A4 /* ProjectGroup+helpers.swift in Sources */,
 				349333A021AC7BB200A45A4B /* ProjectViewController.swift in Sources */,
 				3476B100212A003C00835532 /* ProjectsItemCellView.swift in Sources */,
 				3476B104212A067600835532 /* ProjectsEditItemCellView.swift in Sources */,
 				349E89E72127186100CA088C /* AppDelegate.swift in Sources */,
 				349333A721AC837300A45A4B /* Model.swift in Sources */,
-				342FFAF321E26C3000EDFA1C /* Project-extensions.swift in Sources */,
+				342FFAF321E26C3000EDFA1C /* Project+helpers.swift in Sources */,
 				349E8A082129AA2D00CA088C /* EventMonitor.swift in Sources */,
+				344BDB7821E75FE40035B9A4 /* SidebarDeleteGroupModalViewController.swift in Sources */,
 				3476B0FC2129FB4300835532 /* SidebarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

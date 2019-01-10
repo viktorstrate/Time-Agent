@@ -7,6 +7,8 @@
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Task" inverseName="project" inverseEntity="Task" syncable="YES"/>
     </entity>
     <entity name="ProjectGroup" representedClassName="ProjectGroup" syncable="YES" codeGenerationType="class">
+        <attribute name="creationDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectGroup" inverseName="subgroups" inverseEntity="ProjectGroup" syncable="YES"/>
         <relationship name="projects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Project" inverseName="group" inverseEntity="Project" syncable="YES"/>
         <relationship name="subgroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectGroup" inverseName="parent" inverseEntity="ProjectGroup" syncable="YES"/>
@@ -19,7 +21,7 @@
     </entity>
     <elements>
         <element name="Project" positionX="-243.609375" positionY="-15.1640625" width="128" height="103"/>
+        <element name="ProjectGroup" positionX="-435.95703125" positionY="-47.90234375" width="128" height="120"/>
         <element name="Task" positionX="-46.18359375" positionY="-13.50390625" width="128" height="105"/>
-        <element name="ProjectGroup" positionX="-435.95703125" positionY="-47.90234375" width="128" height="90"/>
     </elements>
 </model>
