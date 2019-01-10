@@ -11,9 +11,10 @@
 		344BDB7421E756430035B9A4 /* ProjectGroup+helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344BDB7321E756430035B9A4 /* ProjectGroup+helpers.swift */; };
 		344BDB7621E7597B0035B9A4 /* ProjectGroupCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344BDB7521E7597B0035B9A4 /* ProjectGroupCellView.swift */; };
 		344BDB7821E75FE40035B9A4 /* SidebarDeleteGroupModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344BDB7721E75FE40035B9A4 /* SidebarDeleteGroupModalViewController.swift */; };
+		344BDB7B21E7C1090035B9A4 /* SidebarViewController+DragDrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344BDB7A21E7C1090035B9A4 /* SidebarViewController+DragDrop.swift */; };
 		3476B0FC2129FB4300835532 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B0FB2129FB4300835532 /* SidebarViewController.swift */; };
-		3476B100212A003C00835532 /* ProjectsItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B0FF212A003C00835532 /* ProjectsItemCellView.swift */; };
-		3476B104212A067600835532 /* ProjectsEditItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B103212A067600835532 /* ProjectsEditItemCellView.swift */; };
+		3476B100212A003C00835532 /* ProjectCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B0FF212A003C00835532 /* ProjectCellView.swift */; };
+		3476B104212A067600835532 /* ProjectEditCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B103212A067600835532 /* ProjectEditCellView.swift */; };
 		349333A021AC7BB200A45A4B /* ProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3493339F21AC7BB200A45A4B /* ProjectViewController.swift */; };
 		349333A221AC7EAB00A45A4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 349333A121AC7EAB00A45A4B /* Assets.xcassets */; };
 		349333A721AC837300A45A4B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349333A621AC837300A45A4B /* Model.swift */; };
@@ -41,9 +42,10 @@
 		344BDB7321E756430035B9A4 /* ProjectGroup+helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectGroup+helpers.swift"; sourceTree = "<group>"; };
 		344BDB7521E7597B0035B9A4 /* ProjectGroupCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectGroupCellView.swift; sourceTree = "<group>"; };
 		344BDB7721E75FE40035B9A4 /* SidebarDeleteGroupModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarDeleteGroupModalViewController.swift; sourceTree = "<group>"; };
+		344BDB7A21E7C1090035B9A4 /* SidebarViewController+DragDrop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SidebarViewController+DragDrop.swift"; sourceTree = "<group>"; };
 		3476B0FB2129FB4300835532 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
-		3476B0FF212A003C00835532 /* ProjectsItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsItemCellView.swift; sourceTree = "<group>"; };
-		3476B103212A067600835532 /* ProjectsEditItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsEditItemCellView.swift; sourceTree = "<group>"; };
+		3476B0FF212A003C00835532 /* ProjectCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCellView.swift; sourceTree = "<group>"; };
+		3476B103212A067600835532 /* ProjectEditCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEditCellView.swift; sourceTree = "<group>"; };
 		3493339F21AC7BB200A45A4B /* ProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewController.swift; sourceTree = "<group>"; };
 		349333A121AC7EAB00A45A4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		349333A621AC837300A45A4B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
@@ -88,11 +90,20 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		344BDB7921E7C0F30035B9A4 /* Sidebar */ = {
+			isa = PBXGroup;
+			children = (
+				3476B0FB2129FB4300835532 /* SidebarViewController.swift */,
+				344BDB7A21E7C1090035B9A4 /* SidebarViewController+DragDrop.swift */,
+			);
+			path = Sidebar;
+			sourceTree = "<group>";
+		};
 		3493339E21AC7B7D00A45A4B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				344BDB7921E7C0F30035B9A4 /* Sidebar */,
 				349E89E82127186100CA088C /* MenuViewController.swift */,
-				3476B0FB2129FB4300835532 /* SidebarViewController.swift */,
 				344BDB7721E75FE40035B9A4 /* SidebarDeleteGroupModalViewController.swift */,
 				3493339F21AC7BB200A45A4B /* ProjectViewController.swift */,
 			);
@@ -147,8 +158,8 @@
 		34A6EF2D21E2264E00807D24 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3476B0FF212A003C00835532 /* ProjectsItemCellView.swift */,
-				3476B103212A067600835532 /* ProjectsEditItemCellView.swift */,
+				3476B0FF212A003C00835532 /* ProjectCellView.swift */,
+				3476B103212A067600835532 /* ProjectEditCellView.swift */,
 				34B05FCD21E4D65B00BA7E29 /* TimerBadge.swift */,
 				344BDB7521E7597B0035B9A4 /* ProjectGroupCellView.swift */,
 			);
@@ -263,12 +274,13 @@
 				34B05FCE21E4D65B00BA7E29 /* TimerBadge.swift in Sources */,
 				344BDB7421E756430035B9A4 /* ProjectGroup+helpers.swift in Sources */,
 				349333A021AC7BB200A45A4B /* ProjectViewController.swift in Sources */,
-				3476B100212A003C00835532 /* ProjectsItemCellView.swift in Sources */,
-				3476B104212A067600835532 /* ProjectsEditItemCellView.swift in Sources */,
+				3476B100212A003C00835532 /* ProjectCellView.swift in Sources */,
+				3476B104212A067600835532 /* ProjectEditCellView.swift in Sources */,
 				349E89E72127186100CA088C /* AppDelegate.swift in Sources */,
 				349333A721AC837300A45A4B /* Model.swift in Sources */,
 				342FFAF321E26C3000EDFA1C /* Project+helpers.swift in Sources */,
 				349E8A082129AA2D00CA088C /* EventMonitor.swift in Sources */,
+				344BDB7B21E7C1090035B9A4 /* SidebarViewController+DragDrop.swift in Sources */,
 				344BDB7821E75FE40035B9A4 /* SidebarDeleteGroupModalViewController.swift in Sources */,
 				3476B0FC2129FB4300835532 /* SidebarViewController.swift in Sources */,
 			);

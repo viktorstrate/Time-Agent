@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ProjectsItemCellView: NSTableCellView {
+class ProjectCellView: NSTableCellView {
 
     var project: Project! {
         didSet {

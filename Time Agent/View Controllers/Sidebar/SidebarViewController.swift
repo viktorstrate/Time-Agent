@@ -12,8 +12,8 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
     
     var newProject = false
     
-    // Project currently being renamed
-    var renameProject: Project? = nil
+    // Project or Group currently being renamed
+    var renameItem: NSManagedObject? = nil
     var editTextField: NSTextField?
     var projectsDelegate: MenuViewProjectsDelegate?
 
@@ -53,19 +53,27 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
                 updateData()
             }
         } else {
-            // Rename project
-            let renamedProject = renameProject!
-            renameProject = nil
-            
+            // Rename project or group
+            let renamedObject = renameItem!
+            renameItem = nil
             
             if !text.isEmpty {
-                renamedProject.name = text
+                if let renamedProject = renamedObject as? Project {
+                    renamedProject.name = text
+                }
+                
+                if let renamedGroup = renamedObject as? ProjectGroup {
+                    renamedGroup.name = text
+                }
             }
             
-            updateData()
-            let row = outlineView.row(forItem: renamedProject)
+            updateData(keepSelection: false)
+            let row = outlineView.row(forItem: renamedObject)
             outlineView.selectRowIndexes(IndexSet(arrayLiteral: row), byExtendingSelection: false)
-            projectsDelegate?.changeActiveProject(renamedProject)
+            
+            if let renamedProject = renamedObject as? Project {
+                projectsDelegate?.changeActiveProject(renamedProject)
+            }
         }
     }
     
@@ -134,26 +142,28 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
     }
     
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
+        
+        if let rowObject = item as? NSManagedObject, renameItem == rowObject {
+            print("Found rename project or group")
+            
+            let renameView = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectEditCell"), owner: self) as! ProjectEditCellView
+            
+            renameView.delegate = self
+            renameView.editingObject = rowObject
+            
+            return renameView
+        }
+        
         if let project = item as? Project {
+            let projectView = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectCell"), owner: self) as! ProjectCellView
+            projectView.project = project
             
-            if project == renameProject {
-                print("Found rename project")
-                
-                let renameItem = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectEditCell"), owner: self) as! ProjectsEditItemCellView
-                
-                renameItem.delegate = self
-                renameItem.editingProject = project
-                
-                return renameItem
-            }
-            
-            let projectItem = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectCell"), owner: self) as! ProjectsItemCellView
-            projectItem.project = project
-            
-            return projectItem
+            return projectView
         }
         
         if let group = item as? ProjectGroup {
+            
+            
             
             let groupItem = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("groupCell"), owner: self) as! ProjectGroupCellView
             groupItem.group = group
@@ -164,7 +174,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         if let key = item as? String {
             if key == "NewProject" {
                 
-                let newProjectItem = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectEditCell"), owner: nil) as! ProjectsEditItemCellView
+                let newProjectItem = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectEditCell"), owner: nil) as! ProjectEditCellView
                 
                 newProjectItem.delegate = self
                 
@@ -174,14 +184,6 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         
         return nil
     }
-    
-//    func projectIndex(_ index: Int) -> Int {
-//        var projectIndex = index
-//        if newProject {
-//            projectIndex -= 1
-//        }
-//        return projectIndex
-//    }
     
     var previousSelection: IndexSet?
     
@@ -193,12 +195,9 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         }
         
         if outlineView.selectedRowIndexes.contains(outlineView.clickedRow) {
-            guard let project = outlineView.item(atRow: outlineView.clickedRow) as? Project else {
-                print("Clicked item is not a project")
-                return
+            if let project = outlineView.item(atRow: outlineView.clickedRow) as? Project {
+                projectsDelegate?.changeActiveProject(project)
             }
-            
-            projectsDelegate?.changeActiveProject(project)
         }
     }
     
@@ -263,14 +262,11 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
     
     @IBAction func projectMenuRenameAction(_ sender: Any) {
         
-        guard let project = outlineView.item(atRow: outlineView.clickedRow) as? Project else {
-            print("Clicked row was not a project")
+        if let item = outlineView.item(atRow: outlineView.clickedRow) as? NSManagedObject {
+            renameItem = item
+            outlineView.reloadData()
             return
         }
-        
-        renameProject = project
-        
-        outlineView.reloadData()
     }
     
     @IBAction func projectMenuGroupAction(_ sender: Any) {
@@ -285,7 +281,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         group.name = "New group"
         group.creationDate = Date()
         
-        updateData()
+        updateData(keepSelection: false)
     }
     
     func menuWillOpen(_ menu: NSMenu) {
@@ -316,73 +312,4 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
 
 protocol ProjectsSidebarDelegate {
     func projectsUpdated()
-}
-
-// Drag and drop outline view
-extension SidebarViewController {
-    
-    func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
-        let pbItem = NSPasteboardItem()
-        
-        print("Get pasteboard")
-        
-        guard let managedObj = item as? NSManagedObject else {
-            print("Drag drop: Item not a managed object")
-            return nil
-        }
-        
-        pbItem.setString(managedObj.objectID.uriRepresentation().absoluteString, forType: NSPasteboard.PasteboardType("public.data"))
-        
-        print("Drag URL: \(managedObj.objectID.uriRepresentation().absoluteString)")
-        
-        print("pbItem is \(pbItem)")
-        
-        return pbItem
-    }
-    
-    func outlineView(_ outlineView: NSOutlineView, validateDrop info: NSDraggingInfo, proposedItem item: Any?, proposedChildIndex index: Int) -> NSDragOperation {
-        
-        if item is ProjectGroup {
-            return .move
-        }
-        
-        if item is Project {
-            return []
-        }
-        
-        // For root
-        return .move
-    }
-    
-    func outlineView(_ outlineView: NSOutlineView, acceptDrop info: NSDraggingInfo, item: Any?, childIndex index: Int) -> Bool {
-        
-        print("Move Action")
-        
-        let group = item as? ProjectGroup
-        
-        print("Move to group \(group?.name ?? "Root")")
-        
-        info.enumerateDraggingItems(options: [], for: outlineView, classes: [NSString.self, NSPasteboardItem.self, NSURL.self], searchOptions: [:]) { (draggingItem, index, stopPtr) in
-            
-            let pbItem = draggingItem.item as! NSPasteboardItem
-            
-            let urlString = pbItem.string(forType: NSPasteboard.PasteboardType("public.data"))!
-            let url = URL(string: urlString)!
-            
-            let objId = Model.context.persistentStoreCoordinator!.managedObjectID(forURIRepresentation: url)!
-            
-            guard let project = (try? Model.context.existingObject(with: objId)) as? Project else {
-                print("Could not get project: \(index)")
-                return
-            }
-            
-            project.group = group
-        }
-        
-        
-        updateData(keepSelection: false)
-        
-        return true
-    }
-    
 }

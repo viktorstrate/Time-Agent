@@ -8,12 +8,18 @@
 
 import Cocoa
 
-class ProjectsEditItemCellView: NSTableCellView, NSTextFieldDelegate {
+class ProjectEditCellView: NSTableCellView, NSTextFieldDelegate {
 
     var delegate: ProjectsEditItemCellDelegate?
-    var editingProject: Project? {
+    var editingObject: NSManagedObject? {
         didSet {
-            editTextField.stringValue = editingProject?.name ?? ""
+            if let project = editingObject as? Project {
+                editTextField.stringValue = project.name ?? ""
+            }
+            
+            if let group = editingObject as? ProjectGroup {
+                editTextField.stringValue = group.name ?? ""
+            }
         }
     }
     
