@@ -1267,9 +1267,6 @@
                                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="KlL-0C-rSy">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
-                                                    <string key="keyEquivalent" base64-UTF8="YES">
-Gw
-</string>
                                                 </buttonCell>
                                                 <connections>
                                                     <action selector="cancelAction:" target="QTT-FW-OHh" id="kwG-86-bLh"/>
@@ -1280,9 +1277,6 @@ Gw
                                                 <buttonCell key="cell" type="push" title="Keep Children" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5y8-qz-bnL">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
-                                                    <string key="keyEquivalent" base64-UTF8="YES">
-Gw
-</string>
                                                 </buttonCell>
                                                 <connections>
                                                     <action selector="keepChildrenAction:" target="QTT-FW-OHh" id="gAI-QV-IdP"/>
@@ -1293,9 +1287,6 @@ Gw
                                                 <buttonCell key="cell" type="push" title="Delete Children" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Tsy-Ui-koC">
                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                     <font key="font" metaFont="system"/>
-                                                    <string key="keyEquivalent" base64-UTF8="YES">
-Gw
-</string>
                                                 </buttonCell>
                                                 <connections>
                                                     <action selector="deleteChildrenAction:" target="QTT-FW-OHh" id="f1G-JF-fgL"/>

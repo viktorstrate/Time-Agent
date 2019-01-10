@@ -29,6 +29,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         outlineView.rowHeight = 24;
         
         outlineView.action = #selector(outlineViewClicked)
+        outlineView.registerForDraggedTypes([NSPasteboard.PasteboardType(rawValue: "public.data")])
         
         projectContextMenu.delegate = self
         projectContextMenu.autoenablesItems = false
@@ -77,11 +78,9 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
             var count = projects.count + groups.count
             
             if newProject {
-                print("Got projects \(projects.count) plus new one")
                 count = count + 1
             }
-            
-            print("Got projects \(projects.count), groups \(groups.count)")
+
             return count
         }
         
@@ -205,12 +204,15 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
     
     // MARK: Core Data related functions
     
-    func updateData() {
+    func updateData(keepSelection: Bool = true) {
         do {
             try Model.context.save()
             let selected = outlineView.selectedRowIndexes
             outlineView.reloadData()
-            outlineView.selectRowIndexes(selected, byExtendingSelection: false)
+            if keepSelection {
+                outlineView.selectRowIndexes(selected, byExtendingSelection: false)
+            }
+            
         } catch {
             print("Error saving data")
         }
@@ -293,8 +295,13 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
             shouldCancel = true
         }
         
+        let multipleSelected = outlineView.selectedRowIndexes.count > 1
+        
         // Only enable groups if multiple projects are selected
-        menu.item(withTag: 2)!.isEnabled = outlineView.selectedRowIndexes.count > 1
+        menu.item(withTag: 2)!.isEnabled = multipleSelected
+        
+        // Don't allow renaming of multiple projects
+        menu.item(withTag: 0)!.isEnabled = !multipleSelected
         
         if (shouldCancel) {
             menu.cancelTracking()
@@ -309,4 +316,73 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
 
 protocol ProjectsSidebarDelegate {
     func projectsUpdated()
+}
+
+// Drag and drop outline view
+extension SidebarViewController {
+    
+    func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
+        let pbItem = NSPasteboardItem()
+        
+        print("Get pasteboard")
+        
+        guard let managedObj = item as? NSManagedObject else {
+            print("Drag drop: Item not a managed object")
+            return nil
+        }
+        
+        pbItem.setString(managedObj.objectID.uriRepresentation().absoluteString, forType: NSPasteboard.PasteboardType("public.data"))
+        
+        print("Drag URL: \(managedObj.objectID.uriRepresentation().absoluteString)")
+        
+        print("pbItem is \(pbItem)")
+        
+        return pbItem
+    }
+    
+    func outlineView(_ outlineView: NSOutlineView, validateDrop info: NSDraggingInfo, proposedItem item: Any?, proposedChildIndex index: Int) -> NSDragOperation {
+        
+        if item is ProjectGroup {
+            return .move
+        }
+        
+        if item is Project {
+            return []
+        }
+        
+        // For root
+        return .move
+    }
+    
+    func outlineView(_ outlineView: NSOutlineView, acceptDrop info: NSDraggingInfo, item: Any?, childIndex index: Int) -> Bool {
+        
+        print("Move Action")
+        
+        let group = item as? ProjectGroup
+        
+        print("Move to group \(group?.name ?? "Root")")
+        
+        info.enumerateDraggingItems(options: [], for: outlineView, classes: [NSString.self, NSPasteboardItem.self, NSURL.self], searchOptions: [:]) { (draggingItem, index, stopPtr) in
+            
+            let pbItem = draggingItem.item as! NSPasteboardItem
+            
+            let urlString = pbItem.string(forType: NSPasteboard.PasteboardType("public.data"))!
+            let url = URL(string: urlString)!
+            
+            let objId = Model.context.persistentStoreCoordinator!.managedObjectID(forURIRepresentation: url)!
+            
+            guard let project = (try? Model.context.existingObject(with: objId)) as? Project else {
+                print("Could not get project: \(index)")
+                return
+            }
+            
+            project.group = group
+        }
+        
+        
+        updateData(keepSelection: false)
+        
+        return true
+    }
+    
 }
