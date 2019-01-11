@@ -973,9 +973,6 @@
                                                 </textFieldCell>
                                             </textField>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="Wbm-qH-fSb" secondAttribute="trailing" id="TgF-wH-Clo"/>
-                                        </constraints>
                                         <visibilityPriorities>
                                             <integer value="1000"/>
                                             <integer value="1000"/>
@@ -1197,7 +1194,7 @@
                                     <rect key="frame" x="0.0" y="311" width="562" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="IgD-n0-q4C">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="IgD-n0-q4C">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1206,6 +1203,20 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="MKd-Hy-OFc">
+                                <rect key="frame" x="538" y="8" width="16" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="Rpq-9w-RMt"/>
+                                    <constraint firstAttribute="height" constant="16" id="wXE-2T-Y53"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSActionTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="4BF-Rz-D4z">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="MSj-FD-jJC" kind="modal" id="kBe-II-cdc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="tfk-zZ-gH1" firstAttribute="top" secondItem="NCG-sC-kCd" secondAttribute="bottom" constant="8" id="3tF-7e-QUf"/>
@@ -1213,9 +1224,11 @@
                             <constraint firstAttribute="bottom" secondItem="caB-Kz-GWf" secondAttribute="bottom" constant="8" id="9ag-8E-Ws8"/>
                             <constraint firstItem="NCG-sC-kCd" firstAttribute="top" secondItem="pGf-dL-PQQ" secondAttribute="top" constant="16" id="D4v-kI-DrA"/>
                             <constraint firstAttribute="trailing" secondItem="NCG-sC-kCd" secondAttribute="trailing" constant="8" id="JSM-9g-GEt"/>
+                            <constraint firstAttribute="trailing" secondItem="MKd-Hy-OFc" secondAttribute="trailing" constant="8" id="JVl-eE-5B5"/>
                             <constraint firstItem="tfk-zZ-gH1" firstAttribute="leading" secondItem="pGf-dL-PQQ" secondAttribute="leading" id="MED-Kl-xyh"/>
                             <constraint firstItem="caB-Kz-GWf" firstAttribute="top" secondItem="tfk-zZ-gH1" secondAttribute="bottom" constant="8" id="SRT-ND-fmH"/>
                             <constraint firstItem="NCG-sC-kCd" firstAttribute="leading" secondItem="pGf-dL-PQQ" secondAttribute="leading" constant="8" id="YN5-Xe-d5a"/>
+                            <constraint firstAttribute="bottom" secondItem="MKd-Hy-OFc" secondAttribute="bottom" constant="8" id="o7t-4f-yLE"/>
                             <constraint firstItem="caB-Kz-GWf" firstAttribute="leading" secondItem="pGf-dL-PQQ" secondAttribute="leading" constant="10" id="sUU-YO-QkV"/>
                         </constraints>
                     </view>
@@ -1231,6 +1244,85 @@
                 </viewController>
             </objects>
             <point key="canvasLocation" x="250" y="1240.5"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="yXB-zx-Svn">
+            <objects>
+                <viewController id="MSj-FD-jJC" customClass="SettingsViewController" customModule="Time_Agent" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="qs0-2g-vb3">
+                        <rect key="frame" x="0.0" y="0.0" width="440" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yqY-xT-rQX">
+                                <rect key="frame" x="20" y="224" width="400" height="56"/>
+                                <subviews>
+                                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="12k-3r-Gef">
+                                        <rect key="frame" x="0.0" y="42" width="366" height="14"/>
+                                        <subviews>
+                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qh2-me-BJj">
+                                                <rect key="frame" x="-2" y="-2" width="135" height="18"/>
+                                                <buttonCell key="cell" type="check" title="Synchronize to file" bezelStyle="regularSquare" imagePosition="left" inset="2" id="8eR-Tw-Cvo">
+                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                    <font key="font" metaFont="system"/>
+                                                </buttonCell>
+                                                <connections>
+                                                    <action selector="toggleSync:" target="MSj-FD-jJC" id="6Wd-1m-6M8"/>
+                                                </connections>
+                                            </button>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cvq-d0-CfK">
+                                                <rect key="frame" x="137" y="0.0" width="231" height="14"/>
+                                                <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" title="~/Documents/Dropbox/projects.time-agent" id="7q4-Ky-RzM">
+                                                    <font key="font" metaFont="smallSystem"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                        </subviews>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8y6-6p-RG9">
+                                        <rect key="frame" x="-2" y="0.0" width="404" height="34"/>
+                                        <textFieldCell key="cell" selectable="YES" title="Synchronize tracked time to a file, often used with a cloud services like Dropbox, to share it across multiple computers" id="GPo-Z9-ulQ">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="400" id="OgZ-fm-XcD"/>
+                                </constraints>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="yqY-xT-rQX" secondAttribute="trailing" constant="20" id="0uZ-1W-BM5"/>
+                            <constraint firstItem="yqY-xT-rQX" firstAttribute="leading" secondItem="qs0-2g-vb3" secondAttribute="leading" constant="20" id="AwC-iT-BSG"/>
+                            <constraint firstItem="yqY-xT-rQX" firstAttribute="top" secondItem="qs0-2g-vb3" secondAttribute="top" constant="20" id="Sul-Gh-5VM"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="syncButton" destination="Qh2-me-BJj" id="b0s-lK-kpx"/>
+                        <outlet property="syncPathLabel" destination="Cvq-d0-CfK" id="umd-qe-bDo"/>
+                    </connections>
+                </viewController>
+                <customObject id="WfU-0q-CQI" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="230" y="1899"/>
         </scene>
         <!--Sidebar Delete Group Modal View Controller-->
         <scene sceneID="QxA-oH-FQP">
@@ -1344,6 +1436,7 @@ DQ
         </scene>
     </scenes>
     <resources>
+        <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSColumnViewTemplate" width="16" height="10"/>
         <image name="Start button" width="85.5" height="85.5"/>

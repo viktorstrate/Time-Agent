@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3423EAB821E7D69700352AFE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3423EAB621E7D69700352AFE /* SettingsViewController.swift */; };
 		342FFAF321E26C3000EDFA1C /* Project+helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342FFAF221E26C3000EDFA1C /* Project+helpers.swift */; };
 		344BDB7421E756430035B9A4 /* ProjectGroup+helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344BDB7321E756430035B9A4 /* ProjectGroup+helpers.swift */; };
 		344BDB7621E7597B0035B9A4 /* ProjectGroupCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344BDB7521E7597B0035B9A4 /* ProjectGroupCellView.swift */; };
@@ -25,6 +26,8 @@
 		349E89FD2127186300CA088C /* Time_AgentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E89FC2127186300CA088C /* Time_AgentUITests.swift */; };
 		349E8A082129AA2D00CA088C /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E8A072129AA2D00CA088C /* EventMonitor.swift */; };
 		34B05FCE21E4D65B00BA7E29 /* TimerBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B05FCD21E4D65B00BA7E29 /* TimerBadge.swift */; };
+		5BF8CAC224D467AA9F2604CE /* Pods_Time_Agent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 599F144ACB8FD53346E9CAD4 /* Pods_Time_Agent.framework */; };
+		AC91E94117936707817EC83F /* Pods_Time_AgentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED7DA081A50C61128F932119 /* Pods_Time_AgentUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,11 +41,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		037D2FF1032ABAC7B73D89AE /* Pods-Time Agent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time Agent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Time Agent/Pods-Time Agent.debug.xcconfig"; sourceTree = "<group>"; };
+		3423EAB621E7D69700352AFE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		342FFAF221E26C3000EDFA1C /* Project+helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Project+helpers.swift"; path = "Time Agent/Models/Project+helpers.swift"; sourceTree = SOURCE_ROOT; };
 		344BDB7321E756430035B9A4 /* ProjectGroup+helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectGroup+helpers.swift"; sourceTree = "<group>"; };
 		344BDB7521E7597B0035B9A4 /* ProjectGroupCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectGroupCellView.swift; sourceTree = "<group>"; };
 		344BDB7721E75FE40035B9A4 /* SidebarDeleteGroupModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarDeleteGroupModalViewController.swift; sourceTree = "<group>"; };
 		344BDB7A21E7C1090035B9A4 /* SidebarViewController+DragDrop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SidebarViewController+DragDrop.swift"; sourceTree = "<group>"; };
+		346A1C9021E7C9AA00BB1E3C /* Time Agent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Time Agent.entitlements"; sourceTree = "<group>"; };
 		3476B0FB2129FB4300835532 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		3476B0FF212A003C00835532 /* ProjectCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCellView.swift; sourceTree = "<group>"; };
 		3476B103212A067600835532 /* ProjectEditCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEditCellView.swift; sourceTree = "<group>"; };
@@ -55,12 +61,16 @@
 		349E89EB2127186100CA088C /* Time_Agent.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Time_Agent.xcdatamodel; sourceTree = "<group>"; };
 		349E89F02127186300CA088C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		349E89F22127186300CA088C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		349E89F32127186300CA088C /* Time_Agent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Time_Agent.entitlements; sourceTree = "<group>"; };
 		349E89F82127186300CA088C /* Time AgentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Time AgentUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		349E89FC2127186300CA088C /* Time_AgentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Time_AgentUITests.swift; sourceTree = "<group>"; };
 		349E89FE2127186300CA088C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		349E8A072129AA2D00CA088C /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		34B05FCD21E4D65B00BA7E29 /* TimerBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerBadge.swift; sourceTree = "<group>"; };
+		3D499BCAAD3942D0664479B5 /* Pods-Time AgentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time AgentUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Time AgentUITests/Pods-Time AgentUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		599F144ACB8FD53346E9CAD4 /* Pods_Time_Agent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Time_Agent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B365ED7FC51E8E935D11F7F4 /* Pods-Time AgentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time AgentUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Time AgentUITests/Pods-Time AgentUITests.release.xcconfig"; sourceTree = "<group>"; };
+		D6E79178C2592C29CFB2C50C /* Pods-Time Agent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time Agent.release.xcconfig"; path = "Pods/Target Support Files/Pods-Time Agent/Pods-Time Agent.release.xcconfig"; sourceTree = "<group>"; };
+		ED7DA081A50C61128F932119 /* Pods_Time_AgentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Time_AgentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BF8CAC224D467AA9F2604CE /* Pods_Time_Agent.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC91E94117936707817EC83F /* Pods_Time_AgentUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,6 +107,7 @@
 			children = (
 				3476B0FB2129FB4300835532 /* SidebarViewController.swift */,
 				344BDB7A21E7C1090035B9A4 /* SidebarViewController+DragDrop.swift */,
+				344BDB7721E75FE40035B9A4 /* SidebarDeleteGroupModalViewController.swift */,
 			);
 			path = Sidebar;
 			sourceTree = "<group>";
@@ -104,8 +117,8 @@
 			children = (
 				344BDB7921E7C0F30035B9A4 /* Sidebar */,
 				349E89E82127186100CA088C /* MenuViewController.swift */,
-				344BDB7721E75FE40035B9A4 /* SidebarDeleteGroupModalViewController.swift */,
 				3493339F21AC7BB200A45A4B /* ProjectViewController.swift */,
+				3423EAB621E7D69700352AFE /* SettingsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -116,6 +129,8 @@
 				349E89E52127186100CA088C /* Time Agent */,
 				349E89FB2127186300CA088C /* Time AgentUITests */,
 				349E89E42127186100CA088C /* Products */,
+				B653682CBAA3C63CB8D7666B /* Pods */,
+				67BDBE1D0B3C6641515862BD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -141,7 +156,7 @@
 				349E89F22127186300CA088C /* Info.plist */,
 				349333A121AC7EAB00A45A4B /* Assets.xcassets */,
 				349E89EA2127186100CA088C /* Time_Agent.xcdatamodeld */,
-				349E89F32127186300CA088C /* Time_Agent.entitlements */,
+				346A1C9021E7C9AA00BB1E3C /* Time Agent.entitlements */,
 			);
 			path = "Time Agent";
 			sourceTree = "<group>";
@@ -166,6 +181,26 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		67BDBE1D0B3C6641515862BD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				599F144ACB8FD53346E9CAD4 /* Pods_Time_Agent.framework */,
+				ED7DA081A50C61128F932119 /* Pods_Time_AgentUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B653682CBAA3C63CB8D7666B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				037D2FF1032ABAC7B73D89AE /* Pods-Time Agent.debug.xcconfig */,
+				D6E79178C2592C29CFB2C50C /* Pods-Time Agent.release.xcconfig */,
+				3D499BCAAD3942D0664479B5 /* Pods-Time AgentUITests.debug.xcconfig */,
+				B365ED7FC51E8E935D11F7F4 /* Pods-Time AgentUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -173,9 +208,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 349E8A012127186300CA088C /* Build configuration list for PBXNativeTarget "Time Agent" */;
 			buildPhases = (
+				93C23AA0070601B9523620B6 /* [CP] Check Pods Manifest.lock */,
 				349E89DF2127186100CA088C /* Sources */,
 				349E89E02127186100CA088C /* Frameworks */,
 				349E89E12127186100CA088C /* Resources */,
+				5742AA67581042F7A7572DCC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -190,6 +227,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 349E8A042127186300CA088C /* Build configuration list for PBXNativeTarget "Time AgentUITests" */;
 			buildPhases = (
+				84A3BB033E35F091F88A9950 /* [CP] Check Pods Manifest.lock */,
 				349E89F42127186300CA088C /* Sources */,
 				349E89F52127186300CA088C /* Frameworks */,
 				349E89F62127186300CA088C /* Resources */,
@@ -217,6 +255,11 @@
 					349E89E22127186100CA088C = {
 						CreatedOnToolsVersion = 9.4.1;
 						LastSwiftMigration = 1010;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					349E89F72127186300CA088C = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -263,6 +306,75 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5742AA67581042F7A7572DCC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Time Agent/Pods-Time Agent-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Sync/Sync.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sync.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Time Agent/Pods-Time Agent-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		84A3BB033E35F091F88A9950 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Time AgentUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		93C23AA0070601B9523620B6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Time Agent-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		349E89DF2127186100CA088C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -275,6 +387,7 @@
 				344BDB7421E756430035B9A4 /* ProjectGroup+helpers.swift in Sources */,
 				349333A021AC7BB200A45A4B /* ProjectViewController.swift in Sources */,
 				3476B100212A003C00835532 /* ProjectCellView.swift in Sources */,
+				3423EAB821E7D69700352AFE /* SettingsViewController.swift in Sources */,
 				3476B104212A067600835532 /* ProjectEditCellView.swift in Sources */,
 				349E89E72127186100CA088C /* AppDelegate.swift in Sources */,
 				349333A721AC837300A45A4B /* Model.swift in Sources */,
@@ -431,9 +544,10 @@
 		};
 		349E8A022127186300CA088C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 037D2FF1032ABAC7B73D89AE /* Pods-Time Agent.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Time Agent/Time_Agent.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Time Agent/Time Agent.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Time Agent/Info.plist";
@@ -449,9 +563,10 @@
 		};
 		349E8A032127186300CA088C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6E79178C2592C29CFB2C50C /* Pods-Time Agent.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Time Agent/Time_Agent.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "Time Agent/Time Agent.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Time Agent/Info.plist";
@@ -467,6 +582,7 @@
 		};
 		349E8A052127186300CA088C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D499BCAAD3942D0664479B5 /* Pods-Time AgentUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -486,6 +602,7 @@
 		};
 		349E8A062127186300CA088C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B365ED7FC51E8E935D11F7F4 /* Pods-Time AgentUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

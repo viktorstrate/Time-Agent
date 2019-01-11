@@ -31,7 +31,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         closeEventMonitor?.start()
-        
     }
     
     @objc func togglePopover(_ sender: Any?) {
