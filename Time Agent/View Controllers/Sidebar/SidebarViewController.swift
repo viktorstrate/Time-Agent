@@ -282,6 +282,10 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         group.creationDate = Date()
         
         updateData(keepSelection: false)
+        
+        renameItem = group
+        
+        outlineView.reloadData()
     }
     
     func menuWillOpen(_ menu: NSMenu) {
@@ -292,9 +296,6 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         }
         
         let multipleSelected = outlineView.selectedRowIndexes.count > 1
-        
-        // Only enable groups if multiple projects are selected
-        menu.item(withTag: 2)!.isEnabled = multipleSelected
         
         // Don't allow renaming of multiple projects
         menu.item(withTag: 0)!.isEnabled = !multipleSelected

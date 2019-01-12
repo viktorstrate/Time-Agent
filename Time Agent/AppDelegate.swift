@@ -14,12 +14,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     let popover = NSPopover()
     var closeEventMonitor: EventMonitor?
+    
+    static let main: AppDelegate = {
+        return NSApplication.shared.delegate as! AppDelegate
+    }()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
         if let button = statusItem.button {
-            button.image = NSImage(named: "StatusIcon")
             button.action = #selector(togglePopover(_:))
+            setTimer(start: false)
         }
         
         popover.contentViewController = MenuViewController.makeController()
@@ -31,6 +35,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         closeEventMonitor?.start()
+    }
+    
+    func setTimer(start: Bool) {
+        if start {
+            statusItem.button?.image = NSImage(named: "Status Icon Running")
+        } else {
+            statusItem.button?.image = NSImage(named: "Status Icon")
+        }
     }
     
     @objc func togglePopover(_ sender: Any?) {

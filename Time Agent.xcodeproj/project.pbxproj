@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3420017921EA031F00A74AFB /* FileSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3420017821EA031F00A74AFB /* FileSync.swift */; };
 		3423EAB821E7D69700352AFE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3423EAB621E7D69700352AFE /* SettingsViewController.swift */; };
 		342FFAF321E26C3000EDFA1C /* Project+helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342FFAF221E26C3000EDFA1C /* Project+helpers.swift */; };
 		344BDB7421E756430035B9A4 /* ProjectGroup+helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344BDB7321E756430035B9A4 /* ProjectGroup+helpers.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		037D2FF1032ABAC7B73D89AE /* Pods-Time Agent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time Agent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Time Agent/Pods-Time Agent.debug.xcconfig"; sourceTree = "<group>"; };
+		3420017821EA031F00A74AFB /* FileSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FileSync.swift; path = "Time Agent/FileSync.swift"; sourceTree = SOURCE_ROOT; };
 		3423EAB621E7D69700352AFE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		342FFAF221E26C3000EDFA1C /* Project+helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Project+helpers.swift"; path = "Time Agent/Models/Project+helpers.swift"; sourceTree = SOURCE_ROOT; };
 		344BDB7321E756430035B9A4 /* ProjectGroup+helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectGroup+helpers.swift"; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				34A6EF2D21E2264E00807D24 /* Views */,
 				3493339E21AC7B7D00A45A4B /* View Controllers */,
 				349333A621AC837300A45A4B /* Model.swift */,
+				3420017821EA031F00A74AFB /* FileSync.swift */,
 				349E89E62127186100CA088C /* AppDelegate.swift */,
 				349E8A072129AA2D00CA088C /* EventMonitor.swift */,
 				349E89EF2127186300CA088C /* Main.storyboard */,
@@ -387,6 +390,7 @@
 				344BDB7421E756430035B9A4 /* ProjectGroup+helpers.swift in Sources */,
 				349333A021AC7BB200A45A4B /* ProjectViewController.swift in Sources */,
 				3476B100212A003C00835532 /* ProjectCellView.swift in Sources */,
+				3420017921EA031F00A74AFB /* FileSync.swift in Sources */,
 				3423EAB821E7D69700352AFE /* SettingsViewController.swift in Sources */,
 				3476B104212A067600835532 /* ProjectEditCellView.swift in Sources */,
 				349E89E72127186100CA088C /* AppDelegate.swift in Sources */,

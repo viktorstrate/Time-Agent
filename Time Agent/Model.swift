@@ -11,8 +11,7 @@ import Cocoa
 class Model {
     
     static var context: NSManagedObjectContext = {
-        let appDelegate = NSApplication.shared.delegate as! AppDelegate
-        let context = appDelegate.persistentContainer.viewContext
+        let context = AppDelegate.main.persistentContainer.viewContext
         return context
     }()
     

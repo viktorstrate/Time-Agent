@@ -16,12 +16,19 @@ class SettingsViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        
+        AppDelegate.main.popover.performClose(self)
+        updateUI()
+    }
+    
+    override func viewDidAppear() {
+        view.window?.title = "Preferences"
+        view.window?.makeKey() // Focus window
     }
     
     @IBAction func toggleSync(_ sender: Any) {
         if syncButton.state == .off {
-            syncPathLabel.stringValue = ""
+            UserDefaults.standard.set(nil, forKey: "settings.sync-path")
+            updateUI()
         }
         
         if syncButton.state == .on {
@@ -31,9 +38,27 @@ class SettingsViewController: NSViewController {
             panel.beginSheetModal(for: self.view.window!) { (result) in
                 if result == .OK {
                     let path = panel.url!
-                    self.syncPathLabel.stringValue = path.absoluteString
+                    UserDefaults.standard.set(path, forKey: "settings.sync-path")
+                    
+                    let fileSync = FileSync(path: path)
+                    fileSync.save()
+                    
+                } else {
+                    UserDefaults.standard.set(nil, forKey: "settings.sync-path")
                 }
+                
+                self.updateUI()
             }
+        }
+    }
+    
+    func updateUI() {
+        if let path = UserDefaults.standard.url(forKey: "settings.sync-path") {
+            syncPathLabel.stringValue = path.absoluteString
+            syncButton.state = .on
+        } else {
+            syncPathLabel.stringValue = ""
+            syncButton.state = .off
         }
     }
 }

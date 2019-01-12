@@ -100,6 +100,8 @@ class ProjectViewController: NSViewController {
             
             taskFinished(name: name, start: start, duration: duration)
             
+            AppDelegate.main.setTimer(start: false)
+            
             return
         }
         
@@ -114,6 +116,8 @@ class ProjectViewController: NSViewController {
         
         timerButton.image = NSImage(named: NSImage.Name("Stop button"))
         taskNameInput.isEditable = false
+        
+        AppDelegate.main.setTimer(start: true)
     }
     
     @objc func updateTimerLabel() {
