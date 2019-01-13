@@ -1213,37 +1213,76 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="MKd-Hy-OFc">
-                                <rect key="frame" x="538" y="8" width="16" height="16"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="16" id="Rpq-9w-RMt"/>
-                                    <constraint firstAttribute="height" constant="16" id="wXE-2T-Y53"/>
-                                </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSActionTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="4BF-Rz-D4z">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="openSettingsAction:" target="b2Y-kt-o7L" id="XHW-ut-BmA"/>
-                                </connections>
-                            </button>
+                            <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6nR-2a-UYj">
+                                <rect key="frame" x="433" y="8" width="121" height="17"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zFj-gf-b4x">
+                                        <rect key="frame" x="-2" y="0.0" width="77" height="17"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Last synced" id="j1j-6K-Q6i">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="4r7-k1-T0W" userLabel="Settings Button">
+                                        <rect key="frame" x="81" y="1" width="16" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="16" id="Edk-qC-DaA"/>
+                                            <constraint firstAttribute="height" constant="16" id="L2O-r7-Q6d"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRefreshTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Sc9-3A-YxC">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="syncAction:" target="b2Y-kt-o7L" id="mhD-8m-0cz"/>
+                                        </connections>
+                                    </button>
+                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="MKd-Hy-OFc" userLabel="Settings Button">
+                                        <rect key="frame" x="105" y="1" width="16" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="16" id="Rpq-9w-RMt"/>
+                                            <constraint firstAttribute="height" constant="16" id="wXE-2T-Y53"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSActionTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="4BF-Rz-D4z">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="openSettingsAction:" target="b2Y-kt-o7L" id="XHW-ut-BmA"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="tfk-zZ-gH1" firstAttribute="top" secondItem="NCG-sC-kCd" secondAttribute="bottom" constant="8" id="3tF-7e-QUf"/>
                             <constraint firstAttribute="trailing" secondItem="tfk-zZ-gH1" secondAttribute="trailing" id="6cw-7R-f2X"/>
                             <constraint firstAttribute="bottom" secondItem="caB-Kz-GWf" secondAttribute="bottom" constant="8" id="9ag-8E-Ws8"/>
                             <constraint firstItem="NCG-sC-kCd" firstAttribute="top" secondItem="pGf-dL-PQQ" secondAttribute="top" constant="16" id="D4v-kI-DrA"/>
+                            <constraint firstAttribute="bottom" secondItem="6nR-2a-UYj" secondAttribute="bottom" constant="8" id="DGR-Eg-BUI"/>
                             <constraint firstAttribute="trailing" secondItem="NCG-sC-kCd" secondAttribute="trailing" constant="8" id="JSM-9g-GEt"/>
-                            <constraint firstAttribute="trailing" secondItem="MKd-Hy-OFc" secondAttribute="trailing" constant="8" id="JVl-eE-5B5"/>
                             <constraint firstItem="tfk-zZ-gH1" firstAttribute="leading" secondItem="pGf-dL-PQQ" secondAttribute="leading" id="MED-Kl-xyh"/>
                             <constraint firstItem="caB-Kz-GWf" firstAttribute="top" secondItem="tfk-zZ-gH1" secondAttribute="bottom" constant="8" id="SRT-ND-fmH"/>
                             <constraint firstItem="NCG-sC-kCd" firstAttribute="leading" secondItem="pGf-dL-PQQ" secondAttribute="leading" constant="8" id="YN5-Xe-d5a"/>
-                            <constraint firstAttribute="bottom" secondItem="MKd-Hy-OFc" secondAttribute="bottom" constant="8" id="o7t-4f-yLE"/>
+                            <constraint firstAttribute="trailing" secondItem="6nR-2a-UYj" secondAttribute="trailing" constant="8" id="kAY-bb-Hdu"/>
                             <constraint firstItem="caB-Kz-GWf" firstAttribute="leading" secondItem="pGf-dL-PQQ" secondAttribute="leading" constant="10" id="sUU-YO-QkV"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="lastSyncLabel" destination="zFj-gf-b4x" id="qHq-vs-t9n"/>
                         <outlet property="projectNameField" destination="qNs-qF-Jj5" id="WHb-mW-3bO"/>
+                        <outlet property="syncButton" destination="4r7-k1-T0W" id="KZr-ge-hhy"/>
                         <outlet property="taskNameInput" destination="spS-FZ-QIO" id="MzH-bK-SOy"/>
                         <outlet property="tasksTableView" destination="Che-aM-82q" id="6VL-l3-z31"/>
                         <outlet property="timerButton" destination="G8W-rn-wfJ" id="5ZE-AM-KOS"/>
@@ -1449,6 +1488,7 @@ DQ
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSColumnViewTemplate" width="16" height="10"/>
+        <image name="NSRefreshTemplate" width="11" height="15"/>
         <image name="Start button" width="85.5" height="85.5"/>
     </resources>
 </document>

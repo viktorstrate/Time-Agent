@@ -28,6 +28,9 @@ class ProjectViewController: NSViewController {
         }
     }
     
+    @IBOutlet weak var syncButton: NSButton!
+    @IBOutlet weak var lastSyncLabel: NSTextField!
+    
     static var durationFormatter: DateComponentsFormatter = {
         let format = DateComponentsFormatter()
         format.allowedUnits = [.hour, .minute, .second]
@@ -66,6 +69,28 @@ class ProjectViewController: NSViewController {
                 project = nil
             }
         }
+        
+        if let fileSync = AppDelegate.main.fileSync {
+            fileSync.onSyncComplete.append {
+                self.updateSyncLabel()
+            }
+        } else {
+            lastSyncLabel.stringValue = ""
+            syncButton.isEnabled = false
+        }
+        
+        self.updateSyncLabel()
+    }
+    
+    func updateSyncLabel() {
+        if let syncDate = AppDelegate.main.fileSync?.lastSync {
+            let formatter = DateFormatter()
+            formatter.dateStyle = .medium
+            formatter.timeStyle = .short
+            
+            print("Sync date: \(syncDate) \(formatter.string(from: syncDate))")
+            self.lastSyncLabel.stringValue = "Last synced: \(formatter.string(from: syncDate))"
+        }
     }
     
     @IBAction func toggleSidebarAction(_ sender: Any) {
@@ -81,6 +106,10 @@ class ProjectViewController: NSViewController {
         print("Opening settings window")
         let settings = SettingsViewController.makeController()
         presentAsModalWindow(settings)
+    }
+    
+    @IBAction func syncAction(_ sender: Any) {
+        AppDelegate.main.fileSync?.load()
     }
     
     // MARK: Timer
@@ -162,6 +191,9 @@ class ProjectViewController: NSViewController {
         Model.save()
         
         tasksTableView.reloadData()
+        
+        print("Starting sync because task was created")
+        AppDelegate.main.fileSync?.save()
     }
     
     var tableViewTasks: [Task] = []

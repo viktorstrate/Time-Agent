@@ -38,31 +38,12 @@ class FileSync {
     init(path: URL) {
         self.path = path
         self.onSyncComplete = []
-//        self.dataStack = DataStack(modelName: "Time_Agent", storeType: .sqLite)
     }
     
-    // editProvoked is whether or not the sync generally was to save edited changes or not
-    func sync(editProvoked: Bool) {
-        print("Syncing...")
+    func save() {
         
-        Model.save()
+        print("Saving to sync file...")
         
-        // Load changes since last sync
-        load {
-            // When load is finished do this
-            
-//            if !editProvoked {
-                for syncListener in self.onSyncComplete {
-                    syncListener()
-                }
-//            }
-            
-            // Save local changes made since last sync
-            self.save()
-        }
-    }
-    
-    private func save() {
         var projectsJson: [Any] = []
         
         for p in Project.fetchRoots() {
@@ -72,10 +53,12 @@ class FileSync {
         let data = try! JSONSerialization.data(withJSONObject: projectsJson, options: .prettyPrinted)
         try! data.write(to: self.path)
         
-        self.lastSync = Date()
+        self.syncFinished()
     }
     
-    private func load(finished: @escaping () -> Void) {
+    func load() {
+        
+        print("Loading from sync file...")
         
         guard let data = try? Data(contentsOf: self.path) else {
             return
@@ -83,15 +66,10 @@ class FileSync {
         
         let json = try! JSONSerialization.jsonObject(with: data, options: [])
         
-        // First sync
-        if let lastSync = self.lastSync {
+        // If not first sync
+        if self.lastSync != nil {
             
-            print("Loading changes since last sync: \(lastSync)")
-            
-            // If created after last sync, ignore so they doesn't get deleted
-            let filter = NSPredicate(format: "updatedAt < %@", argumentArray: [lastSync])
-            
-            Model.context.sync(json as! [[String : Any]], inEntityNamed: "Project", predicate: filter, parent: nil) { (error) in
+            Model.context.sync(json as! [[String : Any]], inEntityNamed: "Project", predicate: nil, parent: nil) { (error) in
                 if let error = error {
                     print("First sync error: \(error)")
                     return
@@ -99,36 +77,10 @@ class FileSync {
                 
                 print("Successfully synced new items")
 
-                let projects = Project.fetchRoots()
-                
-                for i in 0..<projects.count {
-                    for j in i..<projects.count {
-                        
-                        let p1 = projects[i]
-                        let p2 = projects[j]
-                        
-                        if p1 != p2 && p1.id == p2.id {
-                            print("Found duplicate \(p1.name!) and \(p2.name!)")
-                            let newest = p1.updatedAt! > p2.updatedAt! ? p1 : p2
-                            let oldest = p1.updatedAt! > p2.updatedAt! ? p2 : p1
-                            
-                            if oldest.tasks!.count > 0 {
-                                newest.tasks! = oldest.tasks!
-                            }
-                            
-                            oldest.tasks! = []
-                            Model.delete(managedObject: oldest)
-                        }
-                    }
-                }
-                
-                print("Inside load")
-                finished()
+                self.syncFinished()
             }
         } else {
             print("Syncing for the first time")
-            
-            //            Sync.changes(changes, inEntityNamed: entityName, predicate: nil, parent: nil, parentRelationship: nil, inContext: self, operations: .all, completion: completion)
             
             var syncOptions = Sync.OperationOptions.all
             syncOptions.remove(Sync.OperationOptions.delete)
@@ -139,7 +91,17 @@ class FileSync {
                     print("Initial sync error: \(error)")
                     return
                 }
+                
+                self.syncFinished()
             }
+        }
+    }
+    
+    private func syncFinished() {
+        self.lastSync = Date()
+        
+        for syncListener in self.onSyncComplete {
+            syncListener()
         }
     }
 }

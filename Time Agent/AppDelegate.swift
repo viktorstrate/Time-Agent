@@ -14,7 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     let popover = NSPopover()
     var closeEventMonitor: EventMonitor?
-    var fileSync: FileSync!
+    var fileSync: FileSync?
     
     static let main: AppDelegate = {
         return NSApplication.shared.delegate as! AppDelegate
@@ -58,6 +58,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             // Open popover
             if let button = statusItem.button {
                 popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
+            }
+            
+            if let lastSync = fileSync?.lastSync {
+                let lastSyncTime = Date().timeIntervalSince(lastSync)
+                
+                // If not synced for 2 mins
+                if lastSyncTime > 60 * 2 {
+                    fileSync!.load()
+                }
             }
         }
     }
