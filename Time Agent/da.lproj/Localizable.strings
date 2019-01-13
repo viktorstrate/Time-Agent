@@ -1,0 +1,13 @@
+/* 
+  Localizable.strings
+  Time Agent
+
+  Created by Viktor Hundahl Strate on 13/01/2019.
+  Copyright © 2019 Viktor Hundahl Strate. All rights reserved.
+*/
+
+"Total time: %@" = "Tid ialt: %@";
+"No project selected" = "Intet projekt valgt";
+"New group" = "Ny gruppe";
+
+"Preferences" = "Indstillinger";
