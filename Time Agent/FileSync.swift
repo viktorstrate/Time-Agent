@@ -41,15 +41,24 @@ class FileSync {
 //        self.dataStack = DataStack(modelName: "Time_Agent", storeType: .sqLite)
     }
     
-    func sync() {
+    // editProvoked is whether or not the sync generally was to save edited changes or not
+    func sync(editProvoked: Bool) {
+        print("Syncing...")
+        
+        Model.save()
+        
         // Load changes since last sync
-        load()
-        
-        // Save local changes made since last sync
-        save()
-        
-        for syncListener in onSyncComplete {
-            syncListener()
+        load {
+            // When load is finished do this
+            
+//            if !editProvoked {
+                for syncListener in self.onSyncComplete {
+                    syncListener()
+                }
+//            }
+            
+            // Save local changes made since last sync
+            self.save()
         }
     }
     
@@ -66,7 +75,7 @@ class FileSync {
         self.lastSync = Date()
     }
     
-    private func load() {
+    private func load(finished: @escaping () -> Void) {
         
         guard let data = try? Data(contentsOf: self.path) else {
             return
@@ -74,14 +83,12 @@ class FileSync {
         
         let json = try! JSONSerialization.jsonObject(with: data, options: [])
         
-        print("Loading changes since \(String(describing: self.lastSync))")
-        
         // First sync
         if let lastSync = self.lastSync {
-            // Use predicate to only update elements changed since last sync
-//            let filter = NSPredicate(format: "updatedAt > %@", argumentArray: [lastSync])
             
-            // If created after last sync, ignore so it doesn't get deleted
+            print("Loading changes since last sync: \(lastSync)")
+            
+            // If created after last sync, ignore so they doesn't get deleted
             let filter = NSPredicate(format: "updatedAt < %@", argumentArray: [lastSync])
             
             Model.context.sync(json as! [[String : Any]], inEntityNamed: "Project", predicate: filter, parent: nil) { (error) in
@@ -115,8 +122,8 @@ class FileSync {
                     }
                 }
                 
-                Model.save()
-                
+                print("Inside load")
+                finished()
             }
         } else {
             print("Syncing for the first time")

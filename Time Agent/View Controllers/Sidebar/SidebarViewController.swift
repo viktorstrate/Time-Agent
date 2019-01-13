@@ -52,7 +52,12 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
                 project.wasUpdated()
             }
             
-            updateData()
+//            updateData()
+            outlineView.reloadData()
+            
+            
+            print("Starting sync because new project was added")
+            AppDelegate.main.fileSync.sync(editProvoked: true)
         } else {
             // Rename project or group
             let renamedObject = renameItem!
@@ -70,13 +75,18 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
                 }
             }
 
-            updateData(keepSelection: false)
+//            updateData(keepSelection: false)
+            outlineView.reloadData()
+            
             let row = outlineView.row(forItem: renamedObject)
             outlineView.selectRowIndexes(IndexSet(arrayLiteral: row), byExtendingSelection: false)
 
             if let renamedProject = renamedObject as? Project {
                 menuDelegate.changeActiveProject(renamedProject)
             }
+            
+            print("Starting sync because project was renamed")
+            AppDelegate.main.fileSync.sync(editProvoked: true)
         }
     }
 
@@ -232,6 +242,9 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
             print("Deleting project: \(project.name!)")
             Model.delete(managedObject: project)
             updateData()
+            
+            print("Starting sync because a project was deleted")
+            AppDelegate.main.fileSync.sync(editProvoked: true)
             return
         }
 
@@ -243,6 +256,9 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
             sheet.keepCallback = {
                 Model.delete(managedObject: group)
                 self.updateData()
+                
+                print("Starting sync because a group without projects was deleted")
+                AppDelegate.main.fileSync.sync(editProvoked: true)
             }
 
             sheet.deleteCallback = {
@@ -255,6 +271,9 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
                 Model.delete(managedObject: group)
 
                 self.updateData()
+                
+                print("Starting sync because a group with projects was deleted")
+                AppDelegate.main.fileSync.sync(editProvoked: true)
             }
 
             presentAsSheet(sheet)

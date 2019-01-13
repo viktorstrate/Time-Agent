@@ -22,6 +22,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         
+        if let syncPath = UserDefaults.standard.url(forKey: "settings.sync-path") {
+            fileSync = FileSync(path: syncPath)
+        }
+        
         if let button = statusItem.button {
             button.action = #selector(togglePopover(_:))
             setTimer(start: false)
@@ -36,10 +40,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         closeEventMonitor?.start()
-        
-        if let syncPath = UserDefaults.standard.url(forKey: "settings.sync-path") {
-            fileSync = FileSync(path: syncPath)
-        }
     }
     
     func setTimer(start: Bool) {

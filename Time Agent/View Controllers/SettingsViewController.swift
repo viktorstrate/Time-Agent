@@ -52,7 +52,7 @@ class SettingsViewController: NSViewController {
                     UserDefaults.standard.set(path, forKey: "settings.sync-path")
                     
                     let fileSync = FileSync(path: path)
-                    fileSync.sync()
+                    fileSync.sync(editProvoked: false)
                     
                 } else {
                     UserDefaults.standard.set(nil, forKey: "settings.sync-path")
