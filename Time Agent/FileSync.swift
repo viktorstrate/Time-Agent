@@ -10,6 +10,9 @@ import Foundation
 import Sync
 
 class FileSync {
+    
+    var onSyncComplete: [(() -> Void)]
+    
     let path: URL
     var lastSync: Date? {
         get {
@@ -34,6 +37,7 @@ class FileSync {
     
     init(path: URL) {
         self.path = path
+        self.onSyncComplete = []
 //        self.dataStack = DataStack(modelName: "Time_Agent", storeType: .sqLite)
     }
     
@@ -43,6 +47,10 @@ class FileSync {
         
         // Save local changes made since last sync
         save()
+        
+        for syncListener in onSyncComplete {
+            syncListener()
+        }
     }
     
     private func save() {

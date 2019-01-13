@@ -14,6 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     let popover = NSPopover()
     var closeEventMonitor: EventMonitor?
+    var fileSync: FileSync!
     
     static let main: AppDelegate = {
         return NSApplication.shared.delegate as! AppDelegate
@@ -35,6 +36,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
         closeEventMonitor?.start()
+        
+        if let syncPath = UserDefaults.standard.url(forKey: "settings.sync-path") {
+            fileSync = FileSync(path: syncPath)
+        }
     }
     
     func setTimer(start: Bool) {

@@ -69,7 +69,7 @@
 "7q4-Ky-RzM.title" = "~/Documents/Dropbox/projects.time-agent";
 
 /* Class = "NSButtonCell"; title = "Synchronize to file"; ObjectID = "8eR-Tw-Cvo"; */
-"8eR-Tw-Cvo.title" = "Synchronize to file";
+"8eR-Tw-Cvo.title" = "Synkronisér til fil";
 
 /* Class = "NSMenu"; title = "Writing Direction"; ObjectID = "8mr-sm-Yjd"; */
 "8mr-sm-Yjd.title" = "Writing Direction";
@@ -123,7 +123,7 @@
 "GEO-Iw-cKr.title" = "Format";
 
 /* Class = "NSTextFieldCell"; title = "Synchronize tracked time to a file, often used with a cloud services like Dropbox, to share it across multiple computers"; ObjectID = "GPo-Z9-ulQ"; */
-"GPo-Z9-ulQ.title" = "Synchronize tracked time to a file, often used with a cloud services like Dropbox, to share it across multiple computers";
+"GPo-Z9-ulQ.title" = "Synkronisér projekter til en fil. Ofte brugt i forbindelse med en cloud-tjeneste som Dropbox, for at dele projekter mellem flere computere";
 
 /* Class = "NSMenuItem"; title = "Use Default"; ObjectID = "GUa-eO-cwY"; */
 "GUa-eO-cwY.title" = "Use Default";

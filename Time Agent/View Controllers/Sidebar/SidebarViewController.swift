@@ -15,7 +15,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
     // Project or Group currently being renamed
     var renameItem: NSManagedObject? = nil
     var editTextField: NSTextField?
-    var projectsDelegate: MenuViewProjectsDelegate?
+    var menuDelegate: MenuViewProjectsDelegate!
 
     @IBOutlet weak var outlineView: NSOutlineView!
     @IBOutlet var projectContextMenu: NSMenu!
@@ -50,8 +50,9 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
                 let project = Project()
                 project.name = text
                 project.wasUpdated()
-                updateData()
             }
+            
+            updateData()
         } else {
             // Rename project or group
             let renamedObject = renameItem!
@@ -74,7 +75,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
             outlineView.selectRowIndexes(IndexSet(arrayLiteral: row), byExtendingSelection: false)
 
             if let renamedProject = renamedObject as? Project {
-                projectsDelegate?.changeActiveProject(renamedProject)
+                menuDelegate.changeActiveProject(renamedProject)
             }
         }
     }
@@ -192,13 +193,13 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
     @objc func outlineViewClicked() {
         // Deselect active project
         if outlineView.clickedRow == -1 {
-            projectsDelegate?.changeActiveProject(nil)
+            menuDelegate.changeActiveProject(nil)
             return
         }
 
         if outlineView.selectedRowIndexes.contains(outlineView.clickedRow) {
             if let project = outlineView.item(atRow: outlineView.clickedRow) as? Project {
-                projectsDelegate?.changeActiveProject(project)
+                menuDelegate.changeActiveProject(project)
             }
         }
     }

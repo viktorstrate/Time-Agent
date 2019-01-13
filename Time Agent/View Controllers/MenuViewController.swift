@@ -10,15 +10,28 @@ import Cocoa
 
 class MenuViewController: NSSplitViewController, MenuViewProjectsDelegate {
     
+    var sidebarViewController: SidebarViewController {
+        get {
+            return splitViewItems[0].viewController as! SidebarViewController
+        }
+    }
+    
+    var projectViewController: ProjectViewController {
+        get {
+            return splitViewItems[1].viewController as! ProjectViewController
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        let projectsTableView = splitViewItems[0].viewController as! SidebarViewController
-        let projectView = splitViewItems[1].viewController as! ProjectViewController
+        projectViewController.menuDelegate = self
+        sidebarViewController.menuDelegate = self
         
-        projectsTableView.projectsDelegate = self
-        projectView.projectsSidebarDelegate = projectsTableView
+        AppDelegate.main.fileSync.onSyncComplete.append {
+            self.coreDataUpdated()
+        }
     }
 
     override var representedObject: Any? {
@@ -44,9 +57,20 @@ class MenuViewController: NSSplitViewController, MenuViewProjectsDelegate {
         
         projectViewController.project = project
     }
+    
+    func coreDataUpdated() {
+        print("Core data changed")
+        sidebarViewController.updateData(keepSelection: false)
+    }
+    
+    func projectUpdated(_ project: Project) {
+        sidebarViewController.updateData(keepSelection: true)
+    }
 }
 
 protocol MenuViewProjectsDelegate {
     func changeActiveProject(_ project: Project?)
+    func coreDataUpdated()
+    func projectUpdated(_ project: Project)
 }
 

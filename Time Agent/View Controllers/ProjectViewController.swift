@@ -52,7 +52,7 @@ class ProjectViewController: NSViewController {
     @IBOutlet weak var tasksTableView: NSTableView!
     @IBOutlet weak var totalTimeLabel: NSTextField!
     
-    var projectsSidebarDelegate: ProjectsSidebarDelegate?
+    var menuDelegate: MenuViewProjectsDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,6 +75,12 @@ class ProjectViewController: NSViewController {
         }
         
         menuViewController.toggleSidebar(sender)
+    }
+    
+    @IBAction func openSettingsAction(_ sender: Any) {
+        print("Opening settings window")
+        let settings = SettingsViewController.makeController()
+        presentAsModalWindow(settings)
     }
     
     // MARK: Timer
@@ -143,7 +149,7 @@ class ProjectViewController: NSViewController {
         
         totalTimeLabel.stringValue = String.localizedStringWithFormat(formatString, time)
         
-        projectsSidebarDelegate?.projectsUpdated()
+        menuDelegate?.projectUpdated(project)
     }
     
     func taskFinished(name: String, start: Date, duration: TimeInterval) {

@@ -13,6 +13,17 @@ class SettingsViewController: NSViewController {
     @IBOutlet weak var syncButton: NSButton!
     @IBOutlet weak var syncPathLabel: NSTextField!
     
+    static func makeController() -> SettingsViewController {
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        let identifier = "SettingsWindow"
+        
+        guard let viewController = storyboard.instantiateController(withIdentifier: identifier) as? SettingsViewController else {
+            fatalError("Could not instantiate SettingsViewController")
+        }
+        
+        return viewController
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
