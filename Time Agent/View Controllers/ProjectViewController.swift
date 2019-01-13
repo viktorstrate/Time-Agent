@@ -16,7 +16,7 @@ class ProjectViewController: NSViewController {
             tasksTableView.reloadData()
             
             guard let project = project else {
-                projectNameField.stringValue = "No project selected"
+                projectNameField.stringValue = NSLocalizedString("No project selected", comment: "Title when no project is selected")
                 taskNameInput.isEnabled = false
                 timerButton.isEnabled = false
                 return
@@ -138,7 +138,10 @@ class ProjectViewController: NSViewController {
         
         let taskTime = project.calculateTotalTime()
         
-        totalTimeLabel.stringValue = "Total time: " + (ProjectViewController.durationFormatter.string(from: duration + taskTime) ?? "ERROR")
+        let formatString = NSLocalizedString("Total time: %@", comment: "Total time used on selected project")
+        let time = (ProjectViewController.durationFormatter.string(from: duration + taskTime) ?? "ERROR")
+        
+        totalTimeLabel.stringValue = String.localizedStringWithFormat(formatString, time)
         
         projectsSidebarDelegate?.projectsUpdated()
     }

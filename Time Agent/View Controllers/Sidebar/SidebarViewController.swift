@@ -278,7 +278,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         
         let group = ProjectGroup(context: Model.context)
         group.projects = NSSet(array: projects)
-        group.name = "New group"
+        group.name = NSLocalizedString("New group", comment: "Default name for new groups")
         group.creationDate = Date()
         
         updateData(keepSelection: false)

@@ -10,6 +10,7 @@
 		3420017921EA031F00A74AFB /* FileSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3420017821EA031F00A74AFB /* FileSync.swift */; };
 		3423EAB821E7D69700352AFE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3423EAB621E7D69700352AFE /* SettingsViewController.swift */; };
 		342FFAF321E26C3000EDFA1C /* Project+helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342FFAF221E26C3000EDFA1C /* Project+helpers.swift */; };
+		343D3B4221EBA0B90012B2A7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 343D3B4421EBA0B90012B2A7 /* Localizable.strings */; };
 		344BDB7421E756430035B9A4 /* ProjectGroup+helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344BDB7321E756430035B9A4 /* ProjectGroup+helpers.swift */; };
 		344BDB7621E7597B0035B9A4 /* ProjectGroupCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344BDB7521E7597B0035B9A4 /* ProjectGroupCellView.swift */; };
 		344BDB7821E75FE40035B9A4 /* SidebarDeleteGroupModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344BDB7721E75FE40035B9A4 /* SidebarDeleteGroupModalViewController.swift */; };
@@ -46,11 +47,13 @@
 		3420017821EA031F00A74AFB /* FileSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FileSync.swift; path = "Time Agent/FileSync.swift"; sourceTree = SOURCE_ROOT; };
 		3423EAB621E7D69700352AFE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		342FFAF221E26C3000EDFA1C /* Project+helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Project+helpers.swift"; path = "Time Agent/Models/Project+helpers.swift"; sourceTree = SOURCE_ROOT; };
+		343D3B4321EBA0B90012B2A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		343D3B4521EBA2160012B2A7 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Main.strings; sourceTree = "<group>"; };
+		343D3B4621EBA2160012B2A7 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Localizable.strings; sourceTree = "<group>"; };
 		344BDB7321E756430035B9A4 /* ProjectGroup+helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectGroup+helpers.swift"; sourceTree = "<group>"; };
 		344BDB7521E7597B0035B9A4 /* ProjectGroupCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectGroupCellView.swift; sourceTree = "<group>"; };
 		344BDB7721E75FE40035B9A4 /* SidebarDeleteGroupModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarDeleteGroupModalViewController.swift; sourceTree = "<group>"; };
 		344BDB7A21E7C1090035B9A4 /* SidebarViewController+DragDrop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SidebarViewController+DragDrop.swift"; sourceTree = "<group>"; };
-		346A1C9021E7C9AA00BB1E3C /* Time Agent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Time Agent.entitlements"; sourceTree = "<group>"; };
 		3476B0FB2129FB4300835532 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		3476B0FF212A003C00835532 /* ProjectCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCellView.swift; sourceTree = "<group>"; };
 		3476B103212A067600835532 /* ProjectEditCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEditCellView.swift; sourceTree = "<group>"; };
@@ -159,7 +162,7 @@
 				349E89F22127186300CA088C /* Info.plist */,
 				349333A121AC7EAB00A45A4B /* Assets.xcassets */,
 				349E89EA2127186100CA088C /* Time_Agent.xcdatamodeld */,
-				346A1C9021E7C9AA00BB1E3C /* Time Agent.entitlements */,
+				343D3B4421EBA0B90012B2A7 /* Localizable.strings */,
 			);
 			path = "Time Agent";
 			sourceTree = "<group>";
@@ -260,7 +263,7 @@
 						LastSwiftMigration = 1010;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -278,6 +281,7 @@
 			knownRegions = (
 				en,
 				Base,
+				da,
 			);
 			mainGroup = 349E89DA2127186100CA088C;
 			productRefGroup = 349E89E42127186100CA088C /* Products */;
@@ -296,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				349333A221AC7EAB00A45A4B /* Assets.xcassets in Resources */,
+				343D3B4221EBA0B90012B2A7 /* Localizable.strings in Resources */,
 				349E89F12127186300CA088C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -422,10 +427,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		343D3B4421EBA0B90012B2A7 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				343D3B4321EBA0B90012B2A7 /* en */,
+				343D3B4621EBA2160012B2A7 /* da */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		349E89EF2127186300CA088C /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				349E89F02127186300CA088C /* Base */,
+				343D3B4521EBA2160012B2A7 /* da */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -437,6 +452,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -497,6 +513,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -551,7 +568,6 @@
 			baseConfigurationReference = 037D2FF1032ABAC7B73D89AE /* Pods-Time Agent.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Time Agent/Time Agent.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Time Agent/Info.plist";
@@ -570,7 +586,6 @@
 			baseConfigurationReference = D6E79178C2592C29CFB2C50C /* Pods-Time Agent.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "Time Agent/Time Agent.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Time Agent/Info.plist";

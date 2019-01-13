@@ -21,7 +21,7 @@ class SettingsViewController: NSViewController {
     }
     
     override func viewDidAppear() {
-        view.window?.title = "Preferences"
+        view.window?.title = NSLocalizedString("Preferences", comment: "Title of preferences window")
         view.window?.makeKey() // Focus window
     }
     
