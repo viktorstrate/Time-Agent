@@ -9,10 +9,16 @@
 import Cocoa
 
 extension ProjectGroup {
+    
+    convenience init(name: String) {
+        self.init()
+        self.name = name
+    }
+    
     static func fetchRoots() -> [ProjectGroup] {
         let request = ProjectGroup.fetchRequest() as NSFetchRequest<ProjectGroup>
         request.returnsObjectsAsFaults = false
-        request.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        request.sortDescriptors = [NSSortDescriptor(key: "updatedAt", ascending: false)]
         request.predicate = NSPredicate(format: "parent == nil", [])
         
         do {

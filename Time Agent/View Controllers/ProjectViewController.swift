@@ -146,11 +146,9 @@ class ProjectViewController: NSViewController {
     func taskFinished(name: String, start: Date, duration: TimeInterval) {
         print("Task finished: \(name) - \(duration)")
         
-        let task = Task(context: Model.context)
-        task.duration = duration
-        task.name = name
-        task.start = start
+        let task = Task(name: name, duration: duration, start: start)
         task.project = project
+        project?.wasUpdated()
         
         Model.save()
         

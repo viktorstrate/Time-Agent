@@ -1,27 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18B75" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Project" representedClassName="Project" syncable="YES" codeGenerationType="class">
-        <attribute name="creationDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18C54" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Project" representedClassName="Project" parentEntity="SourceEntity" syncable="YES" codeGenerationType="class">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectGroup" inverseName="projects" inverseEntity="ProjectGroup" syncable="YES"/>
         <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Task" inverseName="project" inverseEntity="Task" syncable="YES"/>
     </entity>
-    <entity name="ProjectGroup" representedClassName="ProjectGroup" syncable="YES" codeGenerationType="class">
-        <attribute name="creationDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+    <entity name="ProjectGroup" representedClassName="ProjectGroup" parentEntity="SourceEntity" syncable="YES" codeGenerationType="class">
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectGroup" inverseName="subgroups" inverseEntity="ProjectGroup" syncable="YES"/>
         <relationship name="projects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Project" inverseName="group" inverseEntity="Project" syncable="YES"/>
         <relationship name="subgroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProjectGroup" inverseName="parent" inverseEntity="ProjectGroup" syncable="YES"/>
     </entity>
-    <entity name="Task" representedClassName="Task" syncable="YES" codeGenerationType="class">
+    <entity name="SourceEntity" representedClassName="SourceEntity" isAbstract="YES" syncable="YES" codeGenerationType="class">
+        <attribute name="createdAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
+    <entity name="Task" representedClassName="Task" parentEntity="SourceEntity" syncable="YES" codeGenerationType="class">
         <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="start" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <relationship name="project" maxCount="1" deletionRule="Nullify" destinationEntity="Project" inverseName="tasks" inverseEntity="Project" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Project" positionX="-243.609375" positionY="-15.1640625" width="128" height="103"/>
-        <element name="ProjectGroup" positionX="-435.95703125" positionY="-47.90234375" width="128" height="120"/>
+        <element name="Project" positionX="-243.609375" positionY="-15.1640625" width="128" height="90"/>
+        <element name="ProjectGroup" positionX="-435.95703125" positionY="-47.90234375" width="128" height="105"/>
         <element name="Task" positionX="-46.18359375" positionY="-13.50390625" width="128" height="105"/>
+        <element name="SourceEntity" positionX="-243" positionY="18" width="128" height="90"/>
     </elements>
 </model>

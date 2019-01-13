@@ -47,9 +47,9 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         if (newProject == true) {
             newProject = false
             if !text.isEmpty {
-                let project = Project(context: Model.context)
+                let project = Project()
                 project.name = text
-                project.creationDate = Date()
+                project.wasUpdated()
                 updateData()
             }
         } else {
@@ -60,10 +60,12 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
             if !text.isEmpty {
                 if let renamedProject = renamedObject as? Project {
                     renamedProject.name = text
+                    renamedProject.wasUpdated()
                 }
                 
                 if let renamedGroup = renamedObject as? ProjectGroup {
                     renamedGroup.name = text
+                    renamedGroup.wasUpdated()
                 }
             }
             
@@ -276,10 +278,9 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
             return outlineView.item(atRow: row) as! Project
         }
         
-        let group = ProjectGroup(context: Model.context)
+        let group = ProjectGroup()
         group.projects = NSSet(array: projects)
         group.name = "New group"
-        group.creationDate = Date()
         
         updateData(keepSelection: false)
         

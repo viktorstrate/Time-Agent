@@ -9,6 +9,12 @@
 import Cocoa
 
 extension Project {
+    
+    convenience init(name: String) {
+        self.init()
+        self.name = name
+    }
+    
     func calculateTotalTime() -> TimeInterval {
         let tasks = self.tasks!.sortedArray(using: []) as! [Task]
         let taskTime = tasks.reduce(0) { (prev, task) -> Double in
@@ -36,13 +42,13 @@ extension Project {
             var newestA: Date, newestB: Date
             
             if sortedA.isEmpty {
-                newestA = a.creationDate!
+                newestA = a.updatedAt!
             } else {
                 newestA = sortedA[0].start!
             }
             
             if sortedB.isEmpty {
-                newestB = b.creationDate!
+                newestB = b.updatedAt!
             } else {
                 newestB = sortedB[0].start!
             }
@@ -56,7 +62,7 @@ extension Project {
     static func fetchRoots() -> [Project] {
         let request = Project.fetchRequest() as NSFetchRequest<Project>
         request.returnsObjectsAsFaults = false
-        request.sortDescriptors = [NSSortDescriptor.init(key: "creationDate", ascending: false)]
+        request.sortDescriptors = [NSSortDescriptor.init(key: "updatedAt", ascending: false)]
         request.predicate = NSPredicate(format: "group == nil", [])
         
         do {

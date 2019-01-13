@@ -64,6 +64,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: - Core Data stack
 
     lazy var persistentContainer: NSPersistentContainer = {
+
         /*
          The persistent container for the application. This implementation
          creates and returns a container, having loaded the store for the
@@ -75,7 +76,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if let error = error {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                 
+
                 /*
                  Typical reasons for an error here include:
                  * The parent directory does not exist, cannot be created, or disallows writing.
