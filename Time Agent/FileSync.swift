@@ -45,12 +45,21 @@ class FileSync {
         print("Saving to sync file...")
         
         var projectsJson: [Any] = []
+        var groupsJson: [Any] = []
         
         for p in Project.fetchRoots() {
             projectsJson.append(p.export())
         }
         
-        let data = try! JSONSerialization.data(withJSONObject: projectsJson, options: .prettyPrinted)
+        for g in ProjectGroup.fetchRoots() {
+            groupsJson.append(g.export())
+        }
+        
+        var jsonObj: [String: Any] = [:]
+        jsonObj["projects"] = projectsJson
+        jsonObj["groups"] = groupsJson
+        
+        let data = try! JSONSerialization.data(withJSONObject: jsonObj, options: .prettyPrinted)
         try! data.write(to: self.path)
         
         self.syncFinished()
@@ -61,23 +70,43 @@ class FileSync {
         print("Loading from sync file...")
         
         guard let data = try? Data(contentsOf: self.path) else {
+            print("Warn: Sync file does not exist, nothing to laod, saving...")
+            save()
             return
         }
         
-        let json = try! JSONSerialization.jsonObject(with: data, options: [])
+        guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as! [String : Any] else {
+            print("ERROR: Did not find json in file")
+            return
+        }
+        
+        let projects = json["projects"] as! [[String: Any]]
+        let groups = json["groups"] as! [[String: Any]]
+        
+        let rootProjectsPredicate = NSPredicate(format: "group == nil", argumentArray: [])
+        let rootGroupsPredicate = NSPredicate(format: "parent == nil", argumentArray: [])
         
         // If not first sync
         if self.lastSync != nil {
             
-            Model.context.sync(json as! [[String : Any]], inEntityNamed: "Project", predicate: nil, parent: nil) { (error) in
+            Model.context.sync(projects, inEntityNamed: "Project", predicate: rootProjectsPredicate, parent: nil) { (error) in
                 if let error = error {
-                    print("First sync error: \(error)")
+                    print("Root projects sync error: \(error)")
                     return
                 }
                 
-                print("Successfully synced new items")
-
-                self.syncFinished()
+                print("Successfully synced new root projects")
+                
+                Model.context.sync(groups, inEntityNamed: "ProjectGroup", predicate: rootGroupsPredicate, parent: nil) { (error) in
+                    if let error = error {
+                        print("Root groups sync error: \(error)")
+                        return
+                    }
+                    
+                    print("Successfully synced new groups")
+                    
+                    self.syncFinished()
+                }
             }
         } else {
             print("Syncing for the first time")
@@ -86,13 +115,24 @@ class FileSync {
             syncOptions.remove(Sync.OperationOptions.delete)
             syncOptions.remove(Sync.OperationOptions.deleteRelationships)
             
-            Model.context.changes(json as! [[String: Any]], inEntityNamed: "Project", predicate: nil, parent: nil, parentRelationship: nil, operations: syncOptions) { (error) in
+            Model.context.changes(projects, inEntityNamed: "Project", predicate: rootProjectsPredicate, parent: nil, parentRelationship: nil, operations: syncOptions) { (error) in
                 if let error = error {
-                    print("Initial sync error: \(error)")
+                    print("Initial sync root projects error: \(error)")
                     return
                 }
                 
-                self.syncFinished()
+                print("Successfully synced initial new root projects")
+                
+                Model.context.changes(groups, inEntityNamed: "GroupProject", predicate: rootGroupsPredicate, parent: nil, parentRelationship: nil, operations: syncOptions) { (error) in
+                    if let error = error {
+                        print("Initial sync root groups error: \(error)")
+                        return
+                    }
+                    
+                    print("Successfully synced initial new groups")
+                    self.syncFinished()
+                    
+                }
             }
         }
     }
