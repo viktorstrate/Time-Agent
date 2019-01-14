@@ -112,6 +112,7 @@ extension SidebarViewController {
                 let newProjectItem = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectEditCell"), owner: nil) as! ProjectEditCellView
                 
                 newProjectItem.delegate = self
+                newProjectItem.editTextField.stringValue = ""
                 
                 return newProjectItem
             }

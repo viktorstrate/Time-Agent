@@ -63,7 +63,7 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
         
         // Run didSet function
         if project == nil {
-            let projects = Model.fetchAll(request: Project.fetchRequest())
+            let projects = Project.fetchRoots()
             if !projects.isEmpty {
                 project = projects[0]
             } else {
@@ -213,8 +213,7 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
     }
     
     @IBAction func taskMenuEditAction(_ sender: NSMenuItem) {
-        
-        print("Edit")
+        print("Edit task")
         
         let row = tasksTableView.clickedRow
         
@@ -247,6 +246,30 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
     
     
     @IBAction func taskMenuDeleteAction(_ sender: Any) {
+        print("Delete task")
+        
+        var rows = tasksTableView.selectedRowIndexes.makeIterator()
+        while let row = rows.next() {
+            
+            if tableViewTasks.count <= row && row != -1 {
+                print("Invalid row")
+                return
+            }
+            
+            let task = tableViewTasks[row]
+            
+            print("Deleting task: \(task.name!)")
+            
+            Model.delete(managedObject: task)
+        }
+        
+        
+        Model.save()
+        
+        self.tasksTableView.reloadData()
+        
+        print("Starting sync because task was deleted")
+        AppDelegate.main.fileSync?.save()
     }
 }
 
