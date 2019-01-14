@@ -31,9 +31,6 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         outlineView.action = #selector(outlineViewClicked)
         outlineView.registerForDraggedTypes([NSPasteboard.PasteboardType(rawValue: "public.data")])
 
-        projectContextMenu.delegate = self
-        projectContextMenu.autoenablesItems = false
-
     }
 
     @IBAction func addProjectAction(_ sender: NSButton) {

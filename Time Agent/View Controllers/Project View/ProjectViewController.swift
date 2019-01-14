@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ProjectViewController: NSViewController {
+class ProjectViewController: NSViewController, NSMenuDelegate {
 
     var project: Project? {
         didSet {
@@ -30,6 +30,7 @@ class ProjectViewController: NSViewController {
     
     @IBOutlet weak var syncButton: NSButton!
     @IBOutlet weak var lastSyncLabel: NSTextField!
+    @IBOutlet var taskContextMenu: NSMenu!
     
     static var durationFormatter: DateComponentsFormatter = {
         let format = DateComponentsFormatter()
@@ -197,6 +198,56 @@ class ProjectViewController: NSViewController {
     }
     
     var tableViewTasks: [Task] = []
+    
+    // Mark: right click menu
+    
+    func menuWillOpen(_ menu: NSMenu) {
+        
+        let multipleSelected = tasksTableView.selectedRowIndexes.count > 1
+        
+        menu.item(withTag: 0)?.isEnabled = !multipleSelected
+        
+        if tasksTableView.clickedRow == -1 {
+            menu.cancelTracking()
+        }
+    }
+    
+    @IBAction func taskMenuEditAction(_ sender: NSMenuItem) {
+        
+        print("Edit")
+        
+        let row = tasksTableView.clickedRow
+        
+        if tableViewTasks.count <= row && row != -1 {
+            print("Invalid row")
+            return
+        }
+        
+        let task = tableViewTasks[row]
+        
+        
+        guard let view = tasksTableView.view(atColumn: 0, row: row, makeIfNecessary: false) else {
+            print("Could not get view of tableview")
+            return
+        }
+        
+        let popover = TaskEditPopoverController.makeController(task: task)
+        popover.onFinished = {
+            self.tasksTableView.reloadData()
+            Model.save()
+            
+            print("Starting sync because task was edited")
+            AppDelegate.main.fileSync?.save()
+        }
+        
+        print("Presenting popover")
+        present(popover, asPopoverRelativeTo: view.visibleRect, of: view, preferredEdge: NSRectEdge.minX, behavior: NSPopover.Behavior.transient)
+        
+    }
+    
+    
+    @IBAction func taskMenuDeleteAction(_ sender: Any) {
+    }
 }
 
 extension ProjectViewController: NSTableViewDelegate, NSTableViewDataSource {

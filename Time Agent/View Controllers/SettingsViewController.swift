@@ -14,7 +14,7 @@ class SettingsViewController: NSViewController {
     @IBOutlet weak var syncPathLabel: NSTextField!
     
     static func makeController() -> SettingsViewController {
-        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        let storyboard = NSStoryboard(name: "Main", bundle: Bundle.main)
         let identifier = "SettingsWindow"
         
         guard let viewController = storyboard.instantiateController(withIdentifier: identifier) as? SettingsViewController else {
