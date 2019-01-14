@@ -744,7 +744,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="170" height="391"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="5" outlineTableColumn="KNd-xF-Ftt" id="7Uz-N6-ZUA">
+                                        <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" autosaveColumns="NO" rowHeight="24" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="8" outlineTableColumn="KNd-xF-Ftt" id="7Uz-N6-ZUA">
                                             <rect key="frame" x="0.0" y="0.0" width="170" height="391"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -847,10 +847,10 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                             <subviews>
                                                                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Rv-25-KBT">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="159" height="24"/>
+                                                                    <rect key="frame" x="4" y="0.0" width="155" height="24"/>
                                                                     <subviews>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="YBl-vM-jw2">
-                                                                            <rect key="frame" x="-2" y="4" width="163" height="17"/>
+                                                                            <rect key="frame" x="-2" y="4" width="159" height="17"/>
                                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Group" id="4zS-bz-rnh">
                                                                                 <font key="font" metaFont="systemMedium" size="13"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -868,7 +868,7 @@
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="trailing" secondItem="4Rv-25-KBT" secondAttribute="trailing" constant="8" id="QEL-uQ-UFe"/>
-                                                                <constraint firstItem="4Rv-25-KBT" firstAttribute="leading" secondItem="nux-cz-Tr1" secondAttribute="leading" id="n7z-mR-gIQ"/>
+                                                                <constraint firstItem="4Rv-25-KBT" firstAttribute="leading" secondItem="nux-cz-Tr1" secondAttribute="leading" constant="4" id="n7z-mR-gIQ"/>
                                                                 <constraint firstItem="4Rv-25-KBT" firstAttribute="top" secondItem="nux-cz-Tr1" secondAttribute="top" id="oup-Pe-x6H"/>
                                                                 <constraint firstAttribute="bottom" secondItem="4Rv-25-KBT" secondAttribute="bottom" id="snd-iY-aoA"/>
                                                             </constraints>

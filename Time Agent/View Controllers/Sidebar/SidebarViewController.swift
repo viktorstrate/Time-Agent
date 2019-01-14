@@ -92,114 +92,6 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         }
     }
 
-    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        // Root
-        if item == nil {
-            let projects = Project.fetchRoots()
-            let groups = ProjectGroup.fetchRoots()
-
-            var count = projects.count + groups.count
-
-            if newProject {
-                count = count + 1
-            }
-
-            return count
-        }
-
-        if let group = item as? ProjectGroup {
-            let children = group.projects!.count
-
-            return children
-        }
-
-        return 0
-    }
-
-    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        // Root
-        if item == nil {
-            if newProject && index == 0 {
-                return "NewProject"
-            }
-
-            var i: Int = index
-
-            if newProject {
-                i = i - 1
-            }
-
-            let projects = Project.fetchRoots()
-            let groups = ProjectGroup.fetchRoots()
-
-            var combined: [NSManagedObject] = []
-            combined.append(contentsOf: projects)
-            combined.append(contentsOf: groups)
-
-            return combined[i]
-        }
-
-        if let group = item as? ProjectGroup {
-            let projects = group.projects!.allObjects as! [Project]
-
-            return projects[index]
-        }
-
-        return "Did not know how to implement item"
-    }
-
-    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-        if item is ProjectGroup {
-            return true
-        }
-
-        return false
-    }
-
-    func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
-
-        if let rowObject = item as? NSManagedObject, renameItem == rowObject {
-            print("Found rename project or group")
-
-            let renameView = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectEditCell"), owner: self) as! ProjectEditCellView
-
-            renameView.delegate = self
-            renameView.editingObject = rowObject
-
-            return renameView
-        }
-
-        if let project = item as? Project {
-            let projectView = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectCell"), owner: self) as! ProjectCellView
-            projectView.project = project
-
-            return projectView
-        }
-
-        if let group = item as? ProjectGroup {
-
-
-
-            let groupItem = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("groupCell"), owner: self) as! ProjectGroupCellView
-            groupItem.group = group
-
-            return groupItem
-        }
-
-        if let key = item as? String {
-            if key == "NewProject" {
-
-                let newProjectItem = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectEditCell"), owner: nil) as! ProjectEditCellView
-
-                newProjectItem.delegate = self
-
-                return newProjectItem
-            }
-        }
-
-        return nil
-    }
-
     var previousSelection: IndexSet?
 
     @objc func outlineViewClicked() {
@@ -266,13 +158,34 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
             }
 
             sheet.deleteCallback = {
-                let projects = group.projects!.allObjects as! [Project]
-
-                for project in projects {
-                    Model.delete(managedObject: project)
+                
+                var deleteGroup: ((ProjectGroup) -> Void)!
+                deleteGroup = {group in
+                    
+                    let projects = group.projects!.allObjects as! [Project]
+                    for project in projects {
+                        Model.delete(managedObject: project)
+                    }
+                    
+                    if let subgroups = group.subgroups {
+                        for sub in subgroups.allObjects as! [ProjectGroup] {
+                            
+                            if let projects = sub.projects {
+                                for project in projects.allObjects as! [Project] {
+                                    print("Deleting project \(project.name!), in group \(sub.name!)")
+                                    Model.delete(managedObject: project)
+                                }
+                            }
+                            
+                            deleteGroup(sub)
+                        }
+                        
+                        print("Deleting group \(group.name!)")
+                        Model.delete(managedObject: group)
+                    }
                 }
 
-                Model.delete(managedObject: group)
+                deleteGroup(group)
 
                 self.updateData()
                 
@@ -306,6 +219,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         let group = ProjectGroup()
         group.projects = NSSet(array: projects)
         group.name = NSLocalizedString("New group", comment: "Default name for new groups")
+//        group.parent = projects[0].group
 
         updateData(keepSelection: false)
 

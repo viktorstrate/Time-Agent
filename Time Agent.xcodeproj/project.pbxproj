@@ -17,6 +17,7 @@
 		344BDB7621E7597B0035B9A4 /* ProjectGroupCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344BDB7521E7597B0035B9A4 /* ProjectGroupCellView.swift */; };
 		344BDB7821E75FE40035B9A4 /* SidebarDeleteGroupModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344BDB7721E75FE40035B9A4 /* SidebarDeleteGroupModalViewController.swift */; };
 		344BDB7B21E7C1090035B9A4 /* SidebarViewController+DragDrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344BDB7A21E7C1090035B9A4 /* SidebarViewController+DragDrop.swift */; };
+		345A6FB421ECEDC900837601 /* SidebarViewController+OutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345A6FB321ECEDC900837601 /* SidebarViewController+OutlineView.swift */; };
 		3476B0FC2129FB4300835532 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B0FB2129FB4300835532 /* SidebarViewController.swift */; };
 		3476B100212A003C00835532 /* ProjectCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B0FF212A003C00835532 /* ProjectCellView.swift */; };
 		3476B104212A067600835532 /* ProjectEditCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B103212A067600835532 /* ProjectEditCellView.swift */; };
@@ -58,6 +59,7 @@
 		344BDB7521E7597B0035B9A4 /* ProjectGroupCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectGroupCellView.swift; sourceTree = "<group>"; };
 		344BDB7721E75FE40035B9A4 /* SidebarDeleteGroupModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarDeleteGroupModalViewController.swift; sourceTree = "<group>"; };
 		344BDB7A21E7C1090035B9A4 /* SidebarViewController+DragDrop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SidebarViewController+DragDrop.swift"; sourceTree = "<group>"; };
+		345A6FB321ECEDC900837601 /* SidebarViewController+OutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SidebarViewController+OutlineView.swift"; sourceTree = "<group>"; };
 		3476B0FB2129FB4300835532 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		3476B0FF212A003C00835532 /* ProjectCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCellView.swift; sourceTree = "<group>"; };
 		3476B103212A067600835532 /* ProjectEditCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEditCellView.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			children = (
 				3476B0FB2129FB4300835532 /* SidebarViewController.swift */,
 				344BDB7A21E7C1090035B9A4 /* SidebarViewController+DragDrop.swift */,
+				345A6FB321ECEDC900837601 /* SidebarViewController+OutlineView.swift */,
 				344BDB7721E75FE40035B9A4 /* SidebarDeleteGroupModalViewController.swift */,
 			);
 			path = Sidebar;
@@ -399,6 +402,7 @@
 				349E89E92127186100CA088C /* MenuViewController.swift in Sources */,
 				34B05FCE21E4D65B00BA7E29 /* TimerBadge.swift in Sources */,
 				344BDB7421E756430035B9A4 /* ProjectGroup+helpers.swift in Sources */,
+				345A6FB421ECEDC900837601 /* SidebarViewController+OutlineView.swift in Sources */,
 				349333A021AC7BB200A45A4B /* ProjectViewController.swift in Sources */,
 				3476B100212A003C00835532 /* ProjectCellView.swift in Sources */,
 				3420017921EA031F00A74AFB /* FileSync.swift in Sources */,

@@ -62,16 +62,24 @@ extension SidebarViewController {
             
             let objId = Model.context.persistentStoreCoordinator!.managedObjectID(forURIRepresentation: url)!
             
-            guard let project = (try? Model.context.existingObject(with: objId)) as? Project else {
-                print("Could not get project: \(index)")
+            let object = (try? Model.context.existingObject(with: objId))
+            
+            if let project = object as? Project {
+                project.group = group
                 return
             }
             
-            project.group = group
+            if let dragGroup = object as? ProjectGroup {
+                dragGroup.parent = group
+                return
+            }
+            
+            print("Could not get either project or group: \(index)")
         }
         
         
         updateData(keepSelection: false)
+        AppDelegate.main.fileSync?.save()
         
         return true
     }
