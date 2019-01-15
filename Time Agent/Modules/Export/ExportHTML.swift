@@ -21,9 +21,9 @@ struct ExportHTML {
         return date
     }
     
-    static func export(project: Project) -> String {
+    static func toHtml(project: Project) -> String {
         
-        guard let path = Bundle.main.path(forResource: "Template", ofType:"html") else {
+        guard let path = Bundle.main.path(forResource: "ExportTemplate", ofType:"html") else {
             print("ERROR: Could not get html export template")
             return ""
         }
@@ -103,5 +103,12 @@ struct ExportHTML {
         let render = try! environment.renderTemplate(string: template, context: project.export())
         
         return render
+    }
+    
+    static func exportAsync(project: Project, path: URL) {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
+            let html = ExportHTML.toHtml(project: project)
+            try! html.write(to: path, atomically: false, encoding: .utf8)
+        }
     }
 }

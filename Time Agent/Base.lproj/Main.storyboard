@@ -1336,6 +1336,9 @@
                         </menuItem>
                         <menuItem title="PDF" id="q8U-a3-Npj">
                             <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="exportPDFAction:" target="b2Y-kt-o7L" id="3kP-3m-FZq"/>
+                            </connections>
                         </menuItem>
                         <menuItem title="CSV" id="fA9-Vb-m97">
                             <modifierMask key="keyEquivalentModifierMask"/>

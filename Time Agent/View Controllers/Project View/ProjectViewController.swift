@@ -123,13 +123,25 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
         panel.beginSheetModal(for: view.window!) { (result) in
             if result == .OK {
                 let path = panel.url!
-                let result = ExportHTML.export(project: self.project!)
                 
-                try! result.write(to: path, atomically: false, encoding: .utf8)
+                ExportHTML.exportAsync(project: self.project!, path: path)
             }
         }
     }
     
+    @IBAction func exportPDFAction(_ sender: Any) {
+        
+        let panel = NSSavePanel()
+        panel.allowedFileTypes = ["pdf"]
+        
+        panel.beginSheetModal(for: view.window!) { (result) in
+            if result == .OK {
+                let path = panel.url!
+                
+                ExportPDF.exportAsync(project: self.project!, path: path)
+            }
+        }
+    }
     
     @IBAction func openSettingsAction(_ sender: Any) {
         print("Opening settings window")
