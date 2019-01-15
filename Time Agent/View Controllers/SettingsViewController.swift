@@ -45,6 +45,8 @@ class SettingsViewController: NSViewController {
         if syncButton.state == .on {
             let panel = NSSavePanel()
             panel.allowedFileTypes = ["time-agent"]
+            panel.prompt = "Sync"
+            panel.message = "Choose a path to a new or existing file to sync to"
             
             panel.beginSheetModal(for: self.view.window!) { (result) in
                 if result == .OK {

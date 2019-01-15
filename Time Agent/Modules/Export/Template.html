@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>Project</title>
+        
+        <style>
+            body {
+                margin: 40px;
+                font-family: "Times New Roman", Times, serif;
+            }
+        
+            table {
+                border-collapse: collapse;
+            }
+        
+            table, th, td {
+                border: 1px solid #888;
+                padding: 4px 8px;
+            }
+        
+            table th {
+                background-color: #eee;
+            }
+        
+            h1 {
+                margin-bottom: 0;
+            }
+        
+            h2 {
+                color: #444;
+                margin-top: 0;
+                font-weight: 400;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Project summary: {{ name }}</h1>
+        <h2>Total time: {{ tasks | sum | duration }}</h2>
+        
+        <table>
+            
+            <tr>
+                <th>Duration</th>
+                <th>Task Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+            </tr>
+            
+        {% for task in tasks | sortTasks %}
+            <tr>
+                <td>{{ task.duration | duration }}</td>
+                <td>{{ task.name }}</td>
+                <td>{{ task.start | date }}</td>
+                <td>{{ task | enddate }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+        
+    </body>
+</html>

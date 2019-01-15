@@ -947,22 +947,25 @@
                 <customObject id="9yq-tl-d3r" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController id="b2Y-kt-o7L" customClass="ProjectViewController" customModule="Time_Agent" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="pGf-dL-PQQ">
-                        <rect key="frame" x="0.0" y="0.0" width="562" height="441"/>
+                        <rect key="frame" x="0.0" y="0.0" width="562" height="459"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="dgq-em-qwv">
-                                <rect key="frame" x="192" y="164" width="177" height="114"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" ambiguous="YES" id="e3z-fW-rxB">
-                                    <rect key="frame" x="1" y="1" width="175" height="112"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                                <color key="borderColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
-                                <color key="fillColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                <font key="titleFont" metaFont="smallSystem"/>
-                            </box>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="J1e-Vh-cJV">
+                                <rect key="frame" x="526" y="439" width="24" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="80u-ad-jR9"/>
+                                    <constraint firstAttribute="width" secondItem="J1e-Vh-cJV" secondAttribute="height" multiplier="2:1" id="apo-20-AdU"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Dots Button" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="63x-JX-dfc">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="moreButtonAction:" target="b2Y-kt-o7L" id="ruE-eA-FYy"/>
+                                </connections>
+                            </button>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NCG-sC-kCd">
-                                <rect key="frame" x="8" y="363" width="546" height="62"/>
+                                <rect key="frame" x="8" y="381" width="546" height="62"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KQo-lD-TVm">
                                         <rect key="frame" x="0.0" y="40" width="546" height="22"/>
@@ -1073,13 +1076,13 @@
                                 </connections>
                             </button>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tfk-zZ-gH1">
-                                <rect key="frame" x="0.0" y="31" width="562" height="324"/>
+                                <rect key="frame" x="0.0" y="31" width="562" height="342"/>
                                 <clipView key="contentView" id="Ciy-th-j3s">
-                                    <rect key="frame" x="0.0" y="0.0" width="562" height="324"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="562" height="342"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" autosaveColumns="NO" rowSizeStyle="automatic" headerView="lZe-XZ-9Fw" viewBased="YES" id="Che-aM-82q">
-                                            <rect key="frame" x="0.0" y="0.0" width="562" height="299"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="562" height="317"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1280,12 +1283,16 @@
                             <constraint firstItem="tfk-zZ-gH1" firstAttribute="leading" secondItem="pGf-dL-PQQ" secondAttribute="leading" id="MED-Kl-xyh"/>
                             <constraint firstItem="caB-Kz-GWf" firstAttribute="top" secondItem="tfk-zZ-gH1" secondAttribute="bottom" constant="8" id="SRT-ND-fmH"/>
                             <constraint firstItem="NCG-sC-kCd" firstAttribute="leading" secondItem="pGf-dL-PQQ" secondAttribute="leading" constant="8" id="YN5-Xe-d5a"/>
+                            <constraint firstAttribute="trailing" secondItem="J1e-Vh-cJV" secondAttribute="trailing" constant="12" id="fMG-0S-V8b"/>
+                            <constraint firstItem="J1e-Vh-cJV" firstAttribute="top" secondItem="pGf-dL-PQQ" secondAttribute="top" constant="8" id="i9f-6x-t7O"/>
                             <constraint firstAttribute="trailing" secondItem="6nR-2a-UYj" secondAttribute="trailing" constant="8" id="kAY-bb-Hdu"/>
                             <constraint firstItem="caB-Kz-GWf" firstAttribute="leading" secondItem="pGf-dL-PQQ" secondAttribute="leading" constant="10" id="sUU-YO-QkV"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="lastSyncLabel" destination="zFj-gf-b4x" id="qHq-vs-t9n"/>
+                        <outlet property="moreButton" destination="J1e-Vh-cJV" id="OAZ-0C-lML"/>
+                        <outlet property="moreContextMenu" destination="IGb-YO-9md" id="snQ-Ix-Wm1"/>
                         <outlet property="projectNameField" destination="qNs-qF-Jj5" id="WHb-mW-3bO"/>
                         <outlet property="syncButton" destination="4r7-k1-T0W" id="KZr-ge-hhy"/>
                         <outlet property="taskContextMenu" destination="qLk-2e-75J" id="CO9-T0-cdD"/>
@@ -1315,6 +1322,25 @@
                     <connections>
                         <outlet property="delegate" destination="b2Y-kt-o7L" id="n55-Na-b5m"/>
                     </connections>
+                </menu>
+                <menu id="IGb-YO-9md">
+                    <items>
+                        <menuItem title="Export:" enabled="NO" id="2nA-JC-yet">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                        <menuItem title="HTML" id="qa1-Ul-Xdo">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="exportHTMLAction:" target="b2Y-kt-o7L" id="6N7-fS-ua7"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="PDF" id="q8U-a3-Npj">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                        <menuItem title="CSV" id="fA9-Vb-m97">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                    </items>
                 </menu>
             </objects>
             <point key="canvasLocation" x="250" y="1240.5"/>
@@ -1680,6 +1706,7 @@ DQ
         </scene>
     </scenes>
     <resources>
+        <image name="Dots Button" width="64" height="32"/>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSColumnViewTemplate" width="16" height="10"/>

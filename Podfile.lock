@@ -1,16 +1,24 @@
 PODS:
+  - PathKit (0.9.2)
+  - Stencil (0.13.1):
+    - PathKit (~> 0.9.0)
   - Sync (5.1.0)
 
 DEPENDENCIES:
+  - Stencil (~> 0.13.1)
   - Sync (~> 5)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - PathKit
+    - Stencil
     - Sync
 
 SPEC CHECKSUMS:
+  PathKit: 273f59a38e3218eb95abd9f6a61730a8bcfd2f06
+  Stencil: b5128a0a43ece9225db5cbd94d6569fe6fba609b
   Sync: 0412c2b068eb7cf1a04607e948ef92cbd6114d0f
 
-PODFILE CHECKSUM: f508f9ed696014aec229d25615dfed4125fef3ff
+PODFILE CHECKSUM: 5bd3825469e71e808fa5d96bb07860f5f4608cec
 
 COCOAPODS: 1.6.0.beta.2

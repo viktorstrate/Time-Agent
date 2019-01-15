@@ -19,18 +19,23 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
                 projectNameField.stringValue = NSLocalizedString("No project selected", comment: "Title when no project is selected")
                 taskNameInput.isEnabled = false
                 timerButton.isEnabled = false
+                moreButton.isEnabled = false
+                
                 return
             }
             
             projectNameField.stringValue = project.name ?? "No name"
             taskNameInput.isEnabled = true
             timerButton.isEnabled = true
+            moreButton.isEnabled = true
         }
     }
     
     @IBOutlet weak var syncButton: NSButton!
+    @IBOutlet weak var moreButton: NSButton!
     @IBOutlet weak var lastSyncLabel: NSTextField!
     @IBOutlet var taskContextMenu: NSMenu!
+    @IBOutlet var moreContextMenu: NSMenu!
     
     static var durationFormatter: DateComponentsFormatter = {
         let format = DateComponentsFormatter()
@@ -102,6 +107,29 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
         
         menuViewController.toggleSidebar(sender)
     }
+    
+    // MARK: More context menu + exporting
+    
+    @IBAction func moreButtonAction(_ sender: NSButton) {
+        let point = NSPoint(x: -8, y: sender.frame.height + 4)
+        moreContextMenu.popUp(positioning: nil, at: point, in: sender)
+    }
+    
+    @IBAction func exportHTMLAction(_ sender: Any) {
+        
+        let panel = NSSavePanel()
+        panel.allowedFileTypes = ["html"]
+        
+        panel.beginSheetModal(for: view.window!) { (result) in
+            if result == .OK {
+                let path = panel.url!
+                let result = ExportHTML.export(project: self.project!)
+                
+                try! result.write(to: path, atomically: false, encoding: .utf8)
+            }
+        }
+    }
+    
     
     @IBAction func openSettingsAction(_ sender: Any) {
         print("Opening settings window")

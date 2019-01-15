@@ -6,6 +6,7 @@ target 'Time Agent' do
   use_frameworks!
 
   pod 'Sync', '~> 5'
+  pod 'Stencil', '~> 0.13.1'
 
   # Pods for Time Agent
 
