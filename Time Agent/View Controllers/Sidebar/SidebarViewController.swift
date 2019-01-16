@@ -47,6 +47,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
                 let project = Project()
                 project.name = text
                 project.wasUpdated()
+                menuDelegate.changeActiveProject(project)
             }
             
 //            updateData()
@@ -65,6 +66,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
                 if let renamedProject = renamedObject as? Project {
                     renamedProject.name = text
                     renamedProject.wasUpdated()
+                    menuDelegate.changeActiveProject(renamedProject)
                 }
 
                 if let renamedGroup = renamedObject as? ProjectGroup {
@@ -133,6 +135,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
             print("Deleting project: \(project.name!)")
             Model.delete(managedObject: project)
             updateData()
+            menuDelegate.changeActiveProject(nil)
             
             print("Starting sync because a project was deleted")
 //            AppDelegate.main.fileSync.sync(editProvoked: true)
@@ -177,6 +180,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
                             deleteGroup(sub)
                         }
                         
+                        self.menuDelegate.changeActiveProject(nil)
                         print("Deleting group \(group.name!)")
                         Model.delete(managedObject: group)
                     }
@@ -202,6 +206,11 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         if let item = outlineView.item(atRow: outlineView.clickedRow) as? NSManagedObject {
             renameItem = item
             outlineView.reloadData()
+            
+            if let project = item as? Project {
+                menuDelegate.changeActiveProject(project)
+            }
+            
             return
         }
     }
