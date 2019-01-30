@@ -221,9 +221,17 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         }).map { (row) -> Project in
             return outlineView.item(atRow: row) as! Project
         }
+        
+        let groups = outlineView.selectedRowIndexes.filter({ (row) -> Bool in
+            return outlineView.item(atRow: row) is ProjectGroup
+        }).map { (row) -> ProjectGroup in
+            return outlineView.item(atRow: row) as! ProjectGroup
+        }
 
         let group = ProjectGroup()
         group.projects = NSSet(array: projects)
+        group.subgroups = NSSet(array: groups)
+        
         group.name = NSLocalizedString("New group", comment: "Default name for new groups")
 //        group.parent = projects[0].group
 

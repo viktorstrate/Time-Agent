@@ -78,7 +78,7 @@ class TaskEditPopoverController: NSViewController, NSTextFieldDelegate {
     }
     
     @IBAction func durationPickerAction(_ sender: Any) {
-        var duration = durationPicker.dateValue.timeIntervalSinceReferenceDate - Date(timeIntervalSinceReferenceDate: -60*60).timeIntervalSinceReferenceDate
+        let duration = durationPicker.dateValue.timeIntervalSinceReferenceDate - Date(timeIntervalSinceReferenceDate: -60*60).timeIntervalSinceReferenceDate
         
         print("Duration picker changed: duration \(duration)")
         

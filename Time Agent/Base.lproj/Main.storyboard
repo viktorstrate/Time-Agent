@@ -950,20 +950,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="562" height="459"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="J1e-Vh-cJV">
-                                <rect key="frame" x="526" y="439" width="24" height="12"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="24" id="80u-ad-jR9"/>
-                                    <constraint firstAttribute="width" secondItem="J1e-Vh-cJV" secondAttribute="height" multiplier="2:1" id="apo-20-AdU"/>
-                                </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Dots Button" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="63x-JX-dfc">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="moreButtonAction:" target="b2Y-kt-o7L" id="ruE-eA-FYy"/>
-                                </connections>
-                            </button>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NCG-sC-kCd">
                                 <rect key="frame" x="8" y="381" width="546" height="62"/>
                                 <subviews>
@@ -975,7 +961,7 @@
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Project name" id="fWK-NP-fUV">
                                                     <font key="font" metaFont="system" size="18"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Wbm-qH-fSb">
@@ -986,7 +972,7 @@
                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Total time: 0s" id="fAa-fn-xt6">
                                                     <font key="font" metaFont="systemMedium" size="13"/>
                                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
                                         </subviews>
@@ -1018,7 +1004,7 @@
                                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" id="OVx-5g-FOh">
                                                     <font key="font" metaFont="system" size="16"/>
                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 </textFieldCell>
                                             </textField>
                                             <button translatesAutoresizingMaskIntoConstraints="NO" id="G8W-rn-wfJ">
@@ -1061,6 +1047,20 @@
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="J1e-Vh-cJV">
+                                <rect key="frame" x="526" y="435" width="24" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="80u-ad-jR9"/>
+                                    <constraint firstAttribute="height" constant="16" id="Xgj-Nc-yad"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Dots Button" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="63x-JX-dfc">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="moreButtonAction:" target="b2Y-kt-o7L" id="ruE-eA-FYy"/>
+                                </connections>
+                            </button>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="caB-Kz-GWf">
                                 <rect key="frame" x="10" y="8" width="20" height="15"/>
                                 <constraints>
@@ -1229,7 +1229,7 @@
                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Last synced" id="j1j-6K-Q6i">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
                                     <button translatesAutoresizingMaskIntoConstraints="NO" id="4r7-k1-T0W" userLabel="Settings Button">
@@ -1316,6 +1316,12 @@
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="taskMenuDeleteAction:" target="b2Y-kt-o7L" id="hye-fS-DcC"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Archive" tag="2" id="dJ0-Dk-M9Y">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="taskMenuArchiveAction:" target="b2Y-kt-o7L" id="VaQ-bo-a4N"/>
                             </connections>
                         </menuItem>
                     </items>

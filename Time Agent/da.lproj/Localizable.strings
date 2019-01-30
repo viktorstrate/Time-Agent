@@ -6,8 +6,13 @@
   Copyright © 2019 Viktor Hundahl Strate. All rights reserved.
 */
 
+// Projects
 "Total time: %@" = "Tid ialt: %@";
 "No project selected" = "Intet projekt valgt";
 "New group" = "Ny gruppe";
+
+// Tasks
+"Archive" = "Arkiver";
+"Reopen" = "Genåben";
 
 "Preferences" = "Indstillinger";

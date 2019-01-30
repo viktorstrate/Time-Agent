@@ -17,6 +17,7 @@
         <attribute name="updatedAt" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
     </entity>
     <entity name="Task" representedClassName="Task" parentEntity="SourceEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="archived" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="duration" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="start" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -25,7 +26,7 @@
     <elements>
         <element name="Project" positionX="-243.609375" positionY="-15.1640625" width="128" height="90"/>
         <element name="ProjectGroup" positionX="-435.95703125" positionY="-47.90234375" width="128" height="105"/>
-        <element name="Task" positionX="-46.18359375" positionY="-13.50390625" width="128" height="105"/>
         <element name="SourceEntity" positionX="-243" positionY="18" width="128" height="90"/>
+        <element name="Task" positionX="-46.18359375" positionY="-13.50390625" width="128" height="118"/>
     </elements>
 </model>

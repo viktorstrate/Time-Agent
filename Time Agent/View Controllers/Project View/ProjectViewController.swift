@@ -245,7 +245,23 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
         
         let multipleSelected = tasksTableView.selectedRowIndexes.count > 1
         
+        // Disable 'edit' when multiple selected
         menu.item(withTag: 0)?.isEnabled = !multipleSelected
+        
+        let row = tasksTableView.clickedRow
+        if tableViewTasks.count <= row && row != -1 {
+            print("Invalid row")
+            return
+        }
+        
+        let clickedTask = tableViewTasks[row]
+        
+        if clickedTask.archived {
+            menu.item(withTag: 2)?.title = NSLocalizedString("Reopen", comment: "Task menu item to remove from archive")
+        } else {
+            menu.item(withTag: 2)?.title = NSLocalizedString("Archive", comment: "Task menu item to archive")
+        }
+        
         
         if tasksTableView.clickedRow == -1 {
             menu.cancelTracking()
@@ -311,6 +327,38 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
         print("Starting sync because task was deleted")
         AppDelegate.main.fileSync?.save()
     }
+    
+    @IBAction func taskMenuArchiveAction(_ sender: Any) {
+        
+        let row = tasksTableView.clickedRow
+        if tableViewTasks.count <= row && row != -1 {
+            print("Invalid row")
+            return
+        }
+        
+        let clickedTask = tableViewTasks[row]
+        let action = !clickedTask.archived
+        
+        var rows = tasksTableView.selectedRowIndexes.makeIterator()
+        while let row = rows.next() {
+            
+            if tableViewTasks.count <= row && row != -1 {
+                print("Invalid row")
+                return
+            }
+            
+            let task = tableViewTasks[row]
+            
+            print("Archiving task: \(task.name!)")
+            
+            task.archived = action
+        }
+        
+        self.tasksTableView.reloadData()
+        
+        print("Starting sync because task was archived")
+        AppDelegate.main.fileSync?.save()
+    }
 }
 
 extension ProjectViewController: NSTableViewDelegate, NSTableViewDataSource {
@@ -326,7 +374,7 @@ extension ProjectViewController: NSTableViewDelegate, NSTableViewDataSource {
         }
         
         print("Updating tableview tasks")
-        tableViewTasks = tasks.sortedArray(using: [NSSortDescriptor(key: "start", ascending: false)]) as! [Task]
+        tableViewTasks = tasks.sortedArray(using: [NSSortDescriptor(key: "archived", ascending: true), NSSortDescriptor(key: "start", ascending: false)]) as! [Task]
 
         
         print("Showing \(tasks.count) tasks")
@@ -360,6 +408,12 @@ extension ProjectViewController: NSTableViewDelegate, NSTableViewDataSource {
             break
         default:
             cellValue = "Not defined"
+        }
+        
+        if task.archived {
+            cell.textField?.textColor = NSColor.disabledControlTextColor
+        } else {
+            cell.textField?.textColor = NSColor.controlTextColor
         }
         
         cell.textField?.stringValue = cellValue
