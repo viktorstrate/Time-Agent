@@ -143,6 +143,21 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
         }
     }
     
+    @IBAction func exportCSVAction(_ sender: Any) {
+        
+        let panel = NSSavePanel()
+        panel.allowedFileTypes = ["csv"]
+        
+        panel.beginSheetModal(for: view.window!) { (result) in
+            if result == .OK {
+                let path = panel.url!
+                
+                ExportCSV.exportAsync(project: self.project!, path: path)
+            }
+        }
+        
+    }
+    
     @IBAction func openSettingsAction(_ sender: Any) {
         print("Opening settings window")
         let settings = SettingsViewController.makeController()

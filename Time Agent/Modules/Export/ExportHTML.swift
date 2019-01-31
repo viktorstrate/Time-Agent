@@ -100,7 +100,11 @@ struct ExportHTML {
         
         let environment = Environment(extensions: [ext])
         
-        let render = try! environment.renderTemplate(string: template, context: project.export())
+        var contextData = project.export()
+        
+        contextData["tasks"] = (contextData["tasks"] as! [[String: Any?]]).filter({ $0["archived"] as! Bool == false })
+        
+        let render = try! environment.renderTemplate(string: template, context: contextData)
         
         return render
     }

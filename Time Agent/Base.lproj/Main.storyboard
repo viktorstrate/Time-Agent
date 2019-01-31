@@ -1348,6 +1348,9 @@
                         </menuItem>
                         <menuItem title="CSV" id="fA9-Vb-m97">
                             <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="exportCSVAction:" target="b2Y-kt-o7L" id="3AQ-vc-ONo"/>
+                            </connections>
                         </menuItem>
                     </items>
                 </menu>
