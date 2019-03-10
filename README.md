@@ -6,5 +6,7 @@
 
 ## Features
 
-- Organize projects and groups
+- Easy one-click timer
+- Organize projects in groups
+- Export projects to PDF, CSV or HTML
 - Synchronize projects to a file, to share projects across multiple computers with cloud services like Dropbox
