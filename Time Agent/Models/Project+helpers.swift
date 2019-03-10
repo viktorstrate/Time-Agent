@@ -16,7 +16,9 @@ extension Project {
     }
     
     func calculateTotalTime() -> TimeInterval {
-        let tasks = self.tasks!.sortedArray(using: []) as! [Task]
+        var tasks = self.tasks!.sortedArray(using: []) as! [Task]
+        tasks = tasks.filter({ !$0.archived })
+        
         let taskTime = tasks.reduce(0) { (prev, task) -> Double in
             return prev + task.duration
         }

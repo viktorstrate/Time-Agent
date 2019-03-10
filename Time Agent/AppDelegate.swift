@@ -27,7 +27,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         if let button = statusItem.button {
-            button.action = #selector(togglePopover(_:))
+            button.sendAction(on: [.leftMouseUp, .rightMouseUp])
+            button.action = #selector(statusBarButtonClicked(sender:))
+            button.target = self
+            
             setTimer(start: false)
         }
         
@@ -50,7 +53,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    @objc func togglePopover(_ sender: Any?) {
+    @objc func statusBarButtonClicked(sender: NSStatusBarButton) {
+        let event = NSApp.currentEvent!
+        
+        if event.type == .rightMouseUp {
+            popover.performClose(sender)
+            
+            let contextMenu = NSMenu(title: "Time Agent")
+            contextMenu.addItem(withTitle: "Quit Time Agent", action: #selector(exitApp), keyEquivalent: "q")
+            
+            statusItem.popUpMenu(contextMenu)
+            
+        } else {
+            togglePopover(self)
+        }
+    }
+    
+    func togglePopover(_ sender: Any?) {
+        
         if popover.isShown {
             // Close popover
             popover.performClose(sender)
@@ -69,6 +89,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
             }
         }
+    }
+    
+    @objc func exitApp() {
+        NSApplication.shared.terminate(self)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
