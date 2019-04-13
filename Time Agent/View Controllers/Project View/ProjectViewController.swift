@@ -173,7 +173,7 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
     var callTimer: Timer?
     var startTime: Date?
     
-    @IBAction func toggleTimer(_ sender: NSButton) {
+    @IBAction func toggleTimer(_ sender: Any) {
         if startTime != nil {
             // Stop timer
             let start = startTime!
