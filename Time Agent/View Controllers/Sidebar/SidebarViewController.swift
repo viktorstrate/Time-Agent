@@ -29,7 +29,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         outlineView.rowHeight = 24;
 
         outlineView.action = #selector(outlineViewClicked)
-        outlineView.registerForDraggedTypes([NSPasteboard.PasteboardType(rawValue: "public.data")])
+        outlineView.registerForDraggedTypes([NSPasteboard.PasteboardType(rawValue: "time-agent.project"), NSPasteboard.PasteboardType(rawValue: "time-agent.task")])
 
     }
 

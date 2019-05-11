@@ -1726,6 +1726,6 @@ DQ
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSColumnViewTemplate" width="16" height="10"/>
         <image name="NSRefreshTemplate" width="11" height="15"/>
-        <image name="Start button" width="86" height="86"/>
+        <image name="Start button" width="85.5" height="85.5"/>
     </resources>
 </document>

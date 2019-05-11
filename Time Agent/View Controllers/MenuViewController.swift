@@ -53,14 +53,13 @@ class MenuViewController: NSSplitViewController, MenuViewProjectsDelegate {
     
     func changeActiveProject(_ project: Project?) {
         print("Changed active project...")
-        let projectViewController = splitViewItems[1].viewController as! ProjectViewController
-        
         projectViewController.project = project
     }
     
     func coreDataUpdated() {
         print("Core data changed")
         sidebarViewController.updateData(keepSelection: false)
+        projectViewController.updateTasksTableView()
     }
     
     func projectUpdated(_ project: Project) {
