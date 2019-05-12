@@ -707,6 +707,14 @@
             </objects>
             <point key="canvasLocation" x="93" y="688"/>
         </scene>
+        <!--Dashboard-->
+        <scene sceneID="QEt-jW-Jjx">
+            <objects>
+                <controllerPlaceholder storyboardName="Dashboard" id="RSh-Ll-cHD" sceneMemberID="viewController"/>
+                <customObject id="IMU-gM-LwD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="695" y="1083"/>
+        </scene>
         <!--Sidebar View Controller-->
         <scene sceneID="ZKM-TP-WJJ">
             <objects>
@@ -1334,6 +1342,12 @@
                 </menu>
                 <menu id="IGb-YO-9md">
                     <items>
+                        <menuItem title="Open Dashboard" id="kJX-GG-ifl">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <segue destination="RSh-Ll-cHD" kind="show" id="GvP-1B-iSr"/>
+                            </connections>
+                        </menuItem>
                         <menuItem title="Export:" enabled="NO" id="2nA-JC-yet">
                             <modifierMask key="keyEquivalentModifierMask"/>
                         </menuItem>
@@ -1717,7 +1731,7 @@ DQ
                 </viewController>
                 <customObject id="WUK-sV-EQ8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="806.5" y="1170"/>
+            <point key="canvasLocation" x="834" y="1335"/>
         </scene>
     </scenes>
     <resources>

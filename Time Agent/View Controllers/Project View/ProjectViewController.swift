@@ -181,29 +181,7 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
     var callTimer: Timer?
     var startTime: Date?
     
-    @IBAction func toggleTimer(_ sender: Any) {
-        if startTime != nil {
-            // Stop timer
-            let start = startTime!
-            startTime = nil
-            callTimer?.invalidate()
-            updateTimerLabel()
-            
-            taskNameInput.isEditable = true
-            
-            timerButton.image = NSImage(named: NSImage.Name("Start button"))
-            let duration = Date().timeIntervalSince(start)
-            
-            let name = taskNameInput.stringValue
-            taskNameInput.stringValue = ""
-            
-            taskFinished(name: name, start: start, duration: duration)
-            
-            AppDelegate.main.setTimer(start: false)
-            
-            return
-        }
-        
+    func startTimer() {
         if taskNameInput.stringValue.isEmpty {
             print("Task should have a name")
             return
@@ -217,6 +195,33 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
         taskNameInput.isEditable = false
         
         AppDelegate.main.setTimer(start: true)
+    }
+    
+    func stopTimer() {
+        let start = startTime!
+        startTime = nil
+        callTimer?.invalidate()
+        updateTimerLabel()
+        
+        taskNameInput.isEditable = true
+        
+        timerButton.image = NSImage(named: NSImage.Name("Start button"))
+        let duration = Date().timeIntervalSince(start)
+        
+        let name = taskNameInput.stringValue
+        taskNameInput.stringValue = ""
+        
+        taskFinished(name: name, start: start, duration: duration)
+        
+        AppDelegate.main.setTimer(start: false)
+    }
+    
+    @IBAction func toggleTimer(_ sender: Any) {
+        if startTime != nil {
+            stopTimer()
+        } else {
+            startTimer()
+        }
     }
     
     @objc func updateTimerLabel() {

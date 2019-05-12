@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="Ecy-VR-yzU">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="V0i-Gx-xRK">
+            <objects>
+                <windowController id="Ecy-VR-yzU" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="7rB-d8-PzH">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="245" y="301" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <connections>
+                            <outlet property="delegate" destination="Ecy-VR-yzU" id="8Sz-g0-M3p"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="3DS-aN-z75" kind="relationship" relationship="window.shadowedContentViewController" id="gkv-bA-zeH"/>
+                    </connections>
+                </windowController>
+                <customObject id="aqE-tv-KvL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="15" y="171"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="dS1-ak-7Mu">
+            <objects>
+                <viewController id="3DS-aN-z75" sceneMemberID="viewController">
+                    <view key="view" id="JIQ-UU-cKq">
+                        <rect key="frame" x="0.0" y="0.0" width="695" height="455"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p3G-ud-ig0" customClass="TimeDiagramView" customModule="Time_Agent" customModuleProvider="target">
+                                <rect key="frame" x="20" y="150" width="613" height="285"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </customView>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="Czk-sE-hwM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="122.5" y="737.5"/>
+        </scene>
+    </scenes>
+</document>

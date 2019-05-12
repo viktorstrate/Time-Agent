@@ -3,12 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		3408137722873FCC00BFF10F /* ProjectViewController+DragDrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3408137622873FCC00BFF10F /* ProjectViewController+DragDrop.swift */; };
 		340813792287405400BFF10F /* ProjectViewController+TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 340813782287405400BFF10F /* ProjectViewController+TableView.swift */; };
+		3408137B22874D5700BFF10F /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3408137A22874D5700BFF10F /* Dashboard.storyboard */; };
+		3408137E22874E5B00BFF10F /* TimeDiagramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3408137D22874E5B00BFF10F /* TimeDiagramView.swift */; };
 		3420017921EA031F00A74AFB /* FileSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3420017821EA031F00A74AFB /* FileSync.swift */; };
 		3420017B21EA1C7700A74AFB /* SourceEntity+helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3420017A21EA1C7700A74AFB /* SourceEntity+helpers.swift */; };
 		3420017D21EA1EF200A74AFB /* Task+helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3420017C21EA1EF200A74AFB /* Task+helpers.swift */; };
@@ -39,8 +41,8 @@
 		34BCBEB322035F3900CA55B8 /* ExportCSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BCBEB222035F3900CA55B8 /* ExportCSV.swift */; };
 		34DF541621EE2E590032C845 /* ExportTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 34DF541521EE2E590032C845 /* ExportTemplate.html */; };
 		34DF541821EE47640032C845 /* ExportPDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34DF541721EE47640032C845 /* ExportPDF.swift */; };
-		5BF8CAC224D467AA9F2604CE /* Pods_Time_Agent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 599F144ACB8FD53346E9CAD4 /* Pods_Time_Agent.framework */; };
-		AC91E94117936707817EC83F /* Pods_Time_AgentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED7DA081A50C61128F932119 /* Pods_Time_AgentUITests.framework */; };
+		38B3BE1EF544AD1338993572 /* Pods_Time_AgentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 054185B7D033052165BECB9B /* Pods_Time_AgentUITests.framework */; };
+		7782BACAA34AEBDB3D6633B2 /* Pods_Time_Agent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B5E959E2800259B13D4B72 /* Pods_Time_Agent.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,9 +56,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		037D2FF1032ABAC7B73D89AE /* Pods-Time Agent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time Agent.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Time Agent/Pods-Time Agent.debug.xcconfig"; sourceTree = "<group>"; };
+		054185B7D033052165BECB9B /* Pods_Time_AgentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Time_AgentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		09B5E959E2800259B13D4B72 /* Pods_Time_Agent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Time_Agent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		24E46A118F45550C71A1FCFC /* Pods-Time AgentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time AgentUITests.debug.xcconfig"; path = "Target Support Files/Pods-Time AgentUITests/Pods-Time AgentUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3408137622873FCC00BFF10F /* ProjectViewController+DragDrop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectViewController+DragDrop.swift"; sourceTree = "<group>"; };
 		340813782287405400BFF10F /* ProjectViewController+TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProjectViewController+TableView.swift"; sourceTree = "<group>"; };
+		3408137A22874D5700BFF10F /* Dashboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
+		3408137D22874E5B00BFF10F /* TimeDiagramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeDiagramView.swift; sourceTree = "<group>"; };
 		3420017821EA031F00A74AFB /* FileSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FileSync.swift; path = "Time Agent/FileSync.swift"; sourceTree = SOURCE_ROOT; };
 		3420017A21EA1C7700A74AFB /* SourceEntity+helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SourceEntity+helpers.swift"; sourceTree = "<group>"; };
 		3420017C21EA1EF200A74AFB /* Task+helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+helpers.swift"; sourceTree = "<group>"; };
@@ -93,11 +99,10 @@
 		34BCBEB222035F3900CA55B8 /* ExportCSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportCSV.swift; sourceTree = "<group>"; };
 		34DF541521EE2E590032C845 /* ExportTemplate.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = ExportTemplate.html; sourceTree = "<group>"; };
 		34DF541721EE47640032C845 /* ExportPDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportPDF.swift; sourceTree = "<group>"; };
-		3D499BCAAD3942D0664479B5 /* Pods-Time AgentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time AgentUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Time AgentUITests/Pods-Time AgentUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		599F144ACB8FD53346E9CAD4 /* Pods_Time_Agent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Time_Agent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B365ED7FC51E8E935D11F7F4 /* Pods-Time AgentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time AgentUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Time AgentUITests/Pods-Time AgentUITests.release.xcconfig"; sourceTree = "<group>"; };
-		D6E79178C2592C29CFB2C50C /* Pods-Time Agent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time Agent.release.xcconfig"; path = "Pods/Target Support Files/Pods-Time Agent/Pods-Time Agent.release.xcconfig"; sourceTree = "<group>"; };
-		ED7DA081A50C61128F932119 /* Pods_Time_AgentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Time_AgentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		34E7E71222875CFE0068A7B7 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		7D31C7D05D0D06BB93B116B4 /* Pods-Time Agent.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time Agent.release.xcconfig"; path = "Target Support Files/Pods-Time Agent/Pods-Time Agent.release.xcconfig"; sourceTree = "<group>"; };
+		FB7536D5FDAB0F7C3D67A5A3 /* Pods-Time Agent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time Agent.debug.xcconfig"; path = "Target Support Files/Pods-Time Agent/Pods-Time Agent.debug.xcconfig"; sourceTree = "<group>"; };
+		FF5E4B6EDFEC425BA5C946F9 /* Pods-Time AgentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Time AgentUITests.release.xcconfig"; path = "Target Support Files/Pods-Time AgentUITests/Pods-Time AgentUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,7 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5BF8CAC224D467AA9F2604CE /* Pods_Time_Agent.framework in Frameworks */,
+				7782BACAA34AEBDB3D6633B2 /* Pods_Time_Agent.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,13 +118,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC91E94117936707817EC83F /* Pods_Time_AgentUITests.framework in Frameworks */,
+				38B3BE1EF544AD1338993572 /* Pods_Time_AgentUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3408137C22874E1600BFF10F /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				3408137D22874E5B00BFF10F /* TimeDiagramView.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
 		342FFAF121E26C0A00EDFA1C /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,8 +183,8 @@
 				349E89E52127186100CA088C /* Time Agent */,
 				349E89FB2127186300CA088C /* Time AgentUITests */,
 				349E89E42127186100CA088C /* Products */,
-				B653682CBAA3C63CB8D7666B /* Pods */,
-				67BDBE1D0B3C6641515862BD /* Frameworks */,
+				D403A2A2296D26D66070B9F7 /* Pods */,
+				F515B69C69047DBB6DA9363D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -187,6 +200,7 @@
 		349E89E52127186100CA088C /* Time Agent */ = {
 			isa = PBXGroup;
 			children = (
+				3408137C22874E1600BFF10F /* Dashboard */,
 				34B8DA3921EE2B0200E2E6D8 /* Modules */,
 				342FFAF121E26C0A00EDFA1C /* Models */,
 				34A6EF2D21E2264E00807D24 /* Views */,
@@ -196,6 +210,7 @@
 				349E89E62127186100CA088C /* AppDelegate.swift */,
 				349E8A072129AA2D00CA088C /* EventMonitor.swift */,
 				349E89EF2127186300CA088C /* Main.storyboard */,
+				3408137A22874D5700BFF10F /* Dashboard.storyboard */,
 				349E89F22127186300CA088C /* Info.plist */,
 				349333A121AC7EAB00A45A4B /* Assets.xcassets */,
 				349E89EA2127186100CA088C /* Time_Agent.xcdatamodeld */,
@@ -244,24 +259,25 @@
 			path = Export;
 			sourceTree = "<group>";
 		};
-		67BDBE1D0B3C6641515862BD /* Frameworks */ = {
+		D403A2A2296D26D66070B9F7 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				599F144ACB8FD53346E9CAD4 /* Pods_Time_Agent.framework */,
-				ED7DA081A50C61128F932119 /* Pods_Time_AgentUITests.framework */,
+				FB7536D5FDAB0F7C3D67A5A3 /* Pods-Time Agent.debug.xcconfig */,
+				7D31C7D05D0D06BB93B116B4 /* Pods-Time Agent.release.xcconfig */,
+				24E46A118F45550C71A1FCFC /* Pods-Time AgentUITests.debug.xcconfig */,
+				FF5E4B6EDFEC425BA5C946F9 /* Pods-Time AgentUITests.release.xcconfig */,
 			);
-			name = Frameworks;
+			path = Pods;
 			sourceTree = "<group>";
 		};
-		B653682CBAA3C63CB8D7666B /* Pods */ = {
+		F515B69C69047DBB6DA9363D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				037D2FF1032ABAC7B73D89AE /* Pods-Time Agent.debug.xcconfig */,
-				D6E79178C2592C29CFB2C50C /* Pods-Time Agent.release.xcconfig */,
-				3D499BCAAD3942D0664479B5 /* Pods-Time AgentUITests.debug.xcconfig */,
-				B365ED7FC51E8E935D11F7F4 /* Pods-Time AgentUITests.release.xcconfig */,
+				34E7E71222875CFE0068A7B7 /* QuartzCore.framework */,
+				09B5E959E2800259B13D4B72 /* Pods_Time_Agent.framework */,
+				054185B7D033052165BECB9B /* Pods_Time_AgentUITests.framework */,
 			);
-			name = Pods;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,11 +287,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 349E8A012127186300CA088C /* Build configuration list for PBXNativeTarget "Time Agent" */;
 			buildPhases = (
-				93C23AA0070601B9523620B6 /* [CP] Check Pods Manifest.lock */,
+				F9F0699B2A0C1876110ED883 /* [CP] Check Pods Manifest.lock */,
 				349E89DF2127186100CA088C /* Sources */,
 				349E89E02127186100CA088C /* Frameworks */,
 				349E89E12127186100CA088C /* Resources */,
-				5742AA67581042F7A7572DCC /* [CP] Embed Pods Frameworks */,
+				1C3C76E09455C09CC72B58EC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -290,7 +306,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 349E8A042127186300CA088C /* Build configuration list for PBXNativeTarget "Time AgentUITests" */;
 			buildPhases = (
-				84A3BB033E35F091F88A9950 /* [CP] Check Pods Manifest.lock */,
+				9906BD3F5F343D6F7CE41145 /* [CP] Check Pods Manifest.lock */,
 				349E89F42127186300CA088C /* Sources */,
 				349E89F52127186300CA088C /* Frameworks */,
 				349E89F62127186300CA088C /* Resources */,
@@ -357,6 +373,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				34DF541621EE2E590032C845 /* ExportTemplate.html in Resources */,
+				3408137B22874D5700BFF10F /* Dashboard.storyboard in Resources */,
 				349333A221AC7EAB00A45A4B /* Assets.xcassets in Resources */,
 				343D3B4221EBA0B90012B2A7 /* Localizable.strings in Resources */,
 				349E89F12127186300CA088C /* Main.storyboard in Resources */,
@@ -373,33 +390,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5742AA67581042F7A7572DCC /* [CP] Embed Pods Frameworks */ = {
+		1C3C76E09455C09CC72B58EC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Time Agent/Pods-Time Agent-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/PathKit/PathKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Stencil/Stencil.framework",
-				"${BUILT_PRODUCTS_DIR}/Sync/Sync.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Time Agent/Pods-Time Agent-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PathKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Stencil.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Sync.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Time Agent/Pods-Time Agent-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Time Agent/Pods-Time Agent-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		84A3BB033E35F091F88A9950 /* [CP] Check Pods Manifest.lock */ = {
+		9906BD3F5F343D6F7CE41145 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -421,7 +429,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		93C23AA0070601B9523620B6 /* [CP] Check Pods Manifest.lock */ = {
+		F9F0699B2A0C1876110ED883 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -465,6 +473,7 @@
 				3455893421F08DD2001E72FF /* MainPopover.swift in Sources */,
 				349E89E72127186100CA088C /* AppDelegate.swift in Sources */,
 				349333A721AC837300A45A4B /* Model.swift in Sources */,
+				3408137E22874E5B00BFF10F /* TimeDiagramView.swift in Sources */,
 				342FFAF321E26C3000EDFA1C /* Project+helpers.swift in Sources */,
 				3420017B21EA1C7700A74AFB /* SourceEntity+helpers.swift in Sources */,
 				3408137722873FCC00BFF10F /* ProjectViewController+DragDrop.swift in Sources */,
@@ -637,7 +646,7 @@
 		};
 		349E8A022127186300CA088C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 037D2FF1032ABAC7B73D89AE /* Pods-Time Agent.debug.xcconfig */;
+			baseConfigurationReference = FB7536D5FDAB0F7C3D67A5A3 /* Pods-Time Agent.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -655,7 +664,7 @@
 		};
 		349E8A032127186300CA088C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D6E79178C2592C29CFB2C50C /* Pods-Time Agent.release.xcconfig */;
+			baseConfigurationReference = 7D31C7D05D0D06BB93B116B4 /* Pods-Time Agent.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -673,7 +682,7 @@
 		};
 		349E8A052127186300CA088C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3D499BCAAD3942D0664479B5 /* Pods-Time AgentUITests.debug.xcconfig */;
+			baseConfigurationReference = 24E46A118F45550C71A1FCFC /* Pods-Time AgentUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -693,7 +702,7 @@
 		};
 		349E8A062127186300CA088C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B365ED7FC51E8E935D11F7F4 /* Pods-Time AgentUITests.release.xcconfig */;
+			baseConfigurationReference = FF5E4B6EDFEC425BA5C946F9 /* Pods-Time AgentUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
