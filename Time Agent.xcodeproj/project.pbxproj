@@ -15,6 +15,7 @@
 		3420017B21EA1C7700A74AFB /* SourceEntity+helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3420017A21EA1C7700A74AFB /* SourceEntity+helpers.swift */; };
 		3420017D21EA1EF200A74AFB /* Task+helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3420017C21EA1EF200A74AFB /* Task+helpers.swift */; };
 		3423EAB821E7D69700352AFE /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3423EAB621E7D69700352AFE /* SettingsViewController.swift */; };
+		342D336122A52E4E00ECD966 /* TimeDiagramView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342D336022A52E4E00ECD966 /* TimeDiagramView+Helpers.swift */; };
 		342FFAF321E26C3000EDFA1C /* Project+helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342FFAF221E26C3000EDFA1C /* Project+helpers.swift */; };
 		343D3B4221EBA0B90012B2A7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 343D3B4421EBA0B90012B2A7 /* Localizable.strings */; };
 		344BDB7421E756430035B9A4 /* ProjectGroup+helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 344BDB7321E756430035B9A4 /* ProjectGroup+helpers.swift */; };
@@ -37,6 +38,8 @@
 		349E89FD2127186300CA088C /* Time_AgentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E89FC2127186300CA088C /* Time_AgentUITests.swift */; };
 		349E8A082129AA2D00CA088C /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E8A072129AA2D00CA088C /* EventMonitor.swift */; };
 		34B05FCE21E4D65B00BA7E29 /* TimerBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B05FCD21E4D65B00BA7E29 /* TimerBadge.swift */; };
+		34B1E23D22A53F090098B115 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B1E23C22A53F090098B115 /* DashboardViewController.swift */; };
+		34B1E23F22A542710098B115 /* DashboardWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B1E23E22A542710098B115 /* DashboardWindowController.swift */; };
 		34B8DA3B21EE2B1A00E2E6D8 /* ExportHTML.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B8DA3A21EE2B1A00E2E6D8 /* ExportHTML.swift */; };
 		34BCBEB322035F3900CA55B8 /* ExportCSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BCBEB222035F3900CA55B8 /* ExportCSV.swift */; };
 		34DF541621EE2E590032C845 /* ExportTemplate.html in Resources */ = {isa = PBXBuildFile; fileRef = 34DF541521EE2E590032C845 /* ExportTemplate.html */; };
@@ -67,6 +70,7 @@
 		3420017A21EA1C7700A74AFB /* SourceEntity+helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SourceEntity+helpers.swift"; sourceTree = "<group>"; };
 		3420017C21EA1EF200A74AFB /* Task+helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+helpers.swift"; sourceTree = "<group>"; };
 		3423EAB621E7D69700352AFE /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		342D336022A52E4E00ECD966 /* TimeDiagramView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeDiagramView+Helpers.swift"; sourceTree = "<group>"; };
 		342FFAF221E26C3000EDFA1C /* Project+helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Project+helpers.swift"; path = "Time Agent/Models/Project+helpers.swift"; sourceTree = SOURCE_ROOT; };
 		343D3B4321EBA0B90012B2A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		343D3B4521EBA2160012B2A7 /* da */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = da; path = da.lproj/Main.strings; sourceTree = "<group>"; };
@@ -95,6 +99,8 @@
 		349E89FE2127186300CA088C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		349E8A072129AA2D00CA088C /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		34B05FCD21E4D65B00BA7E29 /* TimerBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerBadge.swift; sourceTree = "<group>"; };
+		34B1E23C22A53F090098B115 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		34B1E23E22A542710098B115 /* DashboardWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardWindowController.swift; sourceTree = "<group>"; };
 		34B8DA3A21EE2B1A00E2E6D8 /* ExportHTML.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportHTML.swift; sourceTree = "<group>"; };
 		34BCBEB222035F3900CA55B8 /* ExportCSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportCSV.swift; sourceTree = "<group>"; };
 		34DF541521EE2E590032C845 /* ExportTemplate.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = ExportTemplate.html; sourceTree = "<group>"; };
@@ -129,6 +135,9 @@
 			isa = PBXGroup;
 			children = (
 				3408137D22874E5B00BFF10F /* TimeDiagramView.swift */,
+				342D336022A52E4E00ECD966 /* TimeDiagramView+Helpers.swift */,
+				34B1E23C22A53F090098B115 /* DashboardViewController.swift */,
+				34B1E23E22A542710098B115 /* DashboardWindowController.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -465,8 +474,11 @@
 				345A6FB721ED1ED600837601 /* TaskEditPopoverController.swift in Sources */,
 				344BDB7421E756430035B9A4 /* ProjectGroup+helpers.swift in Sources */,
 				345A6FB421ECEDC900837601 /* SidebarViewController+OutlineView.swift in Sources */,
+				34B1E23D22A53F090098B115 /* DashboardViewController.swift in Sources */,
+				342D336122A52E4E00ECD966 /* TimeDiagramView+Helpers.swift in Sources */,
 				349333A021AC7BB200A45A4B /* ProjectViewController.swift in Sources */,
 				3476B100212A003C00835532 /* ProjectCellView.swift in Sources */,
+				34B1E23F22A542710098B115 /* DashboardWindowController.swift in Sources */,
 				3420017921EA031F00A74AFB /* FileSync.swift in Sources */,
 				3423EAB821E7D69700352AFE /* SettingsViewController.swift in Sources */,
 				3476B104212A067600835532 /* ProjectEditCellView.swift in Sources */,

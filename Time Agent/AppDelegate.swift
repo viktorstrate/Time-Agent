@@ -16,8 +16,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var closeEventMonitor: EventMonitor?
     var fileSync: FileSync?
     
-    static let main: AppDelegate = {
-        return NSApplication.shared.delegate as! AppDelegate
+    static let main: AppDelegate? = {
+        return NSApplication.shared.delegate as? AppDelegate
     }()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {

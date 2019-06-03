@@ -78,7 +78,7 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
             }
         }
         
-        if let fileSync = AppDelegate.main.fileSync {
+        if let fileSync = AppDelegate.main?.fileSync {
             fileSync.onSyncComplete.append {
                 self.updateSyncLabel()
             }
@@ -91,7 +91,7 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
     }
     
     func updateSyncLabel() {
-        if let syncDate = AppDelegate.main.fileSync?.lastSync {
+        if let syncDate = AppDelegate.main?.fileSync?.lastSync {
             let formatter = DateFormatter()
             formatter.dateStyle = .medium
             formatter.timeStyle = .short
@@ -172,8 +172,12 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
         presentAsModalWindow(settings)
     }
     
+    @IBAction func openDashboardAction(_ sender: Any) {
+        DashboardWindowController.show(sender: sender)
+    }
+    
     @IBAction func syncAction(_ sender: Any) {
-        AppDelegate.main.fileSync?.load()
+        AppDelegate.main?.fileSync?.load()
     }
     
     // MARK: Timer
@@ -194,7 +198,7 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
         timerButton.image = NSImage(named: NSImage.Name("Stop button"))
         taskNameInput.isEditable = false
         
-        AppDelegate.main.setTimer(start: true)
+        AppDelegate.main!.setTimer(start: true)
     }
     
     func stopTimer() {
@@ -213,7 +217,7 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
         
         taskFinished(name: name, start: start, duration: duration)
         
-        AppDelegate.main.setTimer(start: false)
+        AppDelegate.main?.setTimer(start: false)
     }
     
     @IBAction func toggleTimer(_ sender: Any) {
@@ -262,7 +266,7 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
         tasksTableView.reloadData()
         
         print("Starting sync because task was created")
-        AppDelegate.main.fileSync?.save()
+        AppDelegate.main?.fileSync?.save()
     }
     
     var tableViewTasks: [Task] = []
@@ -320,7 +324,7 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
             Model.save()
             
             print("Starting sync because task was edited")
-            AppDelegate.main.fileSync?.save()
+            AppDelegate.main?.fileSync?.save()
         }
         
         print("Presenting popover")
@@ -353,7 +357,7 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
         self.tasksTableView.reloadData()
         
         print("Starting sync because task was deleted")
-        AppDelegate.main.fileSync?.save()
+        AppDelegate.main?.fileSync?.save()
     }
     
     @IBAction func taskMenuArchiveAction(_ sender: Any) {
@@ -385,6 +389,6 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
         self.tasksTableView.reloadData()
         
         print("Starting sync because task was archived")
-        AppDelegate.main.fileSync?.save()
+        AppDelegate.main?.fileSync?.save()
     }
 }

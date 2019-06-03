@@ -8,82 +8,37 @@
 
 import Cocoa
 
-@IBDesignable
 class TimeDiagramView: NSView {
     
-    func getTotalDuration(from start: Date, to end: Date) -> TimeInterval {
-        let tasks = Task.fetch(between: start, and: end)
-        
-        var result = TimeInterval(exactly: 0)!
-        
-        for task in tasks {
-            result += task.duration
+    var tasks: [Task] = []
+    
+    var start: Date = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date())! {
+        didSet {
+            _updateTasks()
         }
-        
-        return result
     }
     
-    func getTimeStepInterval() -> TimeInterval {
-        let duration = getTotalDuration(from: start, to: end)
-        
-        let hour = 60.0 * 60.0
-        let day = hour * 24.0
-        let week = day * 7.0
-        let month = day * 30.0
-        let year = day * 365.0
-        
-        if duration < day {
-            return hour
+    var end: Date = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: Date())! {
+        didSet {
+            _updateTasks()
         }
-        
-        if duration < week * 2.0 {
-            return day
-        }
-        
-        if duration < month * 4.0 {
-            return week
-        }
-        
-        if duration < year {
-            return month
-        }
-        
-        return year
     }
-    
-    func getHighestStep() -> TimeInterval {
-        let stepSize = getTimeStepInterval()
-        var cursor = start
-        
-        var longestDuration = 0.0
-        
-        while cursor < end {
-            
-            let duration = getTotalDuration(from: cursor, to: cursor.addingTimeInterval(stepSize))
-            if duration > longestDuration {
-                longestDuration = duration
-            }
-            
-            cursor = cursor.addingTimeInterval(stepSize)
-        }
-        
-        return longestDuration
-    }
-    
-    var start: Date = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: Date())!
-    var end: Date = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: Date())!
 
     override func awakeFromNib() {
         self.wantsLayer = true
         self.superview?.wantsLayer = true
-        print("Total duration: ")
-        print(getTotalDuration(from: Date.distantPast, to: Date.distantFuture))
+        _updateTasks()
     }
     
     var context: CGContext? {
         get {
             return NSGraphicsContext.current?.cgContext
         }
+    }
+    
+    func _updateTasks() {
+        tasks = Task.fetch(between: start, and: end)
+        print("Dashboard found \(tasks.count) tasks")
     }
     
     override func layout() {
@@ -110,7 +65,10 @@ class TimeDiagramView: NSView {
     func drawBackLines() {
         let height = bounds.height - 40
         
-        let maxHours = getHighestStep() / (60.0*60.0)
+        var maxHours = self.getHighestStep(for: tasks) / (60.0*60.0)
+        maxHours = max(maxHours, 1)
+        
+        
         let hourStep = ceil(maxHours / 6.0)
         
         let lineSpace: CGFloat = height / CGFloat(ceil(maxHours / hourStep))
@@ -139,8 +97,5 @@ class TimeDiagramView: NSView {
             
             hours += hourStep
         }
-    }
-    
-    override func prepareForInterfaceBuilder() {
     }
 }

@@ -9,8 +9,8 @@
         <!--Window Controller-->
         <scene sceneID="V0i-Gx-xRK">
             <objects>
-                <windowController id="Ecy-VR-yzU" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="7rB-d8-PzH">
+                <windowController id="Ecy-VR-yzU" customClass="DashboardWindowController" customModule="Time_Agent" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Time Agent Dashboard" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="7rB-d8-PzH">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="245" y="301" width="480" height="270"/>
@@ -27,10 +27,10 @@
             </objects>
             <point key="canvasLocation" x="15" y="171"/>
         </scene>
-        <!--View Controller-->
+        <!--Dashboard View Controller-->
         <scene sceneID="dS1-ak-7Mu">
             <objects>
-                <viewController id="3DS-aN-z75" sceneMemberID="viewController">
+                <viewController id="3DS-aN-z75" customClass="DashboardViewController" customModule="Time_Agent" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="JIQ-UU-cKq">
                         <rect key="frame" x="0.0" y="0.0" width="695" height="455"/>
                         <autoresizingMask key="autoresizingMask"/>

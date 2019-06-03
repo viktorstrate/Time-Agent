@@ -101,7 +101,7 @@ extension SidebarViewController {
             }
             
             updateData(keepSelection: false)
-            AppDelegate.main.fileSync?.save()
+            AppDelegate.main?.fileSync?.save()
             
             return true
         }
@@ -137,7 +137,7 @@ extension SidebarViewController {
             
             
             updateData(keepSelection: false)
-            AppDelegate.main.fileSync?.save()
+            AppDelegate.main?.fileSync?.save()
             
             return true
         }

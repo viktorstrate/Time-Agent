@@ -29,7 +29,7 @@ class MenuViewController: NSSplitViewController, MenuViewProjectsDelegate {
         projectViewController.menuDelegate = self
         sidebarViewController.menuDelegate = self
         
-        AppDelegate.main.fileSync?.onSyncComplete.append {
+        AppDelegate.main?.fileSync?.onSyncComplete.append {
             self.coreDataUpdated()
         }
     }

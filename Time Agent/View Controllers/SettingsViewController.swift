@@ -27,7 +27,7 @@ class SettingsViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        AppDelegate.main.popover.performClose(self)
+        AppDelegate.main!.popover.performClose(self)
         updateUI()
     }
     
@@ -54,7 +54,7 @@ class SettingsViewController: NSViewController {
                     UserDefaults.standard.set(path, forKey: "settings.sync-path")
                     
                     let fileSync = FileSync(path: path)
-                    AppDelegate.main.fileSync = fileSync
+                    AppDelegate.main!.fileSync = fileSync
                     
                     if FileManager.default.fileExists(atPath: path.absoluteString) {
                         fileSync.load()

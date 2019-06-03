@@ -707,14 +707,6 @@
             </objects>
             <point key="canvasLocation" x="93" y="688"/>
         </scene>
-        <!--Dashboard-->
-        <scene sceneID="QEt-jW-Jjx">
-            <objects>
-                <controllerPlaceholder storyboardName="Dashboard" id="RSh-Ll-cHD" sceneMemberID="viewController"/>
-                <customObject id="IMU-gM-LwD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="695" y="1083"/>
-        </scene>
         <!--Sidebar View Controller-->
         <scene sceneID="ZKM-TP-WJJ">
             <objects>
@@ -1345,7 +1337,7 @@
                         <menuItem title="Open Dashboard" id="kJX-GG-ifl">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <segue destination="RSh-Ll-cHD" kind="show" id="GvP-1B-iSr"/>
+                                <action selector="openDashboardAction:" target="b2Y-kt-o7L" id="aBd-0T-UaV"/>
                             </connections>
                         </menuItem>
                         <menuItem title="Export:" enabled="NO" id="2nA-JC-yet">
@@ -1740,6 +1732,6 @@ DQ
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSColumnViewTemplate" width="16" height="10"/>
         <image name="NSRefreshTemplate" width="11" height="15"/>
-        <image name="Start button" width="85.5" height="85.5"/>
+        <image name="Start button" width="86" height="86"/>
     </resources>
 </document>

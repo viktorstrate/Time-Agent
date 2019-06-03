@@ -56,7 +56,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
             
             print("Starting sync because new project was added")
 //            AppDelegate.main.fileSync.sync(editProvoked: true)
-            AppDelegate.main.fileSync?.save()
+            AppDelegate.main?.fileSync?.save()
         } else {
             // Rename project or group
             let renamedObject = renameItem!
@@ -87,7 +87,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
             
             print("Starting sync because project was renamed")
 //            AppDelegate.main.fileSync.sync(editProvoked: true)
-            AppDelegate.main.fileSync?.save()
+            AppDelegate.main?.fileSync?.save()
         }
     }
 
@@ -139,7 +139,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
             
             print("Starting sync because a project was deleted")
 //            AppDelegate.main.fileSync.sync(editProvoked: true)
-            AppDelegate.main.fileSync?.save()
+            AppDelegate.main?.fileSync?.save()
             return
         }
 
@@ -154,7 +154,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
                 
                 print("Starting sync because a group without projects was deleted")
 //                AppDelegate.main.fileSync.sync(editProvoked: true)
-                AppDelegate.main.fileSync?.save()
+                AppDelegate.main?.fileSync?.save()
             }
 
             sheet.deleteCallback = {
@@ -192,7 +192,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
                 
                 print("Starting sync because a group with projects was deleted")
 //                AppDelegate.main.fileSync.sync(editProvoked: true)
-                AppDelegate.main.fileSync?.save()
+                AppDelegate.main?.fileSync?.save()
             }
 
             presentAsSheet(sheet)
