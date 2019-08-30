@@ -67,6 +67,7 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
         super.viewDidLoad()
         
         tasksTableView.registerForDraggedTypes([NSPasteboard.PasteboardType("time-agent.task")])
+        tasksTableView.doubleAction = #selector(rowDoubleClick(sender:))
         
         // Run didSet function
         if project == nil {

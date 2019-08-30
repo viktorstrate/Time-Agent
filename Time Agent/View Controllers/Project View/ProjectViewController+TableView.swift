@@ -67,4 +67,15 @@ extension ProjectViewController: NSTableViewDelegate, NSTableViewDataSource {
         
         return cell
     }
+    
+    @objc func rowDoubleClick(sender: Any) {
+        let task = tableViewTasks[tasksTableView.clickedRow]
+        
+        guard let name = task.name else {
+            return
+        }
+        
+        taskNameInput.stringValue = name
+        startTimer()
+    }
 }
