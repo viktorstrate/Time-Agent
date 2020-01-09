@@ -9,6 +9,11 @@
 import Cocoa
 
 extension SidebarViewController {
+    
+    struct OutlineNewProjectData {
+        let parent: ProjectGroup?
+    }
+    
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
         // Root
         if item == nil {
@@ -17,7 +22,7 @@ extension SidebarViewController {
             
             var count = projects.count + groups.count
             
-            if newProject {
+            if newProject && newProjectParent == nil {
                 count = count + 1
             }
             
@@ -25,7 +30,11 @@ extension SidebarViewController {
         }
         
         if let group = item as? ProjectGroup {
-            let children = group.projects!.count + group.subgroups!.count
+            var children = group.projects!.count + group.subgroups!.count
+            
+            if newProject && newProjectParent == group {
+                children += 1
+            }
             
             return children
         }
@@ -36,14 +45,14 @@ extension SidebarViewController {
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         // Root
         if item == nil {
-            if newProject && index == 0 {
-                return "NewProject"
-            }
-            
             var i: Int = index
             
-            if newProject {
-                i = i - 1
+            if newProject && newProjectParent == nil {
+                if index == 0 {
+                    return OutlineNewProjectData(parent: nil)
+                }
+                
+                i -= 1
             }
             
             let projects = Project.fetchRoots()
@@ -64,7 +73,17 @@ extension SidebarViewController {
             combined.append(contentsOf: groups)
             combined.append(contentsOf: projects)
             
-            return combined[index]
+            var i = index
+            
+            if newProject && newProjectParent == group {
+                if index == 0 {
+                    return OutlineNewProjectData(parent: newProjectParent)
+                }
+                
+                i -= 1
+            }
+            
+            return combined[i]
         }
         
         return "Did not know how to implement item"
@@ -106,16 +125,15 @@ extension SidebarViewController {
             return groupItem
         }
         
-        if let key = item as? String {
-            if key == "NewProject" {
-                
-                let newProjectItem = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectEditCell"), owner: nil) as! ProjectEditCellView
-                
-                newProjectItem.delegate = self
-                newProjectItem.editTextField.stringValue = ""
-                
-                return newProjectItem
-            }
+        if let newProjectData = item as? OutlineNewProjectData {
+            let newProjectItem = outlineView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("projectEditCell"), owner: nil) as! ProjectEditCellView
+            
+            newProjectItem.delegate = self
+            newProjectItem.editTextField.stringValue = ""
+            
+            newProjectItem.newProjectParent = newProjectData.parent
+            
+            return newProjectItem
         }
         
         return nil

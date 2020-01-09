@@ -11,6 +11,7 @@ import Cocoa
 class ProjectEditCellView: NSTableCellView, NSTextFieldDelegate {
 
     var delegate: ProjectsEditItemCellDelegate?
+    var newProjectParent: ProjectGroup?
     var editingObject: NSManagedObject? {
         didSet {
             if let project = editingObject as? Project {
@@ -30,7 +31,7 @@ class ProjectEditCellView: NSTableCellView, NSTextFieldDelegate {
     }
     
     func controlTextDidEndEditing(_ obj: Notification) {
-        delegate?.endEditing(text: editTextField.stringValue)
+        delegate?.projectEditItem(endEditing: self, text: editTextField.stringValue)
     }
     
     override func draw(_ dirtyRect: NSRect) {
@@ -42,5 +43,5 @@ class ProjectEditCellView: NSTableCellView, NSTextFieldDelegate {
 }
 
 protocol ProjectsEditItemCellDelegate {
-    func endEditing(text: String)
+    func projectEditItem(endEditing projectItem: ProjectEditCellView, text: String)
 }

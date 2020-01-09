@@ -11,6 +11,7 @@ import Cocoa
 class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineViewDataSource, ProjectsEditItemCellDelegate, NSMenuDelegate, ProjectsSidebarDelegate {
 
     var newProject = false
+    var newProjectParent: ProjectGroup? = nil
 
     // Project or Group currently being renamed
     var renameItem: NSManagedObject? = nil
@@ -40,12 +41,13 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         outlineView.scrollRowToVisible(outlineView.numberOfRows-1)
     }
 
-    func endEditing(text: String) {
+    func projectEditItem(endEditing projectItem: ProjectEditCellView, text: String) {
         if (newProject == true) {
             newProject = false
             if !text.isEmpty {
                 let project = Project()
                 project.name = text
+                project.group = projectItem.newProjectParent
                 project.wasUpdated()
                 menuDelegate.changeActiveProject(project)
             }
@@ -242,6 +244,26 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         outlineView.reloadData()
     }
 
+    @IBAction func projectMenuNewProjectAction(_ sender: Any) {
+        guard let item = outlineView.item(atRow: outlineView.clickedRow) as? NSManagedObject else {
+            return
+        }
+        
+        var parentGroup: ProjectGroup?
+        
+        if let group = item as? ProjectGroup {
+            parentGroup = group
+        }
+        
+        if let project = item as? Project {
+            parentGroup = project.group
+        }
+        
+        newProject = true
+        newProjectParent = parentGroup
+        outlineView.reloadData()
+    }
+    
     func menuWillOpen(_ menu: NSMenu) {
         var shouldCancel = false
 
