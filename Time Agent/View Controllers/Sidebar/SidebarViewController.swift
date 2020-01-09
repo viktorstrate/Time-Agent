@@ -33,32 +33,45 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         outlineView.registerForDraggedTypes([NSPasteboard.PasteboardType(rawValue: "time-agent.project"), NSPasteboard.PasteboardType(rawValue: "time-agent.task")])
 
     }
-
-    @IBAction func addProjectAction(_ sender: NSButton) {
+    
+    func newProject(parent: ProjectGroup?) {
         print("Add new project")
         newProject = true
+        newProjectParent = parent
+        
+        if let parent = parent {
+            outlineView.expandItem(parent)
+        }
+        
         outlineView.reloadData()
-        outlineView.scrollRowToVisible(outlineView.numberOfRows-1)
+        if parent == nil {
+            outlineView.scrollRowToVisible(0)
+        }
+    }
+
+    @IBAction func addProjectAction(_ sender: NSButton) {
+        newProject(parent: nil)
     }
 
     func projectEditItem(endEditing projectItem: ProjectEditCellView, text: String) {
         if (newProject == true) {
             newProject = false
-            if !text.isEmpty {
+            
+            let projectName = text.trimmingCharacters(in: .whitespaces)
+            
+            if !projectName.isEmpty {
                 let project = Project()
-                project.name = text
+                project.name = projectName
                 project.group = projectItem.newProjectParent
                 project.wasUpdated()
                 menuDelegate.changeActiveProject(project)
+                
+                print("Starting sync because new project was added")
+                AppDelegate.main?.fileSync?.save()
             }
             
-//            updateData()
             outlineView.reloadData()
             
-            
-            print("Starting sync because new project was added")
-//            AppDelegate.main.fileSync.sync(editProvoked: true)
-            AppDelegate.main?.fileSync?.save()
         } else {
             // Rename project or group
             let renamedObject = renameItem!
@@ -125,144 +138,7 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
         }
     }
 
-    // MARK: Right click menu
-
-    @IBAction func projectMenuDeleteAction(_ sender: Any) {
-
-        if outlineView.clickedRow == -1 {
-            return
-        }
-
-        if let project = outlineView.item(atRow: outlineView.clickedRow) as? Project {
-            print("Deleting project: \(project.name!)")
-            Model.delete(managedObject: project)
-            updateData()
-            menuDelegate.changeActiveProject(nil)
-            
-            print("Starting sync because a project was deleted")
-//            AppDelegate.main.fileSync.sync(editProvoked: true)
-            AppDelegate.main?.fileSync?.save()
-            return
-        }
-
-        if let group = outlineView.item(atRow: outlineView.clickedRow) as? ProjectGroup {
-            print("Deleting group: \(group.name!)")
-
-            let sheet = NSStoryboard.main!.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("sidebarDeleteGroupModal")) as! SidebarDeleteGroupModalViewController
-
-            sheet.keepCallback = {
-                Model.delete(managedObject: group)
-                self.updateData()
-                
-                print("Starting sync because a group without projects was deleted")
-//                AppDelegate.main.fileSync.sync(editProvoked: true)
-                AppDelegate.main?.fileSync?.save()
-            }
-
-            sheet.deleteCallback = {
-                
-                var deleteGroup: ((ProjectGroup) -> Void)!
-                deleteGroup = {group in
-                    
-                    let projects = group.projects!.allObjects as! [Project]
-                    for project in projects {
-                        Model.delete(managedObject: project)
-                    }
-                    
-                    if let subgroups = group.subgroups {
-                        for sub in subgroups.allObjects as! [ProjectGroup] {
-                            
-                            if let projects = sub.projects {
-                                for project in projects.allObjects as! [Project] {
-                                    print("Deleting project \(project.name!), in group \(sub.name!)")
-                                    Model.delete(managedObject: project)
-                                }
-                            }
-                            
-                            deleteGroup(sub)
-                        }
-                        
-                        self.menuDelegate.changeActiveProject(nil)
-                        print("Deleting group \(group.name!)")
-                        Model.delete(managedObject: group)
-                    }
-                }
-
-                deleteGroup(group)
-
-                self.updateData()
-                
-                print("Starting sync because a group with projects was deleted")
-//                AppDelegate.main.fileSync.sync(editProvoked: true)
-                AppDelegate.main?.fileSync?.save()
-            }
-
-            presentAsSheet(sheet)
-
-            return
-        }
-    }
-
-    @IBAction func projectMenuRenameAction(_ sender: Any) {
-
-        if let item = outlineView.item(atRow: outlineView.clickedRow) as? NSManagedObject {
-            renameItem = item
-            outlineView.reloadData()
-            
-            if let project = item as? Project {
-                menuDelegate.changeActiveProject(project)
-            }
-            
-            return
-        }
-    }
-
-    @IBAction func projectMenuGroupAction(_ sender: Any) {
-        let projects = outlineView.selectedRowIndexes.filter({ (row) -> Bool in
-            return outlineView.item(atRow: row) is Project
-        }).map { (row) -> Project in
-            return outlineView.item(atRow: row) as! Project
-        }
-        
-        let groups = outlineView.selectedRowIndexes.filter({ (row) -> Bool in
-            return outlineView.item(atRow: row) is ProjectGroup
-        }).map { (row) -> ProjectGroup in
-            return outlineView.item(atRow: row) as! ProjectGroup
-        }
-
-        let group = ProjectGroup()
-        group.projects = NSSet(array: projects)
-        group.subgroups = NSSet(array: groups)
-        
-        group.name = NSLocalizedString("New group", comment: "Default name for new groups")
-//        group.parent = projects[0].group
-
-        updateData(keepSelection: false)
-
-        renameItem = group
-
-        outlineView.reloadData()
-    }
-
-    @IBAction func projectMenuNewProjectAction(_ sender: Any) {
-        guard let item = outlineView.item(atRow: outlineView.clickedRow) as? NSManagedObject else {
-            return
-        }
-        
-        var parentGroup: ProjectGroup?
-        
-        if let group = item as? ProjectGroup {
-            parentGroup = group
-        }
-        
-        if let project = item as? Project {
-            parentGroup = project.group
-        }
-        
-        newProject = true
-        newProjectParent = parentGroup
-        outlineView.reloadData()
-    }
+    
     
     func menuWillOpen(_ menu: NSMenu) {
         var shouldCancel = false

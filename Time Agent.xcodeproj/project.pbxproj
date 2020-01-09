@@ -25,6 +25,7 @@
 		3455893421F08DD2001E72FF /* MainPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3455893321F08DD2001E72FF /* MainPopover.swift */; };
 		345A6FB421ECEDC900837601 /* SidebarViewController+OutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345A6FB321ECEDC900837601 /* SidebarViewController+OutlineView.swift */; };
 		345A6FB721ED1ED600837601 /* TaskEditPopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345A6FB521ED1ED600837601 /* TaskEditPopoverController.swift */; };
+		345DF69223C767EF00B00C58 /* SidebarViewController+ContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345DF69123C767EF00B00C58 /* SidebarViewController+ContextMenu.swift */; };
 		3476B0FC2129FB4300835532 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B0FB2129FB4300835532 /* SidebarViewController.swift */; };
 		3476B100212A003C00835532 /* ProjectCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B0FF212A003C00835532 /* ProjectCellView.swift */; };
 		3476B104212A067600835532 /* ProjectEditCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B103212A067600835532 /* ProjectEditCellView.swift */; };
@@ -82,6 +83,7 @@
 		3455893321F08DD2001E72FF /* MainPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPopover.swift; sourceTree = "<group>"; };
 		345A6FB321ECEDC900837601 /* SidebarViewController+OutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SidebarViewController+OutlineView.swift"; sourceTree = "<group>"; };
 		345A6FB521ED1ED600837601 /* TaskEditPopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskEditPopoverController.swift; sourceTree = "<group>"; };
+		345DF69123C767EF00B00C58 /* SidebarViewController+ContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SidebarViewController+ContextMenu.swift"; sourceTree = "<group>"; };
 		3476B0FB2129FB4300835532 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		3476B0FF212A003C00835532 /* ProjectCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCellView.swift; sourceTree = "<group>"; };
 		3476B103212A067600835532 /* ProjectEditCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEditCellView.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				3476B0FB2129FB4300835532 /* SidebarViewController.swift */,
 				344BDB7A21E7C1090035B9A4 /* SidebarViewController+DragDrop.swift */,
 				345A6FB321ECEDC900837601 /* SidebarViewController+OutlineView.swift */,
+				345DF69123C767EF00B00C58 /* SidebarViewController+ContextMenu.swift */,
 				344BDB7721E75FE40035B9A4 /* SidebarDeleteGroupModalViewController.swift */,
 			);
 			path = Sidebar;
@@ -467,6 +470,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				345DF69223C767EF00B00C58 /* SidebarViewController+ContextMenu.swift in Sources */,
 				349E89EC2127186100CA088C /* Time_Agent.xcdatamodeld in Sources */,
 				344BDB7621E7597B0035B9A4 /* ProjectGroupCellView.swift in Sources */,
 				349E89E92127186100CA088C /* MenuViewController.swift in Sources */,
