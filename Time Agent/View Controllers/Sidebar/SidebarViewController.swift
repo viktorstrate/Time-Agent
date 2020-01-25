@@ -16,7 +16,9 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
     // Project or Group currently being renamed
     var renameItem: NSManagedObject? = nil
     var editTextField: NSTextField?
-    var menuDelegate: MenuViewProjectsDelegate!
+    
+    var menuDelegate: MainViewProjectsDelegate!
+    var mainViewController: MainViewController!
 
     @IBOutlet weak var outlineView: NSOutlineView!
     @IBOutlet var projectContextMenu: NSMenu!
@@ -151,6 +153,14 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
 
         // Don't allow renaming of multiple projects
         menu.item(withTag: 0)!.isEnabled = !multipleSelected
+        
+        
+        let exportSubMenu = menu.item(withTag: 4)!
+        if multipleSelected {
+            exportSubMenu.title = "Export projects"
+        } else {
+            exportSubMenu.title = "Export project"
+        }
 
         if (shouldCancel) {
             menu.cancelTracking()

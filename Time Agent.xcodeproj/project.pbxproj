@@ -29,11 +29,12 @@
 		3476B0FC2129FB4300835532 /* SidebarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B0FB2129FB4300835532 /* SidebarViewController.swift */; };
 		3476B100212A003C00835532 /* ProjectCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B0FF212A003C00835532 /* ProjectCellView.swift */; };
 		3476B104212A067600835532 /* ProjectEditCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3476B103212A067600835532 /* ProjectEditCellView.swift */; };
+		347D9EE823DC7E6C009AA190 /* MainViewController+Export.swift in Sources */ = {isa = PBXBuildFile; fileRef = 347D9EE723DC7E6C009AA190 /* MainViewController+Export.swift */; };
 		349333A021AC7BB200A45A4B /* ProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3493339F21AC7BB200A45A4B /* ProjectViewController.swift */; };
 		349333A221AC7EAB00A45A4B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 349333A121AC7EAB00A45A4B /* Assets.xcassets */; };
 		349333A721AC837300A45A4B /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349333A621AC837300A45A4B /* Model.swift */; };
 		349E89E72127186100CA088C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E89E62127186100CA088C /* AppDelegate.swift */; };
-		349E89E92127186100CA088C /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E89E82127186100CA088C /* MenuViewController.swift */; };
+		349E89E92127186100CA088C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E89E82127186100CA088C /* MainViewController.swift */; };
 		349E89EC2127186100CA088C /* Time_Agent.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 349E89EA2127186100CA088C /* Time_Agent.xcdatamodeld */; };
 		349E89F12127186300CA088C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 349E89EF2127186300CA088C /* Main.storyboard */; };
 		349E89FD2127186300CA088C /* Time_AgentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349E89FC2127186300CA088C /* Time_AgentUITests.swift */; };
@@ -87,12 +88,13 @@
 		3476B0FB2129FB4300835532 /* SidebarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarViewController.swift; sourceTree = "<group>"; };
 		3476B0FF212A003C00835532 /* ProjectCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCellView.swift; sourceTree = "<group>"; };
 		3476B103212A067600835532 /* ProjectEditCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectEditCellView.swift; sourceTree = "<group>"; };
+		347D9EE723DC7E6C009AA190 /* MainViewController+Export.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController+Export.swift"; sourceTree = "<group>"; };
 		3493339F21AC7BB200A45A4B /* ProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewController.swift; sourceTree = "<group>"; };
 		349333A121AC7EAB00A45A4B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		349333A621AC837300A45A4B /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		349E89E32127186100CA088C /* Time Agent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Time Agent.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		349E89E62127186100CA088C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		349E89E82127186100CA088C /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		349E89E82127186100CA088C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		349E89EB2127186100CA088C /* Time_Agent.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Time_Agent.xcdatamodel; sourceTree = "<group>"; };
 		349E89F02127186300CA088C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		349E89F22127186300CA088C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -167,7 +169,7 @@
 			path = Sidebar;
 			sourceTree = "<group>";
 		};
-		345A6FB921ED28A200837601 /* Project View */ = {
+		345A6FB921ED28A200837601 /* Project */ = {
 			isa = PBXGroup;
 			children = (
 				3493339F21AC7BB200A45A4B /* ProjectViewController.swift */,
@@ -175,15 +177,24 @@
 				3408137622873FCC00BFF10F /* ProjectViewController+DragDrop.swift */,
 				340813782287405400BFF10F /* ProjectViewController+TableView.swift */,
 			);
-			path = "Project View";
+			path = Project;
+			sourceTree = "<group>";
+		};
+		347D9EE623DC7E12009AA190 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				349E89E82127186100CA088C /* MainViewController.swift */,
+				347D9EE723DC7E6C009AA190 /* MainViewController+Export.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		3493339E21AC7B7D00A45A4B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				347D9EE623DC7E12009AA190 /* Main */,
 				344BDB7921E7C0F30035B9A4 /* Sidebar */,
-				345A6FB921ED28A200837601 /* Project View */,
-				349E89E82127186100CA088C /* MenuViewController.swift */,
+				345A6FB921ED28A200837601 /* Project */,
 				3423EAB621E7D69700352AFE /* SettingsViewController.swift */,
 			);
 			path = "View Controllers";
@@ -473,7 +484,7 @@
 				345DF69223C767EF00B00C58 /* SidebarViewController+ContextMenu.swift in Sources */,
 				349E89EC2127186100CA088C /* Time_Agent.xcdatamodeld in Sources */,
 				344BDB7621E7597B0035B9A4 /* ProjectGroupCellView.swift in Sources */,
-				349E89E92127186100CA088C /* MenuViewController.swift in Sources */,
+				349E89E92127186100CA088C /* MainViewController.swift in Sources */,
 				34B05FCE21E4D65B00BA7E29 /* TimerBadge.swift in Sources */,
 				345A6FB721ED1ED600837601 /* TaskEditPopoverController.swift in Sources */,
 				344BDB7421E756430035B9A4 /* ProjectGroup+helpers.swift in Sources */,
@@ -487,6 +498,7 @@
 				3423EAB821E7D69700352AFE /* SettingsViewController.swift in Sources */,
 				3476B104212A067600835532 /* ProjectEditCellView.swift in Sources */,
 				3455893421F08DD2001E72FF /* MainPopover.swift in Sources */,
+				347D9EE823DC7E6C009AA190 /* MainViewController+Export.swift in Sources */,
 				349E89E72127186100CA088C /* AppDelegate.swift in Sources */,
 				349333A721AC837300A45A4B /* Model.swift in Sources */,
 				3408137E22874E5B00BFF10F /* TimeDiagramView.swift in Sources */,

@@ -34,11 +34,11 @@ struct ExportPDF {
         print("Saved PDF")
     }
     
-    static func exportAsync(project: Project, path: URL) {
+    static func exportAsync(projects: [Project], path: URL) {
         
         DispatchQueue.main.async {
             print("PDF Export starting...")
-            let html = ExportHTML.toHtml(project: project)
+            let html = ExportHTML.toHtml(projects: projects)
             
             let webView = WebView()
             webView.mainFrame.loadHTMLString(html, baseURL: nil)

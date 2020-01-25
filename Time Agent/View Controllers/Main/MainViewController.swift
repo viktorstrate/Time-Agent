@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class MenuViewController: NSSplitViewController, MenuViewProjectsDelegate {
+class MainViewController: NSSplitViewController, MainViewProjectsDelegate {
     
     var sidebarViewController: SidebarViewController {
         get {
@@ -22,12 +22,17 @@ class MenuViewController: NSSplitViewController, MenuViewProjectsDelegate {
         }
     }
     
+    var dialogueActive: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        projectViewController.menuDelegate = self
+        projectViewController.mainDelegate = self
+        projectViewController.mainViewController = self
+        
         sidebarViewController.menuDelegate = self
+        sidebarViewController.mainViewController = self
         
         AppDelegate.main?.fileSync?.onSyncComplete.append {
             self.coreDataUpdated()
@@ -40,11 +45,11 @@ class MenuViewController: NSSplitViewController, MenuViewProjectsDelegate {
         }
     }
 
-    static func makeController() -> MenuViewController {
+    static func makeController() -> MainViewController {
         let storyboard = NSStoryboard(name: "Main", bundle: nil)
         let identifier = "MenuViewController"
         
-        guard let viewController = storyboard.instantiateController(withIdentifier: identifier) as? MenuViewController else {
+        guard let viewController = storyboard.instantiateController(withIdentifier: identifier) as? MainViewController else {
             fatalError("Could not instantiate MenuViewController")
         }
         
@@ -67,7 +72,7 @@ class MenuViewController: NSSplitViewController, MenuViewProjectsDelegate {
     }
 }
 
-protocol MenuViewProjectsDelegate {
+protocol MainViewProjectsDelegate {
     func changeActiveProject(_ project: Project?)
     func coreDataUpdated()
     func projectUpdated(_ project: Project)

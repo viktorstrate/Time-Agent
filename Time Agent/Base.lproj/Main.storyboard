@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15702"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -682,11 +682,11 @@
             </objects>
             <point key="canvasLocation" x="86" y="378"/>
         </scene>
-        <!--Menu View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="zPu-M7-XpA">
             <objects>
                 <customObject id="L29-Jf-ydQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <splitViewController storyboardIdentifier="MenuViewController" id="sCy-Lg-Fr1" customClass="MenuViewController" customModule="Time_Agent" customModuleProvider="target" sceneMemberID="viewController">
+                <splitViewController storyboardIdentifier="MenuViewController" id="sCy-Lg-Fr1" customClass="MainViewController" customModule="Time_Agent" customModuleProvider="target" sceneMemberID="viewController">
                     <splitViewItems>
                         <splitViewItem canCollapse="YES" holdingPriority="260" behavior="sidebar" id="1lV-Ei-cGF"/>
                         <splitViewItem id="TYf-VO-BXW"/>
@@ -753,7 +753,7 @@
                                             <tableColumns>
                                                 <tableColumn width="167" minWidth="40" maxWidth="1000" id="KNd-xF-Ftt">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -939,6 +939,31 @@
                                 <action selector="projectMenuNewProjectAction:" target="aBe-uS-rz0" id="Y0I-pC-g1t"/>
                             </connections>
                         </menuItem>
+                        <menuItem title="Export project" tag="4" id="c7b-ME-C4L">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <menu key="submenu" title="Export project" id="IAg-n2-M5y">
+                                <items>
+                                    <menuItem title="Export HTML" tag="5" id="qwQ-6V-pTo">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="projectMenuExportHTMLAction:" target="aBe-uS-rz0" id="kby-ii-mRr"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Export PDF" tag="6" id="rud-hx-jIX">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="projectMenuExportPDFAction:" target="aBe-uS-rz0" id="Qu2-JI-PAU"/>
+                                        </connections>
+                                    </menuItem>
+                                    <menuItem title="Export CSV" tag="7" id="Ooo-XA-I79">
+                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                        <connections>
+                                            <action selector="projectMenuExportCSVAction:" target="aBe-uS-rz0" id="uqQ-br-Lhb"/>
+                                        </connections>
+                                    </menuItem>
+                                </items>
+                            </menu>
+                        </menuItem>
                     </items>
                     <connections>
                         <outlet property="delegate" destination="aBe-uS-rz0" id="aaq-da-bNk"/>
@@ -1099,7 +1124,7 @@
                                             <tableColumns>
                                                 <tableColumn identifier="date" width="144" minWidth="40" maxWidth="1000" id="EMb-Sy-pE2">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Date">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1136,7 +1161,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="task" width="297" minWidth="40" maxWidth="1000" id="fam-KH-Wbx">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Task">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -1173,7 +1198,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="duration" width="103" minWidth="40" maxWidth="1000" id="6al-nY-9TZ">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Duration">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>

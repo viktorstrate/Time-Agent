@@ -4,16 +4,25 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <title>Project: {{ name }}</title>
+        <title>Project report</title>
         
         <style>
             body {
-                margin: 40px;
+                margin: 0 40px;
                 font-family: "Times New Roman", Times, serif;
+                font-size: 14px;
             }
         
             table {
                 border-collapse: collapse;
+                width: 100%;
+                max-width: 297mm;
+            }
+        
+            section {
+                margin-top: 60px;
+                page-break-after: always;
+                width: 100%;
             }
         
             table, th, td {
@@ -26,37 +35,47 @@
             }
         
             h1 {
-                margin-bottom: 0;
+                margin: 0 0 12px;
             }
         
             h2 {
                 color: #444;
-                margin-top: 0;
+                margin: 0 0 12px;
                 font-weight: 400;
+            }
+        
+            .title-description {
+                font-size: 16px;
             }
         </style>
     </head>
     <body>
-        <h1>Project summary: {{ name }}</h1>
-        <h2>Total time: {{ tasks | sum | duration }}</h2>
-        
-        <table>
+        {% for project in projects %}
+        <section class="project-container">
+            <div class="title-description">Project summary:</div>
+            <h1>{{ project.name }}</h1>
+            <div class="title-description">Total time:</div>
+            <h2>{{ project.tasks | sum | duration }}</h2>
             
-            <tr>
-                <th>Duration</th>
-                <th>Task Name</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-            </tr>
-            
-        {% for task in tasks | sortTasks %}
-            <tr>
-                <td>{{ task.duration | duration }}</td>
-                <td>{{ task.name }}</td>
-                <td>{{ task.start | date }}</td>
-                <td>{{ task | enddate }}</td>
-            </tr>
+            <table>
+                
+                <tr>
+                    <th>Duration</th>
+                    <th>Task Name</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                </tr>
+                
+                {% for task in project.tasks | sortTasks %}
+                <tr>
+                    <td>{{ task.duration | duration }}</td>
+                    <td>{{ task.name }}</td>
+                    <td>{{ task.start | date }}</td>
+                    <td>{{ task | enddate }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </section>
         {% endfor %}
-        </table>
     </body>
 </html>

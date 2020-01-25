@@ -61,7 +61,8 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
     @IBOutlet weak var tasksTableView: NSTableView!
     @IBOutlet weak var totalTimeLabel: NSTextField!
     
-    var menuDelegate: MenuViewProjectsDelegate?
+    var mainDelegate: MainViewProjectsDelegate!
+    var mainViewController: MainViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,7 +110,7 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
     }
     
     @IBAction func toggleSidebarAction(_ sender: Any) {
-        guard let menuViewController = parent as? MenuViewController else {
+        guard let menuViewController = parent as? MainViewController else {
             print("Error could not get parent menu controller, to toggle sidebar")
             return
         }
@@ -126,44 +127,50 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
     
     @IBAction func exportHTMLAction(_ sender: Any) {
         
-        let panel = NSSavePanel()
-        panel.allowedFileTypes = ["html"]
+        mainViewController.exportHTML()
         
-        panel.beginSheetModal(for: view.window!) { (result) in
-            if result == .OK {
-                let path = panel.url!
-                
-                ExportHTML.exportAsync(project: self.project!, path: path)
-            }
-        }
+//        let panel = NSSavePanel()
+//        panel.allowedFileTypes = ["html"]
+//
+//        panel.beginSheetModal(for: view.window!) { (result) in
+//            if result == .OK {
+//                let path = panel.url!
+//
+//                ExportHTML.exportAsync(projects: [self.project!], path: path)
+//            }
+//        }
     }
     
     @IBAction func exportPDFAction(_ sender: Any) {
         
-        let panel = NSSavePanel()
-        panel.allowedFileTypes = ["pdf"]
+        mainViewController.exportPDF()
         
-        panel.beginSheetModal(for: view.window!) { (result) in
-            if result == .OK {
-                let path = panel.url!
-                
-                ExportPDF.exportAsync(project: self.project!, path: path)
-            }
-        }
+//        let panel = NSSavePanel()
+//        panel.allowedFileTypes = ["pdf"]
+//
+//        panel.beginSheetModal(for: view.window!) { (result) in
+//            if result == .OK {
+//                let path = panel.url!
+//
+//                ExportPDF.exportAsync(projects: [self.project!], path: path)
+//            }
+//        }
     }
     
     @IBAction func exportCSVAction(_ sender: Any) {
         
-        let panel = NSSavePanel()
-        panel.allowedFileTypes = ["csv"]
+        mainViewController.exportCSV()
         
-        panel.beginSheetModal(for: view.window!) { (result) in
-            if result == .OK {
-                let path = panel.url!
-                
-                ExportCSV.exportAsync(project: self.project!, path: path)
-            }
-        }
+//        let panel = NSSavePanel()
+//        panel.allowedFileTypes = ["csv"]
+//
+//        panel.beginSheetModal(for: view.window!) { (result) in
+//            if result == .OK {
+//                let path = panel.url!
+//
+//                ExportCSV.exportAsync(project: self.project!, path: path)
+//            }
+//        }
         
     }
     
@@ -252,7 +259,7 @@ class ProjectViewController: NSViewController, NSMenuDelegate {
         
         totalTimeLabel.stringValue = String.localizedStringWithFormat(formatString, time)
         
-        menuDelegate?.projectUpdated(project)
+        mainDelegate?.projectUpdated(project)
     }
     
     func taskFinished(name: String, start: Date, duration: TimeInterval) {

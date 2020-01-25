@@ -21,8 +21,7 @@ struct ExportHTML {
         return date
     }
     
-    static func toHtml(project: Project) -> String {
-        
+    static func toHtml(projects: [Project]) -> String {
         guard let path = Bundle.main.path(forResource: "ExportTemplate", ofType:"html") else {
             print("ERROR: Could not get html export template")
             return ""
@@ -30,6 +29,39 @@ struct ExportHTML {
         
         let template = try! String(contentsOfFile: path)
         
+        let environment = Environment(extensions: [stencilFilters()])
+        
+        var projectsData: [[String: Any]] = []
+        for project in projects {
+            
+            var project: [String: Any] = project.export()
+            project["tasks"] = (project["tasks"] as! [[String: Any?]]).filter({ $0["archived"] as! Bool == false })
+            
+            projectsData.append(project)
+        }
+        
+        var contextData: [String: Any] = [:]
+        contextData["projects"] = projectsData
+        
+        let render = try! environment.renderTemplate(string: template, context: contextData)
+        
+        return render
+    }
+    
+    static func toHtml(project: Project) -> String {
+        return toHtml(projects: [project])
+    }
+    
+    static func exportAsync(projects: [Project], path: URL) {
+        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
+            let html = ExportHTML.toHtml(projects: projects)
+            try! html.write(to: path, atomically: false, encoding: .utf8)
+        }
+    }
+}
+
+extension ExportHTML {
+    static func stencilFilters() -> Extension {
         let ext = Extension()
         ext.registerFilter("sum") { (value: Any?) -> Any? in
             guard let value = value as? [[String: Any?]] else {
@@ -98,21 +130,6 @@ struct ExportHTML {
             return tasks
         }
         
-        let environment = Environment(extensions: [ext])
-        
-        var contextData = project.export()
-        
-        contextData["tasks"] = (contextData["tasks"] as! [[String: Any?]]).filter({ $0["archived"] as! Bool == false })
-        
-        let render = try! environment.renderTemplate(string: template, context: contextData)
-        
-        return render
-    }
-    
-    static func exportAsync(project: Project, path: URL) {
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.userInitiated).async {
-            let html = ExportHTML.toHtml(project: project)
-            try! html.write(to: path, atomically: false, encoding: .utf8)
-        }
+        return ext
     }
 }

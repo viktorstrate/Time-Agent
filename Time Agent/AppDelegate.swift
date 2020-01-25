@@ -15,6 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let popover = NSPopover()
     var closeEventMonitor: EventMonitor?
     var fileSync: FileSync?
+    var menuViewController: MainViewController!
     
     static let main: AppDelegate? = {
         return NSApplication.shared.delegate as? AppDelegate
@@ -34,11 +35,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             setTimer(start: false)
         }
         
-        popover.contentViewController = MenuViewController.makeController()
+        menuViewController = MainViewController.makeController()
+        
+        popover.contentViewController = menuViewController
         popover.contentSize = NSSize(width: 660, height: 480)
         
         closeEventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
             if let strongSelf = self, strongSelf.popover.isShown {
+                // Don't close popover, if eg. a save dialog is showing
+                if strongSelf.menuViewController.dialogueActive {
+                    return
+                }
+                
                 strongSelf.popover.performClose(self);
             }
         }

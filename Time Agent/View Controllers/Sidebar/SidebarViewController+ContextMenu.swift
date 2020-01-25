@@ -157,4 +157,17 @@ extension SidebarViewController {
         
         newProject(parent: parentGroup)
     }
+    
+    // MARK: Exporting
+    @IBAction func projectMenuExportHTMLAction(_ sender: Any) {
+        mainViewController.exportHTML()
+    }
+    
+    @IBAction func projectMenuExportPDFAction(_ sender: Any) {
+        mainViewController.exportPDF()
+    }
+    
+    @IBAction func projectMenuExportCSVAction(_ sender: Any) {
+        mainViewController.exportCSV()
+    }
 }

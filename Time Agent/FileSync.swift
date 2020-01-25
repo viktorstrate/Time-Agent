@@ -42,6 +42,7 @@ class FileSync {
     
     func save() {
         
+    
         print("Saving to sync file...")
         
         var projectsJson: [Any] = []
@@ -63,15 +64,18 @@ class FileSync {
         try! data.write(to: self.path)
         
         self.syncFinished()
+        
+        
     }
     
     func load() {
         
+    
         print("Loading from sync file...")
         
         guard let data = try? Data(contentsOf: self.path) else {
             print("Warn: Sync file does not exist, nothing to laod, saving...")
-            save()
+            self.save()
             return
         }
         
@@ -135,6 +139,8 @@ class FileSync {
                 }
             }
         }
+        
+        
     }
     
     private func syncFinished() {

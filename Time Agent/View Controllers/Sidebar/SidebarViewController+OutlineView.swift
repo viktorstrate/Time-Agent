@@ -138,4 +138,20 @@ extension SidebarViewController {
         
         return nil
     }
+    
+    func selectedProjects() -> [Project] {
+        
+        var projects: [Project] = []
+        
+        for row in outlineView.selectedRowIndexes {
+            let item = outlineView.item(atRow: row)
+            if let project = item as? Project {
+                projects.append(project)
+            } else {
+                print("Could not convert outline item to a project: \(String(describing: item))")
+            }
+        }
+        
+        return projects
+    }
 }
