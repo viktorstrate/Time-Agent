@@ -69,6 +69,10 @@ extension ProjectViewController: NSTableViewDelegate, NSTableViewDataSource {
     }
     
     @objc func rowDoubleClick(sender: Any) {
+        if tasksTableView.clickedRow == -1 {
+            return
+        }
+        
         let task = tableViewTasks[tasksTableView.clickedRow]
         
         guard let name = task.name else {

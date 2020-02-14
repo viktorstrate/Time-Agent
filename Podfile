@@ -5,7 +5,7 @@ target 'Time Agent' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
-  pod 'Sync', '~> 5'
+  pod 'Sync', '~> 6'
   pod 'Stencil', '~> 0.13.1'
 
   # Pods for Time Agent

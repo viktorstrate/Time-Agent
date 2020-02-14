@@ -47,6 +47,9 @@ class TaskEditPopoverController: NSViewController, NSTextFieldDelegate {
         
         task.wasUpdated()
         
+        NSLog("Task edited: \(task)")
+        Model.save()
+        
         onFinished?()
         self.dismiss(self)
     }

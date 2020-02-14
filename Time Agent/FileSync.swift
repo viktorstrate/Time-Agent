@@ -43,7 +43,7 @@ class FileSync {
     func save() {
         
     
-        print("Saving to sync file...")
+        NSLog("Saving to sync file...")
         
         var projectsJson: [Any] = []
         var groupsJson: [Any] = []
@@ -60,32 +60,43 @@ class FileSync {
         jsonObj["projects"] = projectsJson
         jsonObj["groups"] = groupsJson
         
-        let data = try! JSONSerialization.data(withJSONObject: jsonObj, options: .prettyPrinted)
-        try! data.write(to: self.path)
-        
-        self.syncFinished()
+        do {
+            let data = try JSONSerialization.data(withJSONObject: jsonObj, options: .prettyPrinted)
+            try data.write(to: self.path)
+            
+            self.syncFinished()
+        } catch {
+            NSLog("ERROR: Could not sync to file")
+        }
         
         
     }
     
     func load() {
-        
-    
-        print("Loading from sync file...")
+        NSLog("Loading from sync file...")
         
         guard let data = try? Data(contentsOf: self.path) else {
-            print("Warn: Sync file does not exist, nothing to laod, saving...")
+            NSLog("Warn: Sync file does not exist, nothing to load, saving instead...")
             self.save()
             return
         }
         
-        guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as! [String : Any] else {
-            print("ERROR: Did not find json in file")
+        guard let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String : Any] else {
+            NSLog("ERROR: Could not parse content of sync file")
             return
         }
         
-        let projects = json["projects"] as! [[String: Any]]
-        let groups = json["groups"] as! [[String: Any]]
+        guard let projects = json["projects"] as? [[String: Any]] else {
+            NSLog("ERROR: Could not get projects from synced file")
+            return
+        }
+        
+        guard let groups = json["groups"] as? [[String: Any]] else {
+            NSLog("ERROR: Could not get groups from synced file")
+            return
+        }
+        
+        NSLog("Projects to sync: \(projects)")
         
         let rootProjectsPredicate = NSPredicate(format: "group == nil", argumentArray: [])
         let rootGroupsPredicate = NSPredicate(format: "parent == nil", argumentArray: [])
@@ -113,7 +124,7 @@ class FileSync {
                 }
             }
         } else {
-            print("Syncing for the first time")
+            NSLog("Syncing for the first time")
             
             var syncOptions = Sync.OperationOptions.all
             syncOptions.remove(Sync.OperationOptions.delete)
@@ -121,7 +132,7 @@ class FileSync {
             
             Model.context.changes(projects, inEntityNamed: "Project", predicate: rootProjectsPredicate, parent: nil, parentRelationship: nil, operations: syncOptions) { (error) in
                 if let error = error {
-                    print("Initial sync root projects error: \(error)")
+                    NSLog("Initial sync root projects error: \(error)")
                     return
                 }
                 
@@ -129,18 +140,16 @@ class FileSync {
                 
                 Model.context.changes(groups, inEntityNamed: "GroupProject", predicate: rootGroupsPredicate, parent: nil, parentRelationship: nil, operations: syncOptions) { (error) in
                     if let error = error {
-                        print("Initial sync root groups error: \(error)")
+                        NSLog("Initial sync root groups error: \(error)")
                         return
                     }
                     
-                    print("Successfully synced initial new groups")
+                    NSLog("Successfully synced initial new groups")
                     self.syncFinished()
                     
                 }
             }
         }
-        
-        
     }
     
     private func syncFinished() {
