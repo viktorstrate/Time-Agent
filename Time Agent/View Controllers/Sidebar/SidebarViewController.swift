@@ -123,6 +123,21 @@ class SidebarViewController: NSViewController, NSOutlineViewDelegate, NSOutlineV
             }
         }
     }
+    
+    func outlineViewSelectionDidChange(_ notification: Notification) {
+        
+        // Deselect active project
+        if outlineView.selectedRow == -1 {
+            menuDelegate.changeActiveProject(nil)
+            return
+        }
+        
+        if outlineView.selectedRowIndexes.count == 1 {
+            if let project = outlineView.item(atRow: outlineView.selectedRowIndexes.first!) as? Project {
+                menuDelegate.changeActiveProject(project)
+            }
+        }
+    }
 
     // MARK: Core Data related functions
 

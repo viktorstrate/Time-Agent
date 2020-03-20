@@ -57,6 +57,11 @@ class MainViewController: NSSplitViewController, MainViewProjectsDelegate {
     }
     
     func changeActiveProject(_ project: Project?) {
+        if projectViewController.project == project {
+            print("changeActiveProject to already active project, ignoring request")
+            return
+        }
+        
         print("Changed active project...")
         projectViewController.project = project
     }
