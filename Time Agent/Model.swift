@@ -12,21 +12,6 @@ class Model {
     
     static var context: NSManagedObjectContext = {
         return AppDelegate.main!.persistentContainer.viewContext
-//        if let context = AppDelegate.main?.persistentContainer.viewContext {
-//            return context
-//        }
-        
-        // Setup mockup context
-//        print("Making a mockup object context")
-//        let managedObjectModel = NSManagedObjectModel.mergedModel(from: nil)!
-//        let storeCoordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
-//        let store = try! storeCoordinator.addPersistentStore(ofType: NSInMemoryStoreType,
-//                                                        configurationName: nil, at: nil, options: nil)
-//
-//        let managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.privateQueueConcurrencyType)
-//        managedObjectContext.persistentStoreCoordinator = storeCoordinator
-//
-//        return managedObjectContext
     }()
     
     static func delete(managedObject: NSManagedObject) {

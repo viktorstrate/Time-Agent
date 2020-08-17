@@ -41,8 +41,6 @@ class FileSync {
     }
     
     func save() {
-        
-    
         NSLog("Saving to sync file...")
         
         var projectsJson: [Any] = []
@@ -68,8 +66,6 @@ class FileSync {
         } catch {
             NSLog("ERROR: Could not sync to file")
         }
-        
-        
     }
     
     func load() {
