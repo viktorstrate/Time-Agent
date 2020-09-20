@@ -1,6 +1,9 @@
-# Time Agent
+<p align="center">
+<img src="./design assets/App icon.png" width="512" align="center"><br/>
+A free time tracker for macOS, that lives in the menu bar!
+</p>
 
-> A free time tracker for macOS, that lives in the menu bar!
+# Time Agent
 
 ![](./screenshot.png)
 
